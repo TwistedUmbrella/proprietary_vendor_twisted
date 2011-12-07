@@ -1,0 +1,111 @@
+commit 9ae5c24f134cd4c5d5ecc53c33b573b8e1587532
+Author: Tanguy Pruvot <tanguy.pruvot@gmail.com>
+Date:   Wed Nov 30 14:13:17 2011 +0100
+
+    Webkit support for GL apis without GL_TEXTURE_EXTERNAL_OES
+    
+    Change-Id: I7241b729d57c214dc01ac004cb6908a8ee2a4bfb
+
+diff --git a/Source/WebCore/Android.mk b/Source/WebCore/Android.mk
+index 5df4d93..c841ca7 100644
+--- a/Source/WebCore/Android.mk
++++ b/Source/WebCore/Android.mk
+@@ -23,6 +23,10 @@
+ ## OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ ##
+ 
++ifeq ($(BOARD_GL_OES_EGL_IMG_EXTERNAL_HACK),true)
++LOCAL_CFLAGS += -DBOARD_GL_OES_EGL_IMG_EXTERNAL_HACK
++endif
++
+ LOCAL_SRC_FILES := \
+ 	bindings/generic/ActiveDOMCallback.cpp \
+ 	bindings/generic/BindingSecurityBase.cpp \
+diff --git a/Source/WebCore/platform/graphics/android/ShaderProgram.cpp b/Source/WebCore/platform/graphics/android/ShaderProgram.cpp
+index 0aad081..2b5adb8 100644
+--- a/Source/WebCore/platform/graphics/android/ShaderProgram.cpp
++++ b/Source/WebCore/platform/graphics/android/ShaderProgram.cpp
+@@ -203,6 +203,7 @@ void ShaderProgram::init()
+ {
+     m_program = createProgram(gVertexShader, gFragmentShader);
+     m_programInverted = createProgram(gVertexShader, gFragmentShaderInverted);
++
+     m_videoProgram = createProgram(gVideoVertexShader, gVideoFragmentShader);
+     m_surfTexOESProgram =
+         createProgram(gVertexShader, gSurfaceTextureOESFragmentShader);
+@@ -211,9 +212,12 @@ void ShaderProgram::init()
+ 
+     if (m_program == -1
+         || m_programInverted == -1
++#ifndef BOARD_GL_OES_EGL_IMG_EXTERNAL_HACK
+         || m_videoProgram == -1
+         || m_surfTexOESProgram == -1
+-        || m_surfTexOESProgramInverted == -1)
++        || m_surfTexOESProgramInverted == -1
++#endif
++    )
+         return;
+ 
+     m_hProjectionMatrix = glGetUniformLocation(m_program, "projectionMatrix");
+@@ -227,6 +231,7 @@ void ShaderProgram::init()
+     m_hTexSamplerInverted = glGetUniformLocation(m_programInverted, "s_texture");
+     m_hPositionInverted = glGetAttribLocation(m_programInverted, "vPosition");
+ 
++#ifndef BOARD_GL_OES_EGL_IMG_EXTERNAL_HACK
+     m_hVideoProjectionMatrix =
+         glGetUniformLocation(m_videoProgram, "projectionMatrix");
+     m_hVideoTextureMatrix = glGetUniformLocation(m_videoProgram, "textureMatrix");
+@@ -245,7 +250,7 @@ void ShaderProgram::init()
+     m_hSTOESContrastInverted = glGetUniformLocation(m_surfTexOESProgramInverted, "contrast");
+     m_hSTOESTexSamplerInverted = glGetUniformLocation(m_surfTexOESProgramInverted, "s_texture");
+     m_hSTOESPositionInverted = glGetAttribLocation(m_surfTexOESProgramInverted, "vPosition");
+-
++#endif
+ 
+     const GLfloat coord[] = {
+         0.0f, 0.0f, // C
+@@ -357,6 +362,9 @@ void ShaderProgram::drawQuadInternal(SkRect& geometry,
+ void ShaderProgram::drawQuad(SkRect& geometry, int textureId, float opacity,
+                              GLenum textureTarget, GLint texFilter)
+ {
++#ifdef BOARD_GL_OES_EGL_IMG_EXTERNAL_HACK
++    textureTarget = GL_TEXTURE_2D;
++#endif
+     if (textureTarget == GL_TEXTURE_2D) {
+         if (!TilesManager::instance()->invertedScreen()) {
+             drawQuadInternal(geometry, textureId, opacity, m_program,
+@@ -547,6 +555,9 @@ void ShaderProgram::drawLayerQuad(const TransformationMatrix& drawMatrix,
+                                   float opacity, bool forceBlending,
+                                   GLenum textureTarget)
+ {
++#ifdef BOARD_GL_OES_EGL_IMG_EXTERNAL_HACK
++    textureTarget = GL_TEXTURE_2D;
++#endif
+ 
+     TransformationMatrix modifiedDrawMatrix = drawMatrix;
+     // move the drawing depending on where the texture is on the layer
+@@ -609,6 +620,7 @@ void ShaderProgram::drawVideoLayerQuad(const TransformationMatrix& drawMatrix,
+ 
+     glActiveTexture(GL_TEXTURE0);
+     glUniform1i(m_hVideoTexSampler, 0);
++
+     glBindTexture(GL_TEXTURE_EXTERNAL_OES, textureId);
+ 
+     glBindBuffer(GL_ARRAY_BUFFER, m_textureBuffer[0]);
+diff --git a/Source/WebCore/platform/graphics/android/TransferQueue.cpp b/Source/WebCore/platform/graphics/android/TransferQueue.cpp
+index 4e29870..f2411c2 100644
+--- a/Source/WebCore/platform/graphics/android/TransferQueue.cpp
++++ b/Source/WebCore/platform/graphics/android/TransferQueue.cpp
+@@ -175,6 +175,12 @@ void TransferQueue::blitTileFromQueue(GLuint fboID, BaseTileTexture* destTex,
+ 
+     // Use empty rect to set up the special matrix to draw.
+     SkRect rect  = SkRect::MakeEmpty();
++#ifdef BOARD_GL_OES_EGL_IMG_EXTERNAL_HACK
++    if (srcTexTarget != GL_TEXTURE_2D) {
++        XLOG("Info: using GL_TEXTURE_2D for %x", srcTexTarget);
++        srcTexTarget = GL_TEXTURE_2D;
++    }
++#endif
+     TilesManager::instance()->shader()->drawQuad(rect, srcTexId, 1.0,
+                        srcTexTarget, GL_NEAREST);
+ 
