@@ -1,0 +1,21 @@
+commit 6337d62f549d841281f6408e64ff3607ca46e1c3
+Author: Twisted Playground <twistedumbrella@gmail.com>
+Date:   Tue Dec 6 22:17:58 2011 -0500
+
+    OpenGL Patch Update
+
+diff --git a/services/surfaceflinger/Android.mk b/services/surfaceflinger/Android.mk
+index 53502db..2b94400 100644
+--- a/services/surfaceflinger/Android.mk
++++ b/services/surfaceflinger/Android.mk
+@@ -20,6 +20,10 @@ LOCAL_SRC_FILES:= \
+ LOCAL_CFLAGS:= -DLOG_TAG=\"SurfaceFlinger\"
+ LOCAL_CFLAGS += -DGL_GLEXT_PROTOTYPES -DEGL_EGLEXT_PROTOTYPES
+ 
++ifeq ($(BOARD_NO_RGBX_8888),true)
++	LOCAL_CFLAGS += -DNO_RGBX_8888
++endif
++
+ ifeq ($(TARGET_BOARD_PLATFORM), omap3)
+ 	LOCAL_CFLAGS += -DNO_RGBX_8888
+ endif
