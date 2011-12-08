@@ -19,7 +19,6 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/prebuilt/media/bootanimation.zip:system/media/bootanimation.zip \
     vendor/twisted/prebuilt/xbin/wget:system/xbin/wget
 
-
 # Kernel Customization
 PRODUCT_COPY_FILES += \
     vendor/twisted/prebuilt/lib/modules/cifs.ko:system/lib/modules/cifs.ko \
@@ -27,5 +26,4 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/prebuilt/lib/modules/lzo_decompress.ko:system/lib/modules/lzo_decompress.ko \
     vendor/twisted/prebuilt/lib/modules/tun.ko:system/lib/modules/tun.ko \
     vendor/twisted/prebuilt/lib/modules/zram.ko:system/lib/modules/zram.ko \
-    vendor/twisted/prebuilt/etc/init.d:system/etc/init.d \
-    vendor/twisted/prebuilt/etc/init.d/01vdd_levels:system/etc/init.d/01vdd_levels
+    vendor/twisted/prebuilt/etc/init.d:system/etc/init.d

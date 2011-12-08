@@ -9,4 +9,6 @@ export USE_CCACHE=1
 export CCACHE_DIR=/Users/TwistedZero/.ccache
 prebuilt/darwin-x86/ccache/ccache -M 40G
 make otapackage -j4
+if [ -e /Volumes/android/android-tzb_ics4.0.1/out/target/product/mecha/htc_mecha-ota-eng.TwistedZero.zip ]; then
 cp -R /Volumes/android/android-tzb_ics4.0.1/out/target/product/mecha/htc_mecha-ota-eng.TwistedZero.zip /Users/TwistedZero/Dropbox/IceCreamSammy/htc_mecha-ota-eng.TwistedZero.zip
+fi
