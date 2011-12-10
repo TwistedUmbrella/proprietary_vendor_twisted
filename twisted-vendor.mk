@@ -16,7 +16,6 @@
 PRODUCT_COPY_FILES += \
     vendor/twisted/prebuilt/sbin/speedtweak.sh:root/sbin/speedtweak.sh \
     vendor/twisted/prebuilt/sbin/zram:root/sbin/zram \
-    vendor/twisted/prebuilt/media/bootanimation.zip:system/media/bootanimation.zip \
     vendor/twisted/prebuilt/xbin/wget:system/xbin/wget
 
 # Kernel Customization
