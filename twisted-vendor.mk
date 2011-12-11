@@ -12,21 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Common Customization
-PRODUCT_COPY_FILES += \
-    vendor/twisted/prebuilt/sbin/speedtweak.sh:root/sbin/speedtweak.sh \
-    vendor/twisted/prebuilt/sbin/zram:root/sbin/zram \
-    vendor/twisted/prebuilt/xbin/wget:system/xbin/wget
-
-# Kernel Customization
-PRODUCT_COPY_FILES += \
-    vendor/twisted/prebuilt/lib/modules/cifs.ko:system/lib/modules/cifs.ko \
-    vendor/twisted/prebuilt/lib/modules/lzo_compress.ko:system/lib/modules/lzo_compress.ko \
-    vendor/twisted/prebuilt/lib/modules/lzo_decompress.ko:system/lib/modules/lzo_decompress.ko \
-    vendor/twisted/prebuilt/lib/modules/tun.ko:system/lib/modules/tun.ko \
-    vendor/twisted/prebuilt/lib/modules/zram.ko:system/lib/modules/zram.ko \
-    vendor/twisted/prebuilt/etc/init.d:system/etc/init.d
-
 # Google Applications
 PRODUCT_COPY_FILES += \
     vendor/twisted/google/app/ChromeBookmarksSyncAdapter.apk:system/app/ChromeBookmarksSyncAdapter.apk \
