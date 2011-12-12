@@ -1,3 +1,9 @@
+if [ "$2" == "Y" ]; then
+echo "Config Name? ";
+read config
+cd /Volumes/android/android-tzb_ics4.0.1/kernel/leanKernel-tbolt-ics
+./buildlean.sh 1 $config
+fi
 cd /Volumes/android/android-tzb_ics4.0.1
 export USE_CCACHE=1
 export CCACHE_DIR=/Users/TwistedZero/.ccache

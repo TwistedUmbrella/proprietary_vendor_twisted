@@ -29,7 +29,6 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/google/app/GoogleQuickSearchBox.apk:system/app/GoogleQuickSearchBox.apk \
     vendor/twisted/google/app/GoogleServicesFramework.apk:system/app/GoogleServicesFramework.apk \
     vendor/twisted/google/app/GoogleTTS.apk:system/app/GoogleTTS.apk \
-    vendor/twisted/google/app/LatinImeGoogle.apk:system/app/LatinImeGoogle.apk \
     vendor/twisted/google/app/Maps.apk:system/app/Maps.apk \
     vendor/twisted/google/app/MarketUpdater.apk:system/app/MarketUpdater.apk \
     vendor/twisted/google/app/MediaUploader.apk:system/app/MediaUploader.apk \
