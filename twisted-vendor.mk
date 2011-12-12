@@ -12,6 +12,41 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# CyanogenMod Customization
+PRODUCT_PROPERTY_OVERRIDES += \
+    keyguard.no_require_sim=true \
+    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
+    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
+    ro.com.google.clientidbase=android-google \
+    ro.com.android.wifi-watchlist=GoogleGuest \
+    ro.setupwizard.enterprise_mode=1 \
+    ro.com.android.dateformat=MM-dd-yyyy \
+    ro.com.android.dataroaming=false
+
+# Enable SIP+VoIP on all targets
+PRODUCT_COPY_FILES += \
+    frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
+
+# Optional CM packages
+PRODUCT_PACKAGES += \
+    VideoEditor \
+    VoiceDialer \
+    Basic \
+    HoloSpiralWallpaper \
+    MagicSmokeWallpapers \
+    NoiseField \
+    Galaxy4 \
+    LiveWallpapers \
+    LiveWallpapersPicker \
+    VisualizationWallpapers \
+    PhaseBeam
+
+PRODUCT_PACKAGE_OVERLAYS += vendor/cm/overlay/dictionaries
+
+# Bring in all audio files
+include frameworks/base/data/sounds/AllAudio.mk
+include frameworks/base/data/sounds/AudioPackage7.mk
+
 # Google Applications
 PRODUCT_COPY_FILES += \
     vendor/twisted/google/app/ChromeBookmarksSyncAdapter.apk:system/app/ChromeBookmarksSyncAdapter.apk \
@@ -38,6 +73,7 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/google/app/Talk.apk:system/app/Talk.apk \
     vendor/twisted/google/app/Vending.apk:system/app/Vending.apk \
     vendor/twisted/google/app/VoiceSearch.apk:system/app/VoiceSearch.apk \
+    vendor/twisted/google/app/Wallet.apk:system/app/Wallet.apk \
     vendor/twisted/google/app/YouTube.apk:system/app/YouTube.apk
 
 # Google Permissions
@@ -62,6 +98,7 @@ PRODUCT_COPY_FILES += \
 
 # Google Vendor
 PRODUCT_COPY_FILES += \
+    vendor/twisted/google/vendor/firmware/libpn544_fw.so:system/vendor/firmware/libpn544_fw.so \
     vendor/twisted/google/vendor/pittpatt:system/vendor/pittpatt
 
 # Verizon Applications
