@@ -1,0 +1,80 @@
+From 63d0bbbc5997e534fb319d2eaa405fcc8dd0e6b0 Mon Sep 17 00:00:00 2001
+From: Cameron Pickett <pickett.cj@gmail.com>
+Date: Thu, 1 Dec 2011 14:01:53 -0800
+Subject: [PATCH] Add toggle for Navigation Bar (1/2)
+
+If build is configured without navigation bar enabled (eg. device has hardware
+keys), this change allows user to enable/disable nav bar alongside hardware keys.
+
+If build is configured with nav bar enabled, the toggle is hidden so that user
+cannot get stuck without the nav bar.
+---
+ core/java/android/provider/Settings.java           |    7 +++++++
+ .../internal/policy/impl/PhoneWindowManager.java   |   12 ++++++++++++
+ 2 files changed, 19 insertions(+), 0 deletions(-)
+
+diff --git a/core/java/android/provider/Settings.java b/core/java/android/provider/Settings.java
+index a0652f7..95d7984 100644
+--- a/core/java/android/provider/Settings.java
++++ b/core/java/android/provider/Settings.java
+@@ -1749,6 +1749,13 @@ public final class Settings {
+         public static final String NOTIFICATION_LIGHT_PULSE = "notification_light_pulse";
+ 
+         /**
++         * Whether the soft keys should display if device already has hard keys. The
++         * value is boolean (1 or 0).
++         * @hide
++         */
++        public static final String NAVIGATION_BAR_VISIBLE = "navigation_bar_visible";
++
++        /**
+          * Show pointer location on screen?
+          * 0 = no
+          * 1 = yes
+diff --git a/policy/src/com/android/internal/policy/impl/PhoneWindowManager.java b/policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+index 0a77654..c4c455c 100755
+--- a/policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
++++ b/policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+@@ -261,6 +261,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
+     final ArrayList<WindowState> mStatusBarPanels = new ArrayList<WindowState>();
+     WindowState mNavigationBar = null;
+     boolean mHasNavigationBar = false;
++    // User override to enable soft keys alongside hard keys
++    boolean mUserNavigationBar = false;
+     int mNavigationBarWidth = 0, mNavigationBarHeight = 0;
+ 
+     WindowState mKeyguard = null;
+@@ -456,6 +458,8 @@ public class PhoneWindowManager implements WindowManagerPolicy {
+                     "fancy_rotation_anim"), false, this);
+             resolver.registerContentObserver(Settings.System.getUriFor(
+                     Settings.Secure.DREAM_TIMEOUT), false, this);
++            resolver.registerContentObserver(Settings.System.getUriFor(
++                    Settings.System.NAVIGATION_BAR_VISIBLE), false, this);
+             updateSettings();
+         }
+ 
+@@ -832,6 +836,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
+             if      (navBarOverride.equals("1")) mHasNavigationBar = false;
+             else if (navBarOverride.equals("0")) mHasNavigationBar = true;
+         }
++        // Allow user to override this if phone has hard keys (eg. nav bar is
++        // not enabled by default in the configuration)
++        if(!mHasNavigationBar) {
++            mHasNavigationBar = mUserNavigationBar;
++        }
+ 
+         mNavigationBarHeight = mHasNavigationBar
+                 ? mContext.getResources().getDimensionPixelSize(
+@@ -913,6 +922,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
+                     Settings.Secure.DREAM_TIMEOUT, 0);
+             mScreenSaverEnabled = true;
+             updateScreenSaverTimeoutLocked();
++
++            mUserNavigationBar = (Settings.System.getInt(resolver,
++                    Settings.System.NAVIGATION_BAR_VISIBLE, 0) == 1);
+         }
+         if (updateRotation) {
+             updateRotation(true);
+-- 
+1.7.5.4
+

@@ -16,7 +16,9 @@ make otapackage -j4
 if [ "$1" == "mecha" ]; then
 if [ -e /Volumes/android/android-tzb_ics4.0.1/out/target/product/mecha/htc_mecha-ota-eng.TwistedZero.zip ]; then
 cp -R /Volumes/android/android-tzb_ics4.0.1/out/target/product/mecha/htc_mecha-ota-eng.TwistedZero.zip /Users/TwistedZero/Dropbox/IceCreamSammy/htc_mecha-ota-eng.TwistedZero.zip
-stat -t %Y%m%d /Volumes/android/android-tzb_ics4.0.1/out/target/product/mecha/htc_mecha-ota-eng.TwistedZero.zip | cut -d\  -f11 >> /Volumes/frontrow/TwistedZero/BuildTimeStamp
+echo "Latest Build Completed:" > /Volumes/frontrow/TwistedZero/TimeStamp
+date >> /Volumes/frontrow/TwistedZero/TimeStamp
+echo "Please Allow 30-45 Min" >> /Volumes/frontrow/TwistedZero/TimeStamp
 fi
 elif ["$1" == "ace" ]; then
 if [ -e /Volumes/android/android-tzb_ics4.0.1/out/target/product/ace/htc_mecha-ota-eng.TwistedZero.zip ]; then
