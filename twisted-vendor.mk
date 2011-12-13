@@ -29,8 +29,6 @@ PRODUCT_COPY_FILES += \
 
 # Optional CM packages
 PRODUCT_PACKAGES += \
-    VideoEditor \
-    VoiceDialer \
     Basic \
     HoloSpiralWallpaper \
     MagicSmokeWallpapers \

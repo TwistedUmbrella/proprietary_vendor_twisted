@@ -16,14 +16,13 @@ make clean -j8
 source build/envsetup.sh
 if [ "$1" == "mecha" ]; then
 lunch 6
-echo "" >> /Volumes/frontrow/TwistedZero/TimeStamp
-echo "New Compile Started:" > /Volumes/frontrow/TwistedZero/TimeStamp
+echo "" > /Volumes/frontrow/TwistedZero/TimeStamp
+echo "New Compile Started:" >> /Volumes/frontrow/TwistedZero/TimeStamp
 date >> /Volumes/frontrow/TwistedZero/TimeStamp
 echo "Compile Information:" >> /Volumes/frontrow/TwistedZero/TimeStamp
 echo $changes >> /Volumes/frontrow/TwistedZero/TimeStamp
 cat /Volumes/frontrow/TwistedZero/BackStamp /Volumes/frontrow/TwistedZero/TimeStamp > /Volumes/frontrow/TwistedZero/TempStamp
 mv -f /Volumes/frontrow/TwistedZero/TempStamp /Volumes/frontrow/TwistedZero/TimeStamp
-rm -R /Volumes/frontrow/TwistedZero/TempStamp
 elif [ "$1" == "ace" ]; then
 lunch 4
 fi
@@ -43,7 +42,6 @@ echo "Compile Process Failed." > /Volumes/frontrow/TwistedZero/TimeStamp
 echo "" >> /Volumes/frontrow/TwistedZero/TimeStamp
 cat /Volumes/frontrow/TwistedZero/TimeStamp /Volumes/frontrow/TwistedZero/BackStamp > /Volumes/frontrow/TwistedZero/TempStamp
 mv -f /Volumes/frontrow/TwistedZero/TempStamp /Volumes/frontrow/TwistedZero/TimeStamp
-rm -R /Volumes/frontrow/TwistedZero/TempStamp
 fi
 elif ["$1" == "ace" ]; then
 if [ -e /Volumes/android/android-tzb_ics4.0.1/out/target/product/ace/htc_mecha-ota-eng.TwistedZero.zip ]; then
