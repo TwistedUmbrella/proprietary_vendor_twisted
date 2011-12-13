@@ -23,10 +23,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dateformat=MM-dd-yyyy \
     ro.com.android.dataroaming=false
 
-# Enable SIP+VoIP on all targets
-PRODUCT_COPY_FILES += \
-    frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
-
 # Optional CM packages
 PRODUCT_PACKAGES += \
     Basic \
@@ -99,11 +95,6 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/google/vendor/firmware/libpn544_fw.so:system/vendor/firmware/libpn544_fw.so \
     vendor/twisted/google/vendor/pittpatt:system/vendor/pittpatt
 
-# Verizon Applications
-PRODUCT_COPY_FILES += \
-    vendor/twisted/verizon/app/VZWAPNLib.apk:system/app/VZWAPNLib.apk \
-    vendor/twisted/verizon/app/VZWAPNService.apk:system/app/VZWAPNService.apk
-
-# Verizon Customization
+# Google Customization
 PRODUCT_COPY_FILES += \
     vendor/twisted/verizon/media/bootanimation.zip:system/media/bootanimation.zip
