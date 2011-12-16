@@ -23,20 +23,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dateformat=MM-dd-yyyy \
     ro.com.android.dataroaming=false
 
-# Optional CM packages
-PRODUCT_PACKAGES += \
-    Basic \
-    HoloSpiralWallpaper \
-    MagicSmokeWallpapers \
-    NoiseField \
-    Galaxy4 \
-    LiveWallpapers \
-    LiveWallpapersPicker \
-    VisualizationWallpapers \
-    PhaseBeam
-
-PRODUCT_PACKAGE_OVERLAYS += vendor/cm/overlay/dictionaries
-
 # Bring in all audio files
 include frameworks/base/data/sounds/AllAudio.mk
 include frameworks/base/data/sounds/AudioPackage7.mk
@@ -107,7 +93,3 @@ PRODUCT_COPY_FILES += \
 # Prebuilt Frameworks
 PRODUCT_COPY_FILES += \
     vendor/twisted/prebuilt/framework/services.jar:system/framework/services.jar
-
-# Prebuilt Libraries
-PRODUCT_COPY_FILES += \
-    vendor/twisted/prebuilt/lib/hw/audio.primary.msm7x30.so:system/lib/hw/audio.primary.msm7x30.so
