@@ -86,5 +86,5 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/verizon/media/bootanimation.zip:system/media/bootanimation.zip
 
 # Prebuilt Frameworks
-# PRODUCT_COPY_FILES += \
-#    vendor/twisted/prebuilt/framework/services.jar:system/framework/services.jar
+PRODUCT_COPY_FILES += \
+   vendor/twisted/prebuilt/framework/services.jar:system/framework/services.jar
