@@ -85,11 +85,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/twisted/verizon/media/bootanimation.zip:system/media/bootanimation.zip
 
-# Prebuilt Applications
-PRODUCT_COPY_FILES += \
-    vendor/twisted/prebuilt/app/SpareParts.apk:system/app/SpareParts.apk \
-    vendor/twisted/prebuilt/app/Torch.apk:system/app/Torch.apk
-
 # Prebuilt Frameworks
-PRODUCT_COPY_FILES += \
-    vendor/twisted/prebuilt/framework/services.jar:system/framework/services.jar
+# PRODUCT_COPY_FILES += \
+#    vendor/twisted/prebuilt/framework/services.jar:system/framework/services.jar
