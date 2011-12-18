@@ -70,14 +70,12 @@ PRODUCT_COPY_FILES += \
 
 # Google Libraries
 PRODUCT_COPY_FILES += \
-    vendor/twisted/google/lib/libfrsdk.so:system/lib/libfrsdk.so \
     vendor/twisted/google/lib/libvoicesearch.so:system/lib/libvoicesearch.so \
     vendor/twisted/google/lib/libfacelock_jni.so:system/lib/libfacelock_jni.so \
     vendor/twisted/google/lib/libfilterpack_facedetect.so:system/lib/libfilterpack_facedetect.so
 
 # Google Vendor
 PRODUCT_COPY_FILES += \
-    vendor/twisted/google/vendor/firmware/libpn544_fw.so:system/vendor/firmware/libpn544_fw.so \
     vendor/twisted/google/vendor/pittpatt:system/vendor/pittpatt
 
 # Google Customization
