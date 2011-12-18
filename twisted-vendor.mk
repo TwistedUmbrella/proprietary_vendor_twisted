@@ -44,16 +44,15 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/google/app/GoogleQuickSearchBox.apk:system/app/GoogleQuickSearchBox.apk \
     vendor/twisted/google/app/GoogleServicesFramework.apk:system/app/GoogleServicesFramework.apk \
     vendor/twisted/google/app/GoogleTTS.apk:system/app/GoogleTTS.apk \
-    vendor/twisted/google/app/Maps.apk:system/app/Maps.apk \
+    vendor/twisted/google/app/LatinImeGoogle.apk:system/app/LatinImeGoogle.apk \
     vendor/twisted/google/app/MarketUpdater.apk:system/app/MarketUpdater.apk \
     vendor/twisted/google/app/MediaUploader.apk:system/app/MediaUploader.apk \
     vendor/twisted/google/app/NetworkLocation.apk:system/app/NetworkLocation.apk \
     vendor/twisted/google/app/OneTimeInitializer.apk:system/app/OneTimeInitializer.apk \
     vendor/twisted/google/app/SetupWizard.apk:system/app/SetupWizard.apk \
+    vendor/twisted/google/app/TagGoogle.apk:system/app/TagGoogle.apk \
     vendor/twisted/google/app/Talk.apk:system/app/Talk.apk \
     vendor/twisted/google/app/Vending.apk:system/app/Vending.apk \
-    vendor/twisted/google/app/VoiceSearch.apk:system/app/VoiceSearch.apk \
-    vendor/twisted/google/app/Wallet.apk:system/app/Wallet.apk \
     vendor/twisted/google/app/YouTube.apk:system/app/YouTube.apk
 
 # Google Permissions
