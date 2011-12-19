@@ -25,7 +25,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Bring in all audio files
 include frameworks/base/data/sounds/AllAudio.mk
-include frameworks/base/data/sounds/AudioPackage7.mk
 
 # Google Applications
 PRODUCT_COPY_FILES += \
@@ -80,3 +79,9 @@ PRODUCT_COPY_FILES += \
 # Google Customization
 PRODUCT_COPY_FILES += \
     vendor/twisted/verizon/media/bootanimation.zip:system/media/bootanimation.zip
+
+# CyanogenMod Packages
+PRODUCT_PACKAGES += \
+    DSPManager \
+    libcyanogen-dsp \
+    audio_effects.conf
