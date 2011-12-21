@@ -18,6 +18,9 @@ echo "Compile Information:" >> $TIMESTAMP
 echo $changes >> $TIMESTAMP
 cat $BACKSTAMP $TIMESTAMP > $TEMPSTAMP
 mv -f $TEMPSTAMP $TIMESTAMP
+
+repo sync
+
 if [ "$2" == "Y" ]; then
 echo "Config Name? ";
 cd $BUILDDIR/kernel/$KERNELSPEC
