@@ -82,6 +82,7 @@ PRODUCT_COPY_FILES += \
 
 # CyanogenMod Packages
 PRODUCT_PACKAGES += \
+    CMSettings \
     DSPManager \
     libcyanogen-dsp \
     audio_effects.conf
