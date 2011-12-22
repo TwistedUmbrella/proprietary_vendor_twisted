@@ -19,13 +19,16 @@ echo $changes >> $TIMESTAMP
 cat $BACKSTAMP $TIMESTAMP > $TEMPSTAMP
 mv -f $TEMPSTAMP $TIMESTAMP
 
-repo sync
-
 if [ "$2" == "Y" ]; then
 echo "Config Name? ";
 cd $BUILDDIR/kernel/$KERNELSPEC
 ls config
 read config
+fi
+
+repo sync
+
+if [ "$2" == "Y" ]; then
 ./buildlean.sh 1 $config
 if [ -e arch/arm/boot/zImage ]; then
 echo "" >> $TIMESTAMP
