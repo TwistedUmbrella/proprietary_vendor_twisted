@@ -1,0 +1,124 @@
+commit 1db4b758cbfa24c34554577ad5b92a6b8bc23d51
+Author: Twisted Playground <twistedumbrella@gmail.com>
+Date:   Wed Dec 21 18:31:52 2011 -0500
+
+    "Sexy Switch" Implementation
+    
+    "Sexy Switch" Implementation is an extension of the "qcom Legacy
+    Implementation"
+
+diff --git a/libcopybit/Android.mk b/libcopybit/Android.mk
+index 747795d..c6b5823 100755
+--- a/libcopybit/Android.mk
++++ b/libcopybit/Android.mk
+@@ -14,6 +14,9 @@
+ 
+ 
+ LOCAL_PATH:= $(call my-dir)
++
++ifneq ($(BOARD_USES_QCOM_LEGACY),true)
++
+ # HAL module implemenation, not prelinked and stored in
+ # hw/<COPYPIX_HARDWARE_MODULE_ID>.<ro.board.platform>.so
+ 
+@@ -56,3 +59,5 @@ else
+             include $(BUILD_SHARED_LIBRARY)
+       endif
+ endif
++
++endif
+diff --git a/libgenlock/Android.mk b/libgenlock/Android.mk
+index d5ff536..ef5810b 100755
+--- a/libgenlock/Android.mk
++++ b/libgenlock/Android.mk
+@@ -1,5 +1,7 @@
+ LOCAL_PATH := $(call my-dir)
+ 
++ifneq ($(BOARD_USES_QCOM_LEGACY),true)
++
+ include $(CLEAR_VARS)
+ LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
+ LOCAL_SHARED_LIBRARIES := liblog libcutils
+@@ -15,3 +17,5 @@ endif
+ LOCAL_MODULE := libgenlock
+ include $(BUILD_SHARED_LIBRARY)
+ 
++endif
++
+diff --git a/libgralloc/Android.mk b/libgralloc/Android.mk
+index b201469..ffd5019 100755
+--- a/libgralloc/Android.mk
++++ b/libgralloc/Android.mk
+@@ -15,6 +15,8 @@
+ # Use this flag until pmem/ashmem is implemented in the new gralloc
+ LOCAL_PATH := $(call my-dir)
+ 
++ifneq ($(BOARD_USES_QCOM_LEGACY),true)
++
+ # HAL module implemenation, not prelinked and stored in
+ # hw/<OVERLAY_HARDWARE_MODULE_ID>.<ro.product.board>.so
+ include $(CLEAR_VARS)
+@@ -52,6 +54,8 @@ endif
+ 
+ include $(BUILD_SHARED_LIBRARY)
+ 
++endif
++
+ #MemAlloc Library
+ include $(CLEAR_VARS)
+ 
+diff --git a/libhwcomposer/Android.mk b/libhwcomposer/Android.mk
+index 6a97453..5f27405 100755
+--- a/libhwcomposer/Android.mk
++++ b/libhwcomposer/Android.mk
+@@ -1,5 +1,7 @@
+ LOCAL_PATH := $(call my-dir)
+ 
++ifneq ($(BOARD_USES_QCOM_LEGACY),true)
++
+ # HAL module implemenation, not prelinked and stored in
+ # hw/<OVERLAY_HARDWARE_MODULE_ID>.<ro.product.board>.so
+ include $(CLEAR_VARS)
+@@ -33,3 +35,5 @@ ifeq ($(TARGET_USE_HDMI_AS_PRIMARY),true)
+ endif
+ LOCAL_MODULE_TAGS := optional
+ include $(BUILD_SHARED_LIBRARY)
++
++endif
+diff --git a/liboverlay/Android.mk b/liboverlay/Android.mk
+index 1f66ba3..fe28616 100755
+--- a/liboverlay/Android.mk
++++ b/liboverlay/Android.mk
+@@ -15,6 +15,8 @@
+ 
+ LOCAL_PATH := $(call my-dir)
+ 
++ifneq ($(BOARD_USES_QCOM_LEGACY),true)
++
+ include $(CLEAR_VARS)
+ LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
+ LOCAL_SHARED_LIBRARIES := liblog libcutils libutils libmemalloc
+@@ -31,3 +33,5 @@ endif
+ LOCAL_MODULE := liboverlay
+ LOCAL_MODULE_TAGS := optional
+ include $(BUILD_SHARED_LIBRARY)
++
++endif
+diff --git a/libtilerenderer/Android.mk b/libtilerenderer/Android.mk
+index 3064c21..5391d6a 100755
+--- a/libtilerenderer/Android.mk
++++ b/libtilerenderer/Android.mk
+@@ -1,4 +1,7 @@
+ LOCAL_PATH := $(call my-dir)
++
++ifneq ($(BOARD_USES_QCOM_LEGACY),true)
++
+ include $(CLEAR_VARS)
+ 
+ ifeq ($(USE_OPENGL_RENDERER),true)
+@@ -23,3 +26,5 @@ LOCAL_MODULE := libtilerenderer
+ LOCAL_MODULE_TAGS := optional
+ include $(BUILD_SHARED_LIBRARY)
+ endif
++
++endif
