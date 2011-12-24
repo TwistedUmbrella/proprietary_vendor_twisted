@@ -24,11 +24,6 @@ echo "Config Name? ";
 cd $BUILDDIR/kernel/$KERNELSPEC
 ls config
 read config
-fi
-
-repo sync
-
-if [ "$2" == "Y" ]; then
 ./buildlean.sh 1 $config
 if [ -e arch/arm/boot/zImage ]; then
 echo "" >> $TIMESTAMP
@@ -41,6 +36,9 @@ echo "" >> $TIMESTAMP
 fi
 fi
 fi
+
+repo sync
+
 cd $BUILDDIR
 export USE_CCACHE=1
 export CCACHE_DIR=$USERLOCAL/.ccache
