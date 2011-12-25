@@ -79,3 +79,7 @@ PRODUCT_COPY_FILES += \
 # Google Customization
 PRODUCT_COPY_FILES += \
     vendor/twisted/verizon/media/bootanimation.zip:system/media/bootanimation.zip
+
+# Twisted Packages
+PRODUCT_COPY_FILES += \
+    vendor/twisted/twisted/app/ICScriptFusion.apk:system/app/ICScriptFusion.apk
