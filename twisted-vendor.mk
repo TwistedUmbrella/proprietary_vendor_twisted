@@ -28,6 +28,7 @@ include frameworks/base/data/sounds/AllAudio.mk
 
 # Google Applications
 PRODUCT_COPY_FILES += \
+    vendor/twisted/google/app/CarHomeGoogle.apk:system/app/CarHomeGoogle.apk \
     vendor/twisted/google/app/ChromeBookmarksSyncAdapter.apk:system/app/ChromeBookmarksSyncAdapter.apk \
     vendor/twisted/google/app/FaceLock.apk:system/app/FaceLock.apk \
     vendor/twisted/google/app/GenieWidget.apk:system/app/GenieWidget.apk \
@@ -68,9 +69,16 @@ PRODUCT_COPY_FILES += \
 
 # Google Libraries
 PRODUCT_COPY_FILES += \
-    vendor/twisted/google/lib/libvoicesearch.so:system/lib/libvoicesearch.so \
     vendor/twisted/google/lib/libfacelock_jni.so:system/lib/libfacelock_jni.so \
-    vendor/twisted/google/lib/libfilterpack_facedetect.so:system/lib/libfilterpack_facedetect.so
+    vendor/twisted/google/lib/libfilterpack_facedetect.so:system/lib/libfilterpack_facedetect.so \
+    vendor/twisted/google/lib/libflint_engine_jni_api.so:system/lib/libflint_engine_jni_api.so \
+    vendor/twisted/google/lib/libfrsdk.so:system/lib/libfrsdk.so \
+    vendor/twisted/google/lib/libpicowrapper.so:system/lib/libpicowrapper.so \
+    vendor/twisted/google/lib/libspeexresampler.so:system/lib/libspeexresampler.so \
+    vendor/twisted/google/lib/libspeexwrapper.so:system/lib/libspeexwrapper.so \
+    vendor/twisted/google/lib/libvideochat_jni.so:system/lib/libvideochat_jni.so \
+    vendor/twisted/google/lib/libvideochat_stabilize.so:system/lib/libvideochat_stabilize.so \
+    vendor/twisted/google/lib/libvoicesearch.so:system/lib/libvoicesearch.so
 
 # Google Vendor
 PRODUCT_COPY_FILES += \
