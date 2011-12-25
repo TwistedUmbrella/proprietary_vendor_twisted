@@ -79,10 +79,3 @@ PRODUCT_COPY_FILES += \
 # Google Customization
 PRODUCT_COPY_FILES += \
     vendor/twisted/verizon/media/bootanimation.zip:system/media/bootanimation.zip
-
-# CyanogenMod Packages
-PRODUCT_PACKAGES += \
-    CMSettings \
-    DSPManager \
-    libcyanogen-dsp \
-    audio_effects.conf
