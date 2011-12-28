@@ -1,3 +1,7 @@
+# This script is designed to compliment .bash_profile code to automate the build process by adding a typical shell command such as:
+# function buildTwist { echo "Ace or Mecha? "; read device; if ["device" == "mecha"]; then echo "Kernel (Y/n)? "; read kernel; else kernel = "n"; fi; cd /Volumes/android/android-tzb_ics4.0.1/vendor/twisted; ./build_twisted.sh $device $kernel; }
+# This script is designed by Twisted Playground for use on MacOSX 10.7 but can be modified for other distributions of Mac and Linux
+
 HANDLE=TwistedZero
 TIMESTAMP=/Volumes/frontrow/$HANDLE/TimeStamp
 TEMPSTAMP=/Volumes/frontrow/$HANDLE/TempStamp
@@ -70,7 +74,7 @@ cat $TIMESTAMP $BACKSTAMP > $TEMPSTAMP
 mv -f $TEMPSTAMP $TIMESTAMP
 fi
 elif ["$1" == "ace" ]; then
-if [ -e $BUILDDIR/out/target/product/ace/htc_mecha-ota-eng.$HANDLE.zip ]; then
+if [ -e $BUILDDIR/out/target/product/ace/htc_ace-ota-eng.$HANDLE.zip ]; then
 cp -R $BUILDDIR/out/target/product/ace/htc_ace-ota-eng.$HANDLE.zip $DROPBOX/htc_ace-ota-eng.$HANDLE.zip
 fi
 fi
