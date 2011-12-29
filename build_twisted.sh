@@ -13,37 +13,34 @@ USERLOCAL=/Users/$HANDLE
 DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
 
 if [ "$1" == "mecha" ]; then
-echo "Kernel (Y/n)? "
-read kernel
-echo "Build Notes: "
-read changes
-echo "" > $TIMESTAMP
-echo "New Compile Started:" >> $TIMESTAMP
-date >> $TIMESTAMP
-echo "Compile Information:" >> $TIMESTAMP
-echo $changes >> $TIMESTAMP
-cat $BACKSTAMP $TIMESTAMP > $TEMPSTAMP
-mv -f $TEMPSTAMP $TIMESTAMP
+    echo "Kernel (Y/n)? "
+    read kernel
+    echo "Build Notes: "
+    read changes
+    echo "" > $TIMESTAMP
+    echo "New Compile Started:" >> $TIMESTAMP
+    date >> $TIMESTAMP
+    echo "Compile Information:" >> $TIMESTAMP
+    echo $changes >> $TIMESTAMP
+    cat $BACKSTAMP $TIMESTAMP > $TEMPSTAMP
+    mv -f $TEMPSTAMP $TIMESTAMP
+    if [ "$kernel" == "Y" ]; then
+        echo "Config Name? ";
+        cd $BUILDDIR/kernel/$KERNELSPEC
+        ls config
+        read config
+        ./buildlean.sh 1 $config
 
-if [ "$kernel" == "Y" ]; then
-echo "Config Name? ";
-cd $BUILDDIR/kernel/$KERNELSPEC
-ls config
-read config
-./buildlean.sh 1 $config
-
-if [ -e arch/arm/boot/zImage ]; then
-echo "" >> $TIMESTAMP
-echo "Kernel Compile Success." >> $TIMESTAMP
-echo "" >> $TIMESTAMP
-else
-echo "" >> $TIMESTAMP
-echo "-Kernel Compile Failed." >> $TIMESTAMP
-echo "" >> $TIMESTAMP
-fi
-
-fi
-
+        if [ -e arch/arm/boot/zImage ]; then
+            echo "" >> $TIMESTAMP
+            echo "Kernel Compile Success." >> $TIMESTAMP
+            echo "" >> $TIMESTAMP
+        else
+            echo "" >> $TIMESTAMP
+            echo "-Kernel Compile Failed." >> $TIMESTAMP
+            echo "" >> $TIMESTAMP
+        fi
+    fi
 fi
 
 repo sync
@@ -56,30 +53,29 @@ make clean -j8
 rm -R $CCACHE_DIR/*
 source build/envsetup.sh
 if [ "$1" == "mecha" ]; then
-lunch 6
+    lunch 6
 elif [ "$1" == "ace" ]; then
-lunch 4
+    lunch 4
 fi
 export USE_CCACHE=1
 export CCACHE_DIR=$USERLOCAL/.ccache
 $CCACHEBIN -M 40G
 make otapackage -j4
 rm -R $CCACHE_DIR/*
-if [ "$1" == "mecha" ]; then
-if [ -e $BUILDDIR/out/target/product/mecha/htc_mecha-ota-eng.$HANDLE.zip ]; then
-cp -R $BUILDDIR/out/target/product/mecha/htc_mecha-ota-eng.$HANDLE.zip $DROPBOX/htc_mecha-ota-eng.$HANDLE.zip
-echo "Latest Build Completed:" > $TIMESTAMP
-date >> $TIMESTAMP
-echo "Please Allow 30-45 Min." >> $TIMESTAMP
-cp -R $TIMESTAMP $BACKSTAMP
+
+if [ -e $BUILDDIR/out/target/product/$1/htc_$1-ota-eng.$HANDLE.zip ]; then
+    cp -R $BUILDDIR/out/target/product/$1/htc_$1-ota-eng.$HANDLE.zip $DROPBOX/htc_$1-ota-eng.$HANDLE.zip
+    if [ "$1" == "mecha" ]; then
+        echo "Latest Build Completed:" > $TIMESTAMP
+        date >> $TIMESTAMP
+        echo "Please Allow 30-45 Min." >> $TIMESTAMP
+        cp -R $TIMESTAMP $BACKSTAMP
+    fi
 else
-echo "Compile Process Failed." > $TIMESTAMP
-echo "" >> $TIMESTAMP
-cat $TIMESTAMP $BACKSTAMP > $TEMPSTAMP
-mv -f $TEMPSTAMP $TIMESTAMP
-fi
-elif ["$1" == "ace" ]; then
-if [ -e $BUILDDIR/out/target/product/ace/htc_ace-ota-eng.$HANDLE.zip ]; then
-cp -R $BUILDDIR/out/target/product/ace/htc_ace-ota-eng.$HANDLE.zip $DROPBOX/htc_ace-ota-eng.$HANDLE.zip
-fi
+    if [ "$1" == "mecha" ]; then
+        echo "Compile Process Failed." > $TIMESTAMP
+        echo "" >> $TIMESTAMP
+        cat $TIMESTAMP $BACKSTAMP > $TEMPSTAMP
+    mv -f $TEMPSTAMP $TIMESTAMP
+    fi
 fi
