@@ -1,5 +1,5 @@
 # This script is designed to compliment .bash_profile code to automate the build process by adding a typical shell command such as:
-# function buildTwist { echo "Ace or Mecha? "; read device; if ["device" == "mecha"]; then echo "Kernel (Y/n)? "; read kernel; else kernel = "n"; fi; cd /Volumes/android/android-tzb_ics4.0.1/vendor/twisted; ./build_twisted.sh $device $kernel; }
+# function buildTwist { echo "Ace or Mecha? "; read device; cd /Volumes/android/android-tzb_ics4.0.1/vendor/twisted; ./build_twisted.sh $device; }
 # This script is designed by Twisted Playground for use on MacOSX 10.7 but can be modified for other distributions of Mac and Linux
 
 HANDLE=TwistedZero
@@ -13,6 +13,8 @@ USERLOCAL=/Users/$HANDLE
 DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
 
 if [ "$1" == "mecha" ]; then
+echo "Kernel (Y/n)? "
+read kernel
 echo "Build Notes: "
 read changes
 echo "" > $TIMESTAMP
@@ -23,12 +25,13 @@ echo $changes >> $TIMESTAMP
 cat $BACKSTAMP $TIMESTAMP > $TEMPSTAMP
 mv -f $TEMPSTAMP $TIMESTAMP
 
-if [ "$2" == "Y" ]; then
+if [ "$kernel" == "Y" ]; then
 echo "Config Name? ";
 cd $BUILDDIR/kernel/$KERNELSPEC
 ls config
 read config
 ./buildlean.sh 1 $config
+
 if [ -e arch/arm/boot/zImage ]; then
 echo "" >> $TIMESTAMP
 echo "Kernel Compile Success." >> $TIMESTAMP
@@ -38,7 +41,9 @@ echo "" >> $TIMESTAMP
 echo "-Kernel Compile Failed." >> $TIMESTAMP
 echo "" >> $TIMESTAMP
 fi
+
 fi
+
 fi
 
 repo sync
