@@ -43,6 +43,16 @@ if [ "$1" == "mecha" ]; then
     fi
 fi
 
+if [ "$1" == "shared" ]; then
+    echo "" > $TIMESTAMP
+    echo "New Compile Started:" >> $TIMESTAMP
+    date >> $TIMESTAMP
+    echo "Compile Information:" >> $TIMESTAMP
+    echo "Shared Compile (Mecha/Ace)" >> $TIMESTAMP
+    cat $BACKSTAMP $TIMESTAMP > $TEMPSTAMP
+    mv -f $TEMPSTAMP $TIMESTAMP
+fi
+
 repo sync
 
 cd $BUILDDIR
@@ -51,31 +61,75 @@ export CCACHE_DIR=$USERLOCAL/.ccache
 $CCACHEBIN -M 40G
 make clean -j8
 rm -R $CCACHE_DIR/*
-source build/envsetup.sh
-if [ "$1" == "mecha" ]; then
-    lunch 6
-elif [ "$1" == "ace" ]; then
-    lunch 4
-fi
-export USE_CCACHE=1
-export CCACHE_DIR=$USERLOCAL/.ccache
-$CCACHEBIN -M 40G
-make otapackage -j4
-rm -R $CCACHE_DIR/*
 
-if [ -e $BUILDDIR/out/target/product/$1/htc_$1-ota-eng.$HANDLE.zip ]; then
-    cp -R $BUILDDIR/out/target/product/$1/htc_$1-ota-eng.$HANDLE.zip $DROPBOX/htc_$1-ota-eng.$HANDLE.zip
+if [ "$1" != "shared" ]; then
+
+    source build/envsetup.sh
     if [ "$1" == "mecha" ]; then
+        lunch 6
+    elif [ "$1" == "ace" ]; then
+        lunch 4
+    fi
+    export USE_CCACHE=1
+    export CCACHE_DIR=$USERLOCAL/.ccache
+    $CCACHEBIN -M 40G
+    make otapackage -j4
+    rm -R $CCACHE_DIR/*
+
+    if [ -e $BUILDDIR/out/target/product/$1/htc_$1-ota-eng.$HANDLE.zip ]; then
+        cp -R $BUILDDIR/out/target/product/$1/htc_$1-ota-eng.$HANDLE.zip $DROPBOX/htc_$1-ota-eng.$HANDLE.zip
+        if [ "$1" == "mecha" ]; then
+            echo "Latest Build Completed:" > $TIMESTAMP
+            date >> $TIMESTAMP
+            echo "Please Allow 30-45 Min." >> $TIMESTAMP
+            cp -R $TIMESTAMP $BACKSTAMP
+        fi
+    else
+        if [ "$1" == "mecha" ]; then
+            echo "Compile Process Failed." > $TIMESTAMP
+            echo "" >> $TIMESTAMP
+            cat $TIMESTAMP $BACKSTAMP > $TEMPSTAMP
+        mv -f $TEMPSTAMP $TIMESTAMP
+        fi
+    fi
+
+else
+
+    source build/envsetup.sh
+    lunch 6
+    export USE_CCACHE=1
+    export CCACHE_DIR=$USERLOCAL/.ccache
+    $CCACHEBIN -M 40G
+    make otapackage -j4
+    rm -R $CCACHE_DIR/*
+    if [ -e $BUILDDIR/out/target/product/mecha/htc_mecha-ota-eng.$HANDLE.zip ]; then
+        cp -R $BUILDDIR/out/target/product/mecha/htc_mecha-ota-eng.$HANDLE.zip $DROPBOX/htc_mecha-ota-eng.$HANDLE.zip
         echo "Latest Build Completed:" > $TIMESTAMP
         date >> $TIMESTAMP
         echo "Please Allow 30-45 Min." >> $TIMESTAMP
         cp -R $TIMESTAMP $BACKSTAMP
-    fi
-else
-    if [ "$1" == "mecha" ]; then
+    else
         echo "Compile Process Failed." > $TIMESTAMP
         echo "" >> $TIMESTAMP
         cat $TIMESTAMP $BACKSTAMP > $TEMPSTAMP
-    mv -f $TEMPSTAMP $TIMESTAMP
+        mv -f $TEMPSTAMP $TIMESTAMP
     fi
+
+    export USE_CCACHE=1
+    export CCACHE_DIR=$USERLOCAL/.ccache
+    $CCACHEBIN -M 40G
+    make clean -j8
+    rm -R $CCACHE_DIR/*
+
+    source build/envsetup.sh
+    lunch 4
+    export USE_CCACHE=1
+    export CCACHE_DIR=$USERLOCAL/.ccache
+    $CCACHEBIN -M 40G
+    make otapackage -j4
+    rm -R $CCACHE_DIR/*
+    if [ -e $BUILDDIR/out/target/product/ace/htc_ace-ota-eng.$HANDLE.zip ]; then
+        cp -R $BUILDDIR/out/target/product/ace/htc_ace-ota-eng.$HANDLE.zip $DROPBOX/htc_ace-ota-eng.$HANDLE.zip
+    fi
+
 fi
