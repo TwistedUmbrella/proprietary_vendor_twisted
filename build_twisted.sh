@@ -15,6 +15,8 @@ KERNELSPEC=leanKernel-tbolt-ics
 USERLOCAL=/Users/$HANDLE
 DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
 
+cd $BUILDDIR
+
 echo "Build Notes: "
 read changes
 
@@ -45,9 +47,7 @@ if [ "$1" == "mecha" ]; then
             echo "" >> $MTIMESTAMP
         fi
     fi
-fi
-
-if [ "$1" == "ace" ]; then
+elif [ "$1" == "ace" ]; then
     echo "" > $ATIMESTAMP
     echo "New Compile Started:" >> $ATIMESTAMP
     date >> $ATIMESTAMP
@@ -55,9 +55,7 @@ if [ "$1" == "ace" ]; then
     echo $changes >> $ATIMESTAMP
     cat $ABACKSTAMP $ATIMESTAMP > $ATEMPSTAMP
     mv -f $ATEMPSTAMP $ATIMESTAMP
-fi
-
-if [ "$1" == "shared" ]; then
+elif [ "$1" == "shared" ]; then
     echo "" > $MTIMESTAMP
     echo "New Compile Started:" >> $MTIMESTAMP
     date >> $MTIMESTAMP
@@ -72,11 +70,15 @@ if [ "$1" == "shared" ]; then
     echo $changes >> $ATIMESTAMP
     cat $ABACKSTAMP $ATIMESTAMP > $ATEMPSTAMP
     mv -f $ATEMPSTAMP $ATIMESTAMP
+else
+    echo "Available Device NOT Selected"
+    echo "Sync Only Procedure Initiated"
+    repo sync
+    exit 1
 fi
 
 repo sync
 
-cd $BUILDDIR
 export USE_CCACHE=1
 export CCACHE_DIR=$USERLOCAL/.ccache
 $CCACHEBIN -M 40G
@@ -104,8 +106,7 @@ if [ "$1" != "shared" ]; then
             date >> $MTIMESTAMP
             echo "Please Allow 30-45 Min." >> $MTIMESTAMP
             cp -R $MTIMESTAMP $MBACKSTAMP
-        fi
-        if [ "$1" == "ace" ]; then
+        elif [ "$1" == "ace" ]; then
             echo "Latest Build Completed:" > $ATIMESTAMP
             date >> $ATIMESTAMP
             echo "Please Allow 30-45 Min." >> $ATIMESTAMP
@@ -117,8 +118,7 @@ if [ "$1" != "shared" ]; then
             echo "" >> $MTIMESTAMP
             cat $MTIMESTAMP $MBACKSTAMP > $MTEMPSTAMP
             mv -f $MTEMPSTAMP $MTIMESTAMP
-        fi
-        if [ "$1" == "ace" ]; then
+        elif [ "$1" == "ace" ]; then
             echo "Compile Process Failed." > $ATIMESTAMP
             echo "" >> $ATIMESTAMP
             cat $ATIMESTAMP $ABACKSTAMP > $ATEMPSTAMP
