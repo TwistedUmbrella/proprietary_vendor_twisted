@@ -99,26 +99,26 @@ if [ "$1" != "shared" ]; then
 
     if [ -e $BUILDDIR/out/target/product/$1/htc_$1-ota-eng.$HANDLE.zip ]; then
         cp -R $BUILDDIR/out/target/product/$1/htc_$1-ota-eng.$HANDLE.zip $DROPBOX/htc_$1-ota-eng.$HANDLE.zip
-        if [ "$1" == "mecha"]; then
+        if [ "$1" == "mecha" ]; then
             echo "Latest Build Completed:" > $MTIMESTAMP
             date >> $MTIMESTAMP
             echo "Please Allow 30-45 Min." >> $MTIMESTAMP
             cp -R $MTIMESTAMP $MBACKSTAMP
         fi
-        if [ "$1" == "ace"]; then
+        if [ "$1" == "ace" ]; then
             echo "Latest Build Completed:" > $ATIMESTAMP
             date >> $ATIMESTAMP
             echo "Please Allow 30-45 Min." >> $ATIMESTAMP
             cp -R $ATIMESTAMP $ABACKSTAMP
         fi
     else
-        if [ "$1" == "mecha"]; then
+        if [ "$1" == "mecha" ]; then
             echo "Compile Process Failed." > $MTIMESTAMP
             echo "" >> $MTIMESTAMP
             cat $MTIMESTAMP $MBACKSTAMP > $MTEMPSTAMP
             mv -f $MTEMPSTAMP $MTIMESTAMP
         fi
-        if [ "$1" == "ace"]; then
+        if [ "$1" == "ace" ]; then
             echo "Compile Process Failed." > $ATIMESTAMP
             echo "" >> $ATIMESTAMP
             cat $ATIMESTAMP $ABACKSTAMP > $ATEMPSTAMP
