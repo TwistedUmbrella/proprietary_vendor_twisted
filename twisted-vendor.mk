@@ -91,3 +91,7 @@ PRODUCT_COPY_FILES += \
 # Twisted Packages
 PRODUCT_COPY_FILES += \
     vendor/twisted/twisted/app/ICScriptFusion.apk:system/app/ICScriptFusion.apk
+
+# Build Versioning
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.modversion=No Data Beta 1
