@@ -108,7 +108,7 @@ if [ "$1" != "shared" ]; then
             echo "Please Allow 30-45 Min." >> $MTIMESTAMP
             echo "" >> $MTIMESTAMP
             echo "Notes About The Compile" >> $MTIMESTAMP
-            $changes >> $MTIMESTAMP
+            echo $changes >> $MTIMESTAMP
             cp -R $MTIMESTAMP $MBACKSTAMP
         elif [ "$1" == "ace" ]; then
             echo "Latest Build Completed:" > $ATIMESTAMP
@@ -116,7 +116,7 @@ if [ "$1" != "shared" ]; then
             echo "Please Allow 30-45 Min." >> $ATIMESTAMP
             echo "" >> $ATIMESTAMP
             echo "Notes About The Compile" >> $ATIMESTAMP
-            $changes >> $ATIMESTAMP
+            echo $changes >> $ATIMESTAMP
             cp -R $ATIMESTAMP $ABACKSTAMP
         fi
     else
@@ -149,7 +149,7 @@ else
         echo "Please Allow 30-45 Min." >> $MTIMESTAMP
         echo "" >> $MTIMESTAMP
         echo "Notes About The Compile" >> $MTIMESTAMP
-        $changes >> $MTIMESTAMP
+        echo $changes >> $MTIMESTAMP
         cp -R $MTIMESTAMP $MBACKSTAMP
     else
         echo "Compile Process Failed." > $MTIMESTAMP
@@ -174,7 +174,7 @@ else
         echo "Please Allow 30-45 Min." >> $ATIMESTAMP
         echo "" >> $ATIMESTAMP
         echo "Notes About The Compile" >> $ATIMESTAMP
-        $changes >> $ATIMESTAMP
+        echo $changes >> $ATIMESTAMP
         cp -R $ATIMESTAMP $ABACKSTAMP
     else
         echo "Compile Process Failed." > $ATIMESTAMP
