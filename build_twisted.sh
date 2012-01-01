@@ -106,11 +106,17 @@ if [ "$1" != "shared" ]; then
             echo "Latest Build Completed:" > $MTIMESTAMP
             date >> $MTIMESTAMP
             echo "Please Allow 30-45 Min." >> $MTIMESTAMP
+            echo "" >> $MTIMESTAMP
+            echo "Notes About The Compile" >> $MTIMESTAMP
+            $changes >> $MTIMESTAMP
             cp -R $MTIMESTAMP $MBACKSTAMP
         elif [ "$1" == "ace" ]; then
             echo "Latest Build Completed:" > $ATIMESTAMP
             date >> $ATIMESTAMP
             echo "Please Allow 30-45 Min." >> $ATIMESTAMP
+            echo "" >> $ATIMESTAMP
+            echo "Notes About The Compile" >> $ATIMESTAMP
+            $changes >> $ATIMESTAMP
             cp -R $ATIMESTAMP $ABACKSTAMP
         fi
     else
@@ -141,6 +147,9 @@ else
         echo "Latest Build Completed:" > $MTIMESTAMP
         date >> $MTIMESTAMP
         echo "Please Allow 30-45 Min." >> $MTIMESTAMP
+        echo "" >> $MTIMESTAMP
+        echo "Notes About The Compile" >> $MTIMESTAMP
+        $changes >> $MTIMESTAMP
         cp -R $MTIMESTAMP $MBACKSTAMP
     else
         echo "Compile Process Failed." > $MTIMESTAMP
@@ -149,10 +158,6 @@ else
         mv -f $MTEMPSTAMP $MTIMESTAMP
     fi
 
-    export USE_CCACHE=1
-    export CCACHE_DIR=$USERLOCAL/.ccache
-    $CCACHEBIN -M 40G
-    make clean -j8
     rm -R $CCACHE_DIR/*
 
     source build/envsetup.sh
@@ -167,6 +172,9 @@ else
         echo "Latest Build Completed:" > $ATIMESTAMP
         date >> $ATIMESTAMP
         echo "Please Allow 30-45 Min." >> $ATIMESTAMP
+        echo "" >> $ATIMESTAMP
+        echo "Notes About The Compile" >> $ATIMESTAMP
+        $changes >> $ATIMESTAMP
         cp -R $ATIMESTAMP $ABACKSTAMP
     else
         echo "Compile Process Failed." > $ATIMESTAMP
