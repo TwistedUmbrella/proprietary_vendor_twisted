@@ -94,4 +94,4 @@ PRODUCT_COPY_FILES += \
 
 # Build Versioning
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.modversion=No_Data_Beta_1
+    ro.modversion=No_Data_Beta_2
