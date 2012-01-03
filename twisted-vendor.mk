@@ -35,23 +35,28 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/google/app/Gmail.apk:system/app/Gmail.apk \
     vendor/twisted/google/app/GoogleBackupTransport.apk:system/app/GoogleBackupTransport.apk \
     vendor/twisted/google/app/GoogleContactsSyncAdapter.apk:system/app/GoogleContactsSyncAdapter.apk \
-    vendor/twisted/google/app/GoogleEarth.apk:system/app/GoogleEarth.apk \
     vendor/twisted/google/app/GoogleFeedback.apk:system/app/GoogleFeedback.apk \
     vendor/twisted/google/app/GoogleLoginService.apk:system/app/GoogleLoginService.apk \
-    vendor/twisted/google/app/GooglePackageVerifier.apk:system/app/GooglePackageVerifier.apk \
-    vendor/twisted/google/app/GooglePackageVerifierUpdater.apk:system/app/GooglePackageVerifierUpdater.apk \
+    vendor/twisted/google/app/GoogleMusic.apk:system/app/GoogleMusic.apk \
     vendor/twisted/google/app/GooglePartnerSetup.apk:system/app/GooglePartnerSetup.apk \
     vendor/twisted/google/app/GoogleQuickSearchBox.apk:system/app/GoogleQuickSearchBox.apk \
     vendor/twisted/google/app/GoogleServicesFramework.apk:system/app/GoogleServicesFramework.apk \
     vendor/twisted/google/app/GoogleTTS.apk:system/app/GoogleTTS.apk \
+    vendor/twisted/google/app/Maps.apk:system/app/Maps.apk \
     vendor/twisted/google/app/MarketUpdater.apk:system/app/MarketUpdater.apk \
     vendor/twisted/google/app/MediaUploader.apk:system/app/MediaUploader.apk \
     vendor/twisted/google/app/NetworkLocation.apk:system/app/NetworkLocation.apk \
     vendor/twisted/google/app/OneTimeInitializer.apk:system/app/OneTimeInitializer.apk \
+    vendor/twisted/google/app/Phonesky.apk:system/app/Phonesky.apk \
+    vendor/twisted/google/app/PlusOne.apk:system/app/PlusOne.apk \
     vendor/twisted/google/app/SetupWizard.apk:system/app/SetupWizard.apk \
+    vendor/twisted/google/app/Street.apk:system/app/Street.apk \
     vendor/twisted/google/app/TagGoogle.apk:system/app/TagGoogle.apk \
     vendor/twisted/google/app/Talk.apk:system/app/Talk.apk \
-    vendor/twisted/google/app/Vending.apk:system/app/Vending.apk \
+    vendor/twisted/google/app/Thinkfree.apk:system/app/Thinkfree.apk \
+    vendor/twisted/google/app/Videos.apk:system/app/Videos.apk \
+    vendor/twisted/google/app/VoiceSearch.apk:system/app/VoiceSearch.apk \
+    vendor/twisted/google/app/Wallet.apk:system/app/Wallet.apk \
     vendor/twisted/google/app/YouTube.apk:system/app/YouTube.apk
 
 # Google Permissions
@@ -73,6 +78,8 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/google/lib/libfilterpack_facedetect.so:system/lib/libfilterpack_facedetect.so \
     vendor/twisted/google/lib/libflint_engine_jni_api.so:system/lib/libflint_engine_jni_api.so \
     vendor/twisted/google/lib/libfrsdk.so:system/lib/libfrsdk.so \
+    vendor/twisted/google/lib/libgcomm_jni.so:system/lib/libgcomm_jni.so \
+    vendor/twisted/google/lib/libmotricity.so:system/lib/libmotricity.so \
     vendor/twisted/google/lib/libpicowrapper.so:system/lib/libpicowrapper.so \
     vendor/twisted/google/lib/libspeexresampler.so:system/lib/libspeexresampler.so \
     vendor/twisted/google/lib/libspeexwrapper.so:system/lib/libspeexwrapper.so \
@@ -82,6 +89,7 @@ PRODUCT_COPY_FILES += \
 
 # Google Vendor
 PRODUCT_COPY_FILES += \
+    vendor/twisted/google/vendor/firmware/libpn544_fw.so:system/vendor/firmware/libpn544_fw.so \
     vendor/twisted/google/vendor/pittpatt:system/vendor/pittpatt
 
 # Google Customization
