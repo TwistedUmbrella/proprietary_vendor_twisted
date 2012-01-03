@@ -3,10 +3,10 @@
 # This script is designed by Twisted Playground for use on MacOSX 10.7 but can be modified for other distributions of Mac and Linux
 
 HANDLE=TwistedZero
-MTIMESTAMP=/Volumes/frontrow/$HANDLE/SourceBuilt/MechaTimeStamp
+MTIMESTAMP=/Volumes/frontrow/$HANDLE/SourceBuilt/MechaTimeStamp.html
 MTEMPSTAMP=/Volumes/frontrow/$HANDLE/SourceBuilt/MechaTempStamp
 MBACKSTAMP=/Volumes/frontrow/$HANDLE/SourceBuilt/MechaBackStamp
-ATIMESTAMP=/Volumes/frontrow/$HANDLE/SourceBuilt/AceTimeStamp
+ATIMESTAMP=/Volumes/frontrow/$HANDLE/SourceBuilt/AceTimeStamp.html
 ATEMPSTAMP=/Volumes/frontrow/$HANDLE/SourceBuilt/AceTempStamp
 ABACKSTAMP=/Volumes/frontrow/$HANDLE/SourceBuilt/AceBackStamp
 BUILDDIR=/Volumes/android/android-tzb_ics4.0.1
@@ -23,11 +23,16 @@ read changes
 if [ "$1" == "mecha" ]; then
     echo "Kernel (Y/n)? "
     read kernel
-    echo "" > $MTIMESTAMP
+    echo '<center>' >> $MTIMESTAMP
     echo "New Compile Started:" >> $MTIMESTAMP
+    echo '<br>' >> $MTIMESTAMP
     date >> $MTIMESTAMP
+    echo '<br>' >> $MTIMESTAMP
     echo "Compile Information:" >> $MTIMESTAMP
+    echo '<br>' >> $MTIMESTAMP
     echo $changes >> $MTIMESTAMP
+    echo '</center>' >> $MTIMESTAMP
+    echo '<p></p>' >> $MTIMESTAMP
     cat $MBACKSTAMP $MTIMESTAMP > $MTEMPSTAMP
     mv -f $MTEMPSTAMP $MTIMESTAMP
     if [ "$kernel" == "Y" ]; then
@@ -38,37 +43,54 @@ if [ "$1" == "mecha" ]; then
         ./buildlean.sh 1 $config
 
         if [ -e arch/arm/boot/zImage ]; then
-            echo "" >> $MTIMESTAMP
+            echo '<center>' >> $MTIMESTAMP
             echo "Kernel Compile Success." >> $MTIMESTAMP
-            echo "" >> $MTIMESTAMP
+            echo '</center>' >> $MTIMESTAMP
+            echo '<p></p>' >> $MTIMESTAMP
         else
-            echo "" >> $MTIMESTAMP
+            echo '<center>' >> $MTIMESTAMP
             echo "-Kernel Compile Failed." >> $MTIMESTAMP
-            echo "" >> $MTIMESTAMP
+            echo '</center>' >> $MTIMESTAMP
+            echo '<p></p>' >> $MTIMESTAMP
         fi
         cd $BUILDDIR
     fi
 elif [ "$1" == "ace" ]; then
-    echo "" > $ATIMESTAMP
+    echo '<center>' >> $ATIMESTAMP
     echo "New Compile Started:" >> $ATIMESTAMP
+    echo '<br>' >> $ATIMESTAMP
     date >> $ATIMESTAMP
+    echo '<br>' >> $ATIMESTAMP
     echo "Compile Information:" >> $ATIMESTAMP
+    echo '<br>' >> $ATIMESTAMP
     echo $changes >> $ATIMESTAMP
+    echo '</center>' >> $ATIMESTAMP
+    echo '<p></p>' >> $ATIMESTAMP
     cat $ABACKSTAMP $ATIMESTAMP > $ATEMPSTAMP
     mv -f $ATEMPSTAMP $ATIMESTAMP
 elif [ "$1" == "shared" ]; then
-    echo "" > $MTIMESTAMP
+    echo '<center>' >> $MTIMESTAMP
     echo "New Compile Started:" >> $MTIMESTAMP
+    echo '<br>' >> $MTIMESTAMP
     date >> $MTIMESTAMP
+    echo '<br>' >> $MTIMESTAMP
     echo "Compile Information:" >> $MTIMESTAMP
+    echo '<br>' >> $MTIMESTAMP
     echo $changes >> $MTIMESTAMP
+    echo '</center>' >> $MTIMESTAMP
+    echo '<p></p>' >> $MTIMESTAMP
     cat $MBACKSTAMP $MTIMESTAMP > $MTEMPSTAMP
     mv -f $MTEMPSTAMP $MTIMESTAMP
-    echo "" > $ATIMESTAMP
+    echo '<center>' >> $ATIMESTAMP
     echo "New Compile Started:" >> $ATIMESTAMP
+    echo '<br>' >> $ATIMESTAMP
     date >> $ATIMESTAMP
+    echo '<br>' >> $ATIMESTAMP
     echo "Compile Information:" >> $ATIMESTAMP
+    echo '<br>' >> $ATIMESTAMP
     echo $changes >> $ATIMESTAMP
+    echo '</center>' >> $ATIMESTAMP
+    echo '<p></p>' >> $ATIMESTAMP
     cat $ABACKSTAMP $ATIMESTAMP > $ATEMPSTAMP
     mv -f $ATEMPSTAMP $ATIMESTAMP
 else
@@ -103,31 +125,55 @@ if [ "$1" != "shared" ]; then
     if [ -e $BUILDDIR/out/target/product/$1/htc_$1-ota-eng.$HANDLE.zip ]; then
         cp -R $BUILDDIR/out/target/product/$1/htc_$1-ota-eng.$HANDLE.zip $DROPBOX/htc_$1-ota-eng.$HANDLE.zip
         if [ "$1" == "mecha" ]; then
+            echo '<center>' >> $MTIMESTAMP
             echo "Latest Build Completed:" > $MTIMESTAMP
+            echo '<br>' >> $MTIMESTAMP
             date >> $MTIMESTAMP
+            echo '<br>' >> $MTIMESTAMP
             echo "Please Allow 30-45 Min." >> $MTIMESTAMP
+            echo '<br>' >> $MTIMESTAMP
             echo "" >> $MTIMESTAMP
+            echo '<br>' >> $MTIMESTAMP
             echo "Notes About The Compile" >> $MTIMESTAMP
+            echo '<br>' >> $MTIMESTAMP
             echo $changes >> $MTIMESTAMP
+            echo '<p></p>' >> $MTIMESTAMP
+            echo '<a href="http://db.tt/RICx4uEI">Download Experimental</a>' >> $MTIMESTAMP
+            echo '<br>' >> $MTIMESTAMP
+            echo '<a href="http://db.tt/7svQgn6F">Download Milestone</a>' >> $MTIMESTAMP
+            echo '</center>' >> $MTIMESTAMP
+            echo '<p></p>' >> $MTIMESTAMP
             cp -R $MTIMESTAMP $MBACKSTAMP
         elif [ "$1" == "ace" ]; then
+            echo '<center>' >> $ATIMESTAMP
             echo "Latest Build Completed:" > $ATIMESTAMP
+            echo '<br>' >> $ATIMESTAMP
             date >> $ATIMESTAMP
+            echo '<br>' >> $ATIMESTAMP
             echo "Please Allow 30-45 Min." >> $ATIMESTAMP
+            echo '<br>' >> $ATIMESTAMP
             echo "" >> $ATIMESTAMP
+            echo '<br>' >> $ATIMESTAMP
             echo "Notes About The Compile" >> $ATIMESTAMP
+            echo '<br>' >> $ATIMESTAMP
             echo $changes >> $ATIMESTAMP
+            echo '<p></p>' >> $ATIMESTAMP
+            echo '<a href="http://db.tt/m2DXP3EZ">Download Experimental</a>' >> $ATIMESTAMP
+            echo '</center>' >> $ATIMESTAMP
+            echo '<p></p>' >> $ATIMESTAMP
             cp -R $ATIMESTAMP $ABACKSTAMP
         fi
     else
         if [ "$1" == "mecha" ]; then
-            echo "Compile Process Failed." > $MTIMESTAMP
-            echo "" >> $MTIMESTAMP
-            cat $MTIMESTAMP $MBACKSTAMP > $MTEMPSTAMP
-            mv -f $MTEMPSTAMP $MTIMESTAMP
+echo "Compile Process Failed." > $MTIMESTAMP
+echo '<br>' >> $MTIMESTAMP
+cat $MTIMESTAMP $MBACKSTAMP > $MTEMPSTAMP
+mv -f $MTEMPSTAMP $MTIMESTAMP
         elif [ "$1" == "ace" ]; then
+            echo '<center>' >> $ATIMESTAMP
             echo "Compile Process Failed." > $ATIMESTAMP
-            echo "" >> $ATIMESTAMP
+            echo '</center>' >> $ATIMESTAMP
+            echo '<p></p>' >> $ATIMESTAMP
             cat $ATIMESTAMP $ABACKSTAMP > $ATEMPSTAMP
             mv -f $ATEMPSTAMP $ATIMESTAMP
         fi
@@ -144,16 +190,30 @@ else
     rm -R $CCACHE_DIR/*
     if [ -e $BUILDDIR/out/target/product/mecha/htc_mecha-ota-eng.$HANDLE.zip ]; then
         cp -R $BUILDDIR/out/target/product/mecha/htc_mecha-ota-eng.$HANDLE.zip $DROPBOX/htc_mecha-ota-eng.$HANDLE.zip
+        echo '<center>' >> $MTIMESTAMP
         echo "Latest Build Completed:" > $MTIMESTAMP
+        echo '<br>' >> $MTIMESTAMP
         date >> $MTIMESTAMP
+        echo '<br>' >> $MTIMESTAMP
         echo "Please Allow 30-45 Min." >> $MTIMESTAMP
+        echo '<br>' >> $MTIMESTAMP
         echo "" >> $MTIMESTAMP
+        echo '<br>' >> $MTIMESTAMP
         echo "Notes About The Compile" >> $MTIMESTAMP
+        echo '<br>' >> $MTIMESTAMP
         echo $changes >> $MTIMESTAMP
+        echo '<p></p>' >> $MTIMESTAMP
+        echo '<a href="http://db.tt/RICx4uEI">Download Experimental</a>' >> $MTIMESTAMP
+        echo '<br>' >> $MTIMESTAMP
+        echo '<a href="http://db.tt/7svQgn6F">Download Milestone</a>' >> $ATIMESTAMP
+        echo '</center>' >> $MTIMESTAMP
+        echo '<p></p>' >> $MTIMESTAMP
         cp -R $MTIMESTAMP $MBACKSTAMP
     else
+        echo '<center>' >> $MTIMESTAMP
         echo "Compile Process Failed." > $MTIMESTAMP
-        echo "" >> $MTIMESTAMP
+        echo '</center>' >> $MTIMESTAMP
+        echo '<p></p>' >> $MTIMESTAMP
         cat $MTIMESTAMP $MBACKSTAMP > $MTEMPSTAMP
         mv -f $MTEMPSTAMP $MTIMESTAMP
     fi
@@ -169,16 +229,28 @@ else
     rm -R $CCACHE_DIR/*
     if [ -e $BUILDDIR/out/target/product/ace/htc_ace-ota-eng.$HANDLE.zip ]; then
         cp -R $BUILDDIR/out/target/product/ace/htc_ace-ota-eng.$HANDLE.zip $DROPBOX/htc_ace-ota-eng.$HANDLE.zip
+        echo '<center>' >> $ATIMESTAMP
         echo "Latest Build Completed:" > $ATIMESTAMP
+        echo '<br>' >> $ATIMESTAMP
         date >> $ATIMESTAMP
+        echo '<br>' >> $ATIMESTAMP
         echo "Please Allow 30-45 Min." >> $ATIMESTAMP
+        echo '<br>' >> $ATIMESTAMP
         echo "" >> $ATIMESTAMP
+        echo '<br>' >> $ATIMESTAMP
         echo "Notes About The Compile" >> $ATIMESTAMP
+        echo '<br>' >> $ATIMESTAMP
         echo $changes >> $ATIMESTAMP
+        echo '<p></p>' >> $ATIMESTAMP
+        echo '<a href="http://db.tt/m2DXP3EZ">Download Experimental</a>' >> $ATIMESTAMP
+        echo '</center>' >> $ATIMESTAMP
+        echo '<p></p>' >> $ATIMESTAMP
         cp -R $ATIMESTAMP $ABACKSTAMP
     else
+        echo '<center>' >> $ATIMESTAMP
         echo "Compile Process Failed." > $ATIMESTAMP
-        echo "" >> $ATIMESTAMP
+        echo '</center>' >> $ATIMESTAMP
+        echo '<p></p>' >> $ATIMESTAMP
         cat $ATIMESTAMP $ABACKSTAMP > $ATEMPSTAMP
         mv -f $ATEMPSTAMP $ATIMESTAMP
     fi
