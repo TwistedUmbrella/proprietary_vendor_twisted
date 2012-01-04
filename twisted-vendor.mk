@@ -56,7 +56,6 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/google/app/Thinkfree.apk:system/app/Thinkfree.apk \
     vendor/twisted/google/app/Videos.apk:system/app/Videos.apk \
     vendor/twisted/google/app/VoiceSearch.apk:system/app/VoiceSearch.apk \
-    vendor/twisted/google/app/Wallet.apk:system/app/Wallet.apk \
     vendor/twisted/google/app/YouTube.apk:system/app/YouTube.apk
 
 # Google Permissions
