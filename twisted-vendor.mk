@@ -93,7 +93,7 @@ PRODUCT_COPY_FILES += \
 
 # Google Customization
 PRODUCT_COPY_FILES += \
-    vendor/twisted/verizon/media/bootanimation.zip:system/media/bootanimation.zip
+    vendor/twisted/twisted/media/bootanimation.zip:system/media/bootanimation.zip
 
 # Twisted Packages
 PRODUCT_COPY_FILES += \
