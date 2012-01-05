@@ -125,7 +125,6 @@ if [ "$1" != "shared" ]; then
             echo '<br>' >> $MTIMESTAMP
             echo "Please Allow 30-45 Min." >> $MTIMESTAMP
             echo '<br>' >> $MTIMESTAMP
-            echo "" >> $MTIMESTAMP
             echo '<br>' >> $MTIMESTAMP
             echo "Notes About The Compile" >> $MTIMESTAMP
             echo '<br>' >> $MTIMESTAMP
@@ -145,7 +144,6 @@ if [ "$1" != "shared" ]; then
             echo '<br>' >> $ATIMESTAMP
             echo "Please Allow 30-45 Min." >> $ATIMESTAMP
             echo '<br>' >> $ATIMESTAMP
-            echo "" >> $ATIMESTAMP
             echo '<br>' >> $ATIMESTAMP
             echo "Notes About The Compile" >> $ATIMESTAMP
             echo '<br>' >> $ATIMESTAMP
@@ -161,7 +159,7 @@ if [ "$1" != "shared" ]; then
             echo '<center>' > $MTIMESTAMP
             echo "Compile Process Failed." >> $MTIMESTAMP
             echo '<p></p>' >> $MTIMESTAMP
-            echo '<a href="http://db.tt/RICx4uEI">Download Experimental</a>' >> $MTIMESTAMP
+            echo '<a href="http://db.tt/RICx4uEI">Previous Experimental</a>' >> $MTIMESTAMP
             echo '<br>' >> $MTIMESTAMP
             echo '<a href="http://db.tt/7svQgn6F">Download Milestone</a>' >> $MTIMESTAMP
             echo '</center>' >> $MTIMESTAMP
@@ -172,7 +170,7 @@ if [ "$1" != "shared" ]; then
             echo '<center>' > $ATIMESTAMP
             echo "Compile Process Failed." >> $ATIMESTAMP
             echo '<p></p>' >> $ATIMESTAMP
-            echo '<a href="http://db.tt/m2DXP3EZ">Download Experimental</a>' >> $ATIMESTAMP
+            echo '<a href="http://db.tt/m2DXP3EZ">Previous Experimental</a>' >> $ATIMESTAMP
             echo '</center>' >> $ATIMESTAMP
             echo '<p></p>' >> $ATIMESTAMP
             cat $ATIMESTAMP $ABACKSTAMP > $ATEMPSTAMP
@@ -198,7 +196,6 @@ else
         echo '<br>' >> $MTIMESTAMP
         echo "Please Allow 30-45 Min." >> $MTIMESTAMP
         echo '<br>' >> $MTIMESTAMP
-        echo "" >> $MTIMESTAMP
         echo '<br>' >> $MTIMESTAMP
         echo "Notes About The Compile" >> $MTIMESTAMP
         echo '<br>' >> $MTIMESTAMP
@@ -214,7 +211,7 @@ else
         echo '<center>' > $MTIMESTAMP
         echo "Compile Process Failed." >> $MTIMESTAMP
         echo '<p></p>' >> $MTIMESTAMP
-        echo '<a href="http://db.tt/RICx4uEI">Download Experimental</a>' >> $MTIMESTAMP
+        echo '<a href="http://db.tt/RICx4uEI">Previous Experimental</a>' >> $MTIMESTAMP
         echo '<br>' >> $MTIMESTAMP
         echo '<a href="http://db.tt/7svQgn6F">Download Milestone</a>' >> $MTIMESTAMP
         echo '</center>' >> $MTIMESTAMP
@@ -241,7 +238,6 @@ else
         echo '<br>' >> $ATIMESTAMP
         echo "Please Allow 30-45 Min." >> $ATIMESTAMP
         echo '<br>' >> $ATIMESTAMP
-        echo "" >> $ATIMESTAMP
         echo '<br>' >> $ATIMESTAMP
         echo "Notes About The Compile" >> $ATIMESTAMP
         echo '<br>' >> $ATIMESTAMP
@@ -255,7 +251,7 @@ else
         echo '<center>' > $ATIMESTAMP
         echo "Compile Process Failed." >> $ATIMESTAMP
         echo '<p></p>' >> $ATIMESTAMP
-        echo '<a href="http://db.tt/m2DXP3EZ">Download Experimental</a>' >> $ATIMESTAMP
+        echo '<a href="http://db.tt/m2DXP3EZ">Previous Experimental</a>' >> $ATIMESTAMP
         echo '</center>' >> $ATIMESTAMP
         echo '<p></p>' >> $ATIMESTAMP
         cat $ATIMESTAMP $ABACKSTAMP > $ATEMPSTAMP
