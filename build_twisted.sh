@@ -39,7 +39,7 @@ if [ "$1" == "mecha" ]; then
         cd $BUILDDIR/kernel/$KERNELSPEC
         ls config
         read config
-        ./buildlean.sh 1 $config
+        ./buildlean.sh 1 $config $1
         echo '<p></p>' >> $MTIMESTAMP
         echo '<center>' >> $MTIMESTAMP
         if [ -e arch/arm/boot/zImage ]; then
@@ -52,6 +52,8 @@ if [ "$1" == "mecha" ]; then
         cd $BUILDDIR
     fi
 elif [ "$1" == "ace" ]; then
+    echo "Kernel (Y/n)? "
+    read kernel
     echo '<center>' >> $ATIMESTAMP
     echo "New Compile Started:" >> $ATIMESTAMP
     echo '<br>' >> $ATIMESTAMP
@@ -63,6 +65,23 @@ elif [ "$1" == "ace" ]; then
     echo '</center>' >> $ATIMESTAMP
     cat $ABACKSTAMP $ATIMESTAMP > $ATEMPSTAMP
     mv -f $ATEMPSTAMP $ATIMESTAMP
+    if [ "$kernel" == "Y" ]; then
+        echo "Config Name? ";
+        cd $BUILDDIR/kernel/$KERNELSPEC
+        ls config
+        read config
+        ./buildlean.sh 1 $config $1
+        echo '<p></p>' >> $ATIMESTAMP
+        echo '<center>' >> $ATIMESTAMP
+        if [ -e arch/arm/boot/zImage ]; then
+        echo "Kernel Compile Success." >> $ATIMESTAMP
+        else
+        echo "-Kernel Compile Failed." >> $ATIMESTAMP
+        fi
+        echo '</center>' >> $ATIMESTAMP
+        echo '<p></p>' >> $ATIMESTAMP
+        cd $BUILDDIR
+    fi
 elif [ "$1" == "shared" ]; then
     echo '<center>' >> $MTIMESTAMP
     echo "New Compile Started:" >> $MTIMESTAMP
