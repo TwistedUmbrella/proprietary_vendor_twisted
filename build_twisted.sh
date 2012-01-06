@@ -137,6 +137,7 @@ if [ "$1" != "shared" ]; then
     if [ -e $BUILDDIR/out/target/product/$1/htc_$1-ota-eng.$HANDLE.zip ]; then
         cp -R $BUILDDIR/out/target/product/$1/htc_$1-ota-eng.$HANDLE.zip $DROPBOX/htc_$1-ota-eng.$HANDLE.zip
         if [ "$1" == "mecha" ]; then
+            rm -R $MTIMESTAMP
             echo '<center>' > $MTIMESTAMP
             echo "Latest Build Completed:" >> $MTIMESTAMP
             echo '<br>' >> $MTIMESTAMP
@@ -156,6 +157,7 @@ if [ "$1" != "shared" ]; then
             echo '<p></p>' >> $MTIMESTAMP
             cp -R $MTIMESTAMP $MBACKSTAMP
         elif [ "$1" == "ace" ]; then
+            rm -R $ATIMESTAMP
             echo '<center>' > $ATIMESTAMP
             echo "Latest Build Completed:" >> $ATIMESTAMP
             echo '<br>' >> $ATIMESTAMP
@@ -175,6 +177,7 @@ if [ "$1" != "shared" ]; then
         fi
     else
         if [ "$1" == "mecha" ]; then
+            rm -R $MTIMESTAMP
             echo '<center>' > $MTIMESTAMP
             echo "Compile Process Failed." >> $MTIMESTAMP
             echo '<p></p>' >> $MTIMESTAMP
@@ -186,6 +189,7 @@ if [ "$1" != "shared" ]; then
             cat $MTIMESTAMP $MBACKSTAMP > $MTEMPSTAMP
             mv -f $MTEMPSTAMP $MTIMESTAMP
         elif [ "$1" == "ace" ]; then
+            rm -R $ATIMESTAMP
             echo '<center>' > $ATIMESTAMP
             echo "Compile Process Failed." >> $ATIMESTAMP
             echo '<p></p>' >> $ATIMESTAMP
@@ -208,6 +212,7 @@ else
     rm -R $CCACHE_DIR/*
     if [ -e $BUILDDIR/out/target/product/mecha/htc_mecha-ota-eng.$HANDLE.zip ]; then
         cp -R $BUILDDIR/out/target/product/mecha/htc_mecha-ota-eng.$HANDLE.zip $DROPBOX/htc_mecha-ota-eng.$HANDLE.zip
+        rm -R $MTIMESTAMP
         echo '<center>' > $MTIMESTAMP
         echo "Latest Build Completed:" >> $MTIMESTAMP
         echo '<br>' >> $MTIMESTAMP
@@ -227,6 +232,7 @@ else
         echo '<p></p>' >> $MTIMESTAMP
         cp -R $MTIMESTAMP $MBACKSTAMP
     else
+        rm -R $MTIMESTAMP
         echo '<center>' > $MTIMESTAMP
         echo "Compile Process Failed." >> $MTIMESTAMP
         echo '<p></p>' >> $MTIMESTAMP
@@ -250,6 +256,7 @@ else
     rm -R $CCACHE_DIR/*
     if [ -e $BUILDDIR/out/target/product/ace/htc_ace-ota-eng.$HANDLE.zip ]; then
         cp -R $BUILDDIR/out/target/product/ace/htc_ace-ota-eng.$HANDLE.zip $DROPBOX/htc_ace-ota-eng.$HANDLE.zip
+        rm -R $ATIMESTAMP
         echo '<center>' > $ATIMESTAMP
         echo "Latest Build Completed:" >> $ATIMESTAMP
         echo '<br>' >> $ATIMESTAMP
@@ -267,6 +274,7 @@ else
         echo '<p></p>' >> $ATIMESTAMP
         cp -R $ATIMESTAMP $ABACKSTAMP
     else
+        rm -R $ATIMESTAMP
         echo '<center>' > $ATIMESTAMP
         echo "Compile Process Failed." >> $ATIMESTAMP
         echo '<p></p>' >> $ATIMESTAMP
