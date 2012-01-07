@@ -3,18 +3,22 @@
 # This script is designed by Twisted Playground for use on MacOSX 10.7 but can be modified for other distributions of Mac and Linux
 
 HANDLE=TwistedZero
-MTIMESTAMP=/Volumes/frontrow/$HANDLE/SourceBuilt/MechaTimeStamp.html
-MTEMPSTAMP=/Volumes/frontrow/$HANDLE/SourceBuilt/MechaTempStamp
-MBACKSTAMP=/Volumes/frontrow/$HANDLE/SourceBuilt/MechaBackStamp
-ATIMESTAMP=/Volumes/frontrow/$HANDLE/SourceBuilt/AceTimeStamp.html
-ATEMPSTAMP=/Volumes/frontrow/$HANDLE/SourceBuilt/AceTempStamp
-ABACKSTAMP=/Volumes/frontrow/$HANDLE/SourceBuilt/AceBackStamp
+ANDROIDREPO=/Volumes/android/github-aosp_source/android
+MTIMESTAMP=$ANDROIDREPO/MechaTimeStamp.html
+MTEMPSTAMP=$ANDROIDREPO/MechaTempStamp
+MBACKSTAMP=$ANDROIDREPO/MechaBackStamp
+ATIMESTAMP=$ANDROIDREPO/AceTimeStamp.html
+ATEMPSTAMP=$ANDROIDREPO/AceTempStamp
+ABACKSTAMP=$ANDROIDREPO/AceBackStamp
+DROIDGITHUB=TwistedUmbrella/android.git
 BUILDDIR=/Volumes/android/android-tzb_ics4.0.1
 CCACHEBIN=prebuilt/darwin-x86/ccache/ccache
 KERNELSPEC=leanKernel-tbolt-ics
 USERLOCAL=/Users/$HANDLE
 DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
 
+cd $ANDROIDREPO
+git checkout gh-pages
 cd $BUILDDIR
 
 echo "Build Notes: "
@@ -23,88 +27,33 @@ read changes
 if [ "$1" == "mecha" ]; then
     echo "Kernel (Y/n)? "
     read kernel
-    echo '<center>' >> $MTIMESTAMP
-    echo "New Compile Started:" >> $MTIMESTAMP
-    echo '<br>' >> $MTIMESTAMP
-    date >> $MTIMESTAMP
-    echo '<br>' >> $MTIMESTAMP
-    echo "Compile Information:" >> $MTIMESTAMP
-    echo '<br>' >> $MTIMESTAMP
-    echo $changes >> $MTIMESTAMP
-    echo '</center>' >> $MTIMESTAMP
-    cat $MBACKSTAMP $MTIMESTAMP > $MTEMPSTAMP
-    mv -f $MTEMPSTAMP $MTIMESTAMP
     if [ "$kernel" == "Y" ]; then
         echo "Config Name? ";
         cd $BUILDDIR/kernel/$KERNELSPEC
         ls config
         read config
         ./buildlean.sh 1 $config $1
-        echo '<p></p>' >> $MTIMESTAMP
-        echo '<center>' >> $MTIMESTAMP
         if [ -e arch/arm/boot/zImage ]; then
+            echo '<p></p>' >> $MTIMESTAMP
+            echo '<center>' >> $MTIMESTAMP
             echo "Kernel Compile Success." >> $MTIMESTAMP
-        else
-            echo "-Kernel Compile Failed." >> $MTIMESTAMP
+            echo '</center>' >> $MTIMESTAMP
+            echo '<p></p>' >> $MTIMESTAMP
         fi
-        echo '</center>' >> $MTIMESTAMP
-        echo '<p></p>' >> $MTIMESTAMP
         cd $BUILDDIR
     fi
 elif [ "$1" == "ace" ]; then
     echo "Kernel (Y/n)? "
     read kernel
-    echo '<center>' >> $ATIMESTAMP
-    echo "New Compile Started:" >> $ATIMESTAMP
-    echo '<br>' >> $ATIMESTAMP
-    date >> $ATIMESTAMP
-    echo '<br>' >> $ATIMESTAMP
-    echo "Compile Information:" >> $ATIMESTAMP
-    echo '<br>' >> $ATIMESTAMP
-    echo $changes >> $ATIMESTAMP
-    echo '</center>' >> $ATIMESTAMP
-    cat $ABACKSTAMP $ATIMESTAMP > $ATEMPSTAMP
-    mv -f $ATEMPSTAMP $ATIMESTAMP
     if [ "$kernel" == "Y" ]; then
         echo "Config Name? ";
         cd $BUILDDIR/kernel/$KERNELSPEC
         ls config
         read config
         ./buildlean.sh 1 $config $1
-        echo '<p></p>' >> $ATIMESTAMP
-        echo '<center>' >> $ATIMESTAMP
-        if [ -e arch/arm/boot/zImage ]; then
-        echo "Kernel Compile Success." >> $ATIMESTAMP
-        else
-        echo "-Kernel Compile Failed." >> $ATIMESTAMP
-        fi
-        echo '</center>' >> $ATIMESTAMP
-        echo '<p></p>' >> $ATIMESTAMP
         cd $BUILDDIR
     fi
 elif [ "$1" == "shared" ]; then
-    echo '<center>' >> $MTIMESTAMP
-    echo "New Compile Started:" >> $MTIMESTAMP
-    echo '<br>' >> $MTIMESTAMP
-    date >> $MTIMESTAMP
-    echo '<br>' >> $MTIMESTAMP
-    echo "Compile Information:" >> $MTIMESTAMP
-    echo '<br>' >> $MTIMESTAMP
-    echo $changes >> $MTIMESTAMP
-    echo '</center>' >> $MTIMESTAMP
-    cat $MBACKSTAMP $MTIMESTAMP > $MTEMPSTAMP
-    mv -f $MTEMPSTAMP $MTIMESTAMP
-    echo '<center>' >> $ATIMESTAMP
-    echo "New Compile Started:" >> $ATIMESTAMP
-    echo '<br>' >> $ATIMESTAMP
-    date >> $ATIMESTAMP
-    echo '<br>' >> $ATIMESTAMP
-    echo "Compile Information:" >> $ATIMESTAMP
-    echo '<br>' >> $ATIMESTAMP
-    echo $changes >> $ATIMESTAMP
-    echo '</center>' >> $ATIMESTAMP
-    cat $ABACKSTAMP $ATIMESTAMP > $ATEMPSTAMP
-    mv -f $ATEMPSTAMP $ATIMESTAMP
 else
     echo "Available Device NOT Selected"
     echo "Sync Only Procedure Initiated"
@@ -155,6 +104,15 @@ if [ "$1" != "shared" ]; then
             echo '<a href="http://db.tt/7svQgn6F">Download Milestone</a>' >> $MTIMESTAMP
             echo '</center>' >> $MTIMESTAMP
             echo '<p></p>' >> $MTIMESTAMP
+            if [ "$kernel" == "Y" ]; then
+                if [ -e arch/arm/boot/zImage ]; then
+                    echo '<p></p>' >> $MTIMESTAMP
+                    echo '<center>' >> $MTIMESTAMP
+                    echo "Kernel Compile Success." >> $MTIMESTAMP
+                    echo '</center>' >> $MTIMESTAMP
+                    echo '<p></p>' >> $MTIMESTAMP
+                fi
+            fi
             cp -R $MTIMESTAMP $MBACKSTAMP
         elif [ "$1" == "ace" ]; then
             rm -R $ATIMESTAMP
@@ -173,32 +131,19 @@ if [ "$1" != "shared" ]; then
             echo '<a href="http://db.tt/m2DXP3EZ">Download Experimental</a>' >> $ATIMESTAMP
             echo '</center>' >> $ATIMESTAMP
             echo '<p></p>' >> $ATIMESTAMP
+            if [ "$kernel" == "Y" ]; then
+                if [ -e arch/arm/boot/zImage ]; then
+                    echo '<p></p>' >> $ATIMESTAMP
+                    echo '<center>' >> $ATIMESTAMP
+                    echo "Kernel Compile Success." >> $ATIMESTAMP
+                    echo '</center>' >> $ATIMESTAMP
+                    echo '<p></p>' >> $ATIMESTAMP
+                fi
+            fi
             cp -R $ATIMESTAMP $ABACKSTAMP
         fi
-    else
-        if [ "$1" == "mecha" ]; then
-            rm -R $MTIMESTAMP
-            echo '<center>' > $MTIMESTAMP
-            echo "Compile Process Failed." >> $MTIMESTAMP
-            echo '<p></p>' >> $MTIMESTAMP
-            echo '<a href="http://db.tt/RICx4uEI">Previous Experimental</a>' >> $MTIMESTAMP
-            echo '<br>' >> $MTIMESTAMP
-            echo '<a href="http://db.tt/7svQgn6F">Download Milestone</a>' >> $MTIMESTAMP
-            echo '</center>' >> $MTIMESTAMP
-            echo '<p></p>' >> $MTIMESTAMP
-            cat $MTIMESTAMP $MBACKSTAMP > $MTEMPSTAMP
-            mv -f $MTEMPSTAMP $MTIMESTAMP
-        elif [ "$1" == "ace" ]; then
-            rm -R $ATIMESTAMP
-            echo '<center>' > $ATIMESTAMP
-            echo "Compile Process Failed." >> $ATIMESTAMP
-            echo '<p></p>' >> $ATIMESTAMP
-            echo '<a href="http://db.tt/m2DXP3EZ">Previous Experimental</a>' >> $ATIMESTAMP
-            echo '</center>' >> $ATIMESTAMP
-            echo '<p></p>' >> $ATIMESTAMP
-            cat $ATIMESTAMP $ABACKSTAMP > $ATEMPSTAMP
-            mv -f $ATEMPSTAMP $ATIMESTAMP
-        fi
+    git commit -a -m "Automated TimeStamp Update"
+    git push git@github.com:$DROIDGITHUB HEAD:gh-pages
     fi
 
 else
@@ -231,18 +176,15 @@ else
         echo '</center>' >> $MTIMESTAMP
         echo '<p></p>' >> $MTIMESTAMP
         cp -R $MTIMESTAMP $MBACKSTAMP
-    else
-        rm -R $MTIMESTAMP
-        echo '<center>' > $MTIMESTAMP
-        echo "Compile Process Failed." >> $MTIMESTAMP
-        echo '<p></p>' >> $MTIMESTAMP
-        echo '<a href="http://db.tt/RICx4uEI">Previous Experimental</a>' >> $MTIMESTAMP
-        echo '<br>' >> $MTIMESTAMP
-        echo '<a href="http://db.tt/7svQgn6F">Download Milestone</a>' >> $MTIMESTAMP
-        echo '</center>' >> $MTIMESTAMP
-        echo '<p></p>' >> $MTIMESTAMP
-        cat $MTIMESTAMP $MBACKSTAMP > $MTEMPSTAMP
-        mv -f $MTEMPSTAMP $MTIMESTAMP
+        if [ "$kernel" == "Y" ]; then
+            if [ -e arch/arm/boot/zImage ]; then
+                echo '<p></p>' >> $MTIMESTAMP
+                echo '<center>' >> $MTIMESTAMP
+                echo "Kernel Compile Success." >> $MTIMESTAMP
+                echo '</center>' >> $MTIMESTAMP
+                echo '<p></p>' >> $MTIMESTAMP
+            fi
+        fi
     fi
 
     rm -R $CCACHE_DIR/*
@@ -273,16 +215,17 @@ else
         echo '</center>' >> $ATIMESTAMP
         echo '<p></p>' >> $ATIMESTAMP
         cp -R $ATIMESTAMP $ABACKSTAMP
-    else
-        rm -R $ATIMESTAMP
-        echo '<center>' > $ATIMESTAMP
-        echo "Compile Process Failed." >> $ATIMESTAMP
-        echo '<p></p>' >> $ATIMESTAMP
-        echo '<a href="http://db.tt/m2DXP3EZ">Previous Experimental</a>' >> $ATIMESTAMP
-        echo '</center>' >> $ATIMESTAMP
-        echo '<p></p>' >> $ATIMESTAMP
-        cat $ATIMESTAMP $ABACKSTAMP > $ATEMPSTAMP
-        mv -f $ATEMPSTAMP $ATIMESTAMP
+        if [ "$kernel" == "Y" ]; then
+            if [ -e arch/arm/boot/zImage ]; then
+                echo '<p></p>' >> $ATIMESTAMP
+                echo '<center>' >> $ATIMESTAMP
+                echo "Kernel Compile Success." >> $ATIMESTAMP
+                echo '</center>' >> $ATIMESTAMP
+                echo '<p></p>' >> $ATIMESTAMP
+            fi
+        fi
     fi
+    git commit -a -m "Automated TimeStamp Update"
+    git push git@github.com:$DROIDGITHUB HEAD:gh-pages
 
 fi
