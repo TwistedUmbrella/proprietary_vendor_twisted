@@ -1,5 +1,5 @@
 # This script is designed to compliment .bash_profile code to automate the build process by adding a typical shell command such as:
-# function buildTwist { echo "Ace, Mecha, Shared?"; read device; cd /Volumes/android/android-tzb_ics4.0.1/vendor/twisted; ./build_twisted.sh $device; }
+# function buildTwist { echo "Ace, Mecha, Shared?"; read device; cd /Volumes/android/github-aosp_source/proprietary_vendor_twisted; ./build_twisted.sh $device; }
 # This script is designed by Twisted Playground for use on MacOSX 10.7 but can be modified for other distributions of Mac and Linux
 
 HANDLE=TwistedZero
@@ -28,11 +28,8 @@ if [ "$1" == "mecha" ]; then
     echo "Kernel (Y/n)? "
     read kernel
     if [ "$kernel" == "Y" ]; then
-        echo "Config Name? ";
         cd $BUILDDIR/kernel/$KERNELSPEC
-        ls config
-        read config
-        ./buildlean.sh 1 $config $1
+        ./buildlean.sh 1 $1
         if [ -e arch/arm/boot/zImage ]; then
             echo '<p></p>' >> $MTIMESTAMP
             echo '<center>' >> $MTIMESTAMP
@@ -46,14 +43,12 @@ elif [ "$1" == "ace" ]; then
     echo "Kernel (Y/n)? "
     read kernel
     if [ "$kernel" == "Y" ]; then
-        echo "Config Name? ";
         cd $BUILDDIR/kernel/$KERNELSPEC
-        ls config
-        read config
-        ./buildlean.sh 1 $config $1
+        ./buildlean.sh 1 $1
         cd $BUILDDIR
     fi
 elif [ "$1" == "shared" ]; then
+    echo "Kernel Compiling Unavailable!"
 else
     echo "Available Device NOT Selected"
     echo "Sync Only Procedure Initiated"
@@ -142,8 +137,10 @@ if [ "$1" != "shared" ]; then
             fi
             cp -R $ATIMESTAMP $ABACKSTAMP
         fi
+    cd $ANDROIDREPO
     git commit -a -m "Automated TimeStamp Update"
     git push git@github.com:$DROIDGITHUB HEAD:gh-pages
+    cd $BUILDDIR
     fi
 
 else
@@ -172,7 +169,7 @@ else
         echo '<p></p>' >> $MTIMESTAMP
         echo '<a href="http://db.tt/RICx4uEI">Download Experimental</a>' >> $MTIMESTAMP
         echo '<br>' >> $MTIMESTAMP
-        echo '<a href="http://db.tt/7svQgn6F">Download Milestone</a>' >> $ATIMESTAMP
+        echo '<a href="http://db.tt/7svQgn6F">Download Milestone</a>' >> $MTIMESTAMP
         echo '</center>' >> $MTIMESTAMP
         echo '<p></p>' >> $MTIMESTAMP
         cp -R $MTIMESTAMP $MBACKSTAMP
@@ -185,6 +182,10 @@ else
                 echo '<p></p>' >> $MTIMESTAMP
             fi
         fi
+        cd $ANDROIDREPO
+        git commit -a -m "Automated TimeStamp Update"
+        git push git@github.com:$DROIDGITHUB HEAD:gh-pages
+        cd $BUILDDIR
     fi
 
     rm -R $CCACHE_DIR/*
@@ -224,8 +225,9 @@ else
                 echo '<p></p>' >> $ATIMESTAMP
             fi
         fi
+        cd $ANDROIDREPO
+        git commit -a -m "Automated TimeStamp Update"
+        git push git@github.com:$DROIDGITHUB HEAD:gh-pages
+        cd $BUILDDIR
     fi
-    git commit -a -m "Automated TimeStamp Update"
-    git push git@github.com:$DROIDGITHUB HEAD:gh-pages
-
 fi
