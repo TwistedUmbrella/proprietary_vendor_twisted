@@ -1,3 +1,5 @@
+# Copyright (C) 2011 Twisted Playground
+
 # This script is designed to compliment .bash_profile code to automate the build process by adding a typical shell command such as:
 # function buildTwist { echo "Ace, Mecha, Shared?"; read device; cd /Volumes/android/github-aosp_source/proprietary_vendor_twisted; ./build_twisted.sh $device; }
 # This script is designed by Twisted Playground for use on MacOSX 10.7 but can be modified for other distributions of Mac and Linux
@@ -34,7 +36,7 @@ specKernel() {
 
 specDevice() {
 
-    PROPER=$DEVICE | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'
+    PROPER=`echo $DEVICE | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
     TIMESTAMP=$ANDROIDREPO/$PROPERTimeStamp.html
     TEMPSTAMP=$ANDROIDREPO/$PROPERTempStamp
     BACKSTAMP=$ANDROIDREPO/$PROPERBackStamp
@@ -66,7 +68,7 @@ specDevice() {
             echo '<br>' >> $TIMESTAMP
             echo '<a href="http://db.tt/7svQgn6F">Download Milestone</a>' >> $TIMESTAMP
         elif [ "$DEVICE" == "ace" ]; then
-            echo '<a href="http://db.tt/RICx4uEI">Download Experimental</a>' >> $TIMESTAMP
+            echo '<a href="http://db.tt/m2DXP3EZ">Download Experimental</a>' >> $TIMESTAMP
         fi
         echo '</center>' >> $TIMESTAMP
         if [ "$kernel" == "Y" ]; then
