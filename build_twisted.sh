@@ -4,12 +4,6 @@
 
 HANDLE=TwistedZero
 ANDROIDREPO=/Volumes/android/github-aosp_source/android
-MTIMESTAMP=$ANDROIDREPO/MechaTimeStamp.html
-MTEMPSTAMP=$ANDROIDREPO/MechaTempStamp
-MBACKSTAMP=$ANDROIDREPO/MechaBackStamp
-ATIMESTAMP=$ANDROIDREPO/AceTimeStamp.html
-ATEMPSTAMP=$ANDROIDREPO/AceTempStamp
-ABACKSTAMP=$ANDROIDREPO/AceBackStamp
 DROIDGITHUB=TwistedUmbrella/android.git
 BUILDDIR=/Volumes/android/android-tzb_ics4.0.1
 CCACHEBIN=prebuilt/darwin-x86/ccache/ccache
@@ -21,32 +15,84 @@ cd $ANDROIDREPO
 git checkout gh-pages
 cd $BUILDDIR
 
-echo "Build Notes: "
-read changes
-
-if [ "$1" == "mecha" ]; then
+specKernel() {
     echo "Kernel (Y/n)? "
     read kernel
     if [ "$kernel" == "Y" ]; then
         cd $BUILDDIR/kernel/$KERNELSPEC
         ./buildlean.sh 1 $1
         if [ -e arch/arm/boot/zImage ]; then
-            echo '<p></p>' >> $MTIMESTAMP
-            echo '<center>' >> $MTIMESTAMP
-            echo "Kernel Compile Success." >> $MTIMESTAMP
-            echo '</center>' >> $MTIMESTAMP
-            echo '<p></p>' >> $MTIMESTAMP
+            echo '<p></p>' >> $TIMESTAMP
+            echo '<center>' >> $TIMESTAMP
+            echo "Kernel Compile Success." >> $TIMESTAMP
+            echo '</center>' >> $TIMESTAMP
+            echo '<p></p>' >> $TIMESTAMP
         fi
         cd $BUILDDIR
     fi
-elif [ "$1" == "ace" ]; then
-    echo "Kernel (Y/n)? "
-    read kernel
-    if [ "$kernel" == "Y" ]; then
-        cd $BUILDDIR/kernel/$KERNELSPEC
-        ./buildlean.sh 1 $1
+}
+
+specDevice() {
+
+    PROPER=$DEVICE | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'
+    TIMESTAMP=$ANDROIDREPO/$PROPERTimeStamp.html
+    TEMPSTAMP=$ANDROIDREPO/$PROPERTempStamp
+    BACKSTAMP=$ANDROIDREPO/$PROPERBackStamp
+
+    source build/envsetup.sh
+    export USE_CCACHE=1
+    export CCACHE_DIR=$USERLOCAL/.ccache
+    $CCACHEBIN -M 40G
+    make otapackage -j4 TARGET_PRODUCT=htc_$DEVICE TARGET_BUILD_VARIANT=userdebug
+    rm -R $CCACHE_DIR/*
+
+    if [ -e $BUILDDIR/out/target/product/$DEVICE/htc_$DEVICE-ota-eng.$HANDLE.zip ]; then
+        cp -R $BUILDDIR/out/target/product/$DEVICE/htc_$DEVICE-ota-eng.$HANDLE.zip $DROPBOX/htc_$DEVICE-ota-eng.$HANDLE.zip
+        rm -R $TIMESTAMP
+        echo '<center>' > $TIMESTAMP
+        echo "Latest Build Completed:" >> $TIMESTAMP
+        echo '<br>' >> $TIMESTAMP
+        date >> $TIMESTAMP
+        echo '<br>' >> $TIMESTAMP
+        echo "Please Allow 30-45 Min." >> $TIMESTAMP
+        echo '<br>' >> $TIMESTAMP
+        echo '<br>' >> $TIMESTAMP
+        echo "Notes About The Compile" >> $TIMESTAMP
+        echo '<br>' >> $TIMESTAMP
+        echo $changes >> $TIMESTAMP
+        echo '<p></p>' >> $TIMESTAMP
+        if [ "$DEVICE" == "mecha" ]; then
+            echo '<a href="http://db.tt/RICx4uEI">Download Experimental</a>' >> $TIMESTAMP
+            echo '<br>' >> $TIMESTAMP
+            echo '<a href="http://db.tt/7svQgn6F">Download Milestone</a>' >> $TIMESTAMP
+        elif [ "$DEVICE" == "ace" ]; then
+            echo '<a href="http://db.tt/RICx4uEI">Download Experimental</a>' >> $TIMESTAMP
+        fi
+        echo '</center>' >> $TIMESTAMP
+        if [ "$kernel" == "Y" ]; then
+            if [ -e arch/arm/boot/zImage ]; then
+                echo '<p></p>' >> $TIMESTAMP
+                echo '<center>' >> $TIMESTAMP
+                echo "Kernel Compile Success." >> $TIMESTAMP
+                echo '</center>' >> $TIMESTAMP
+                echo '<p></p>' >> $TIMESTAMP
+            fi
+        fi
+        cd $ANDROIDREPO
+        git commit -a -m "Automated TimeStamp Update - ${PROPER}"
+        git push git@github.com:$DROIDGITHUB HEAD:gh-pages
         cd $BUILDDIR
     fi
+}
+
+
+echo "Build Notes: "
+read changes
+
+if [ "$1" == "mecha" ]; then
+    specKernel
+elif [ "$1" == "ace" ]; then
+    specKernel
 elif [ "$1" == "shared" ]; then
     echo "Kernel Compiling Unavailable!"
 else
@@ -65,169 +111,11 @@ make clean -j8
 rm -R $CCACHE_DIR/*
 
 if [ "$1" != "shared" ]; then
-
-    source build/envsetup.sh
-    if [ "$1" == "mecha" ]; then
-        lunch 6
-    elif [ "$1" == "ace" ]; then
-        lunch 4
-    fi
-    export USE_CCACHE=1
-    export CCACHE_DIR=$USERLOCAL/.ccache
-    $CCACHEBIN -M 40G
-    make otapackage -j4
-    rm -R $CCACHE_DIR/*
-
-    if [ -e $BUILDDIR/out/target/product/$1/htc_$1-ota-eng.$HANDLE.zip ]; then
-        cp -R $BUILDDIR/out/target/product/$1/htc_$1-ota-eng.$HANDLE.zip $DROPBOX/htc_$1-ota-eng.$HANDLE.zip
-        if [ "$1" == "mecha" ]; then
-            rm -R $MTIMESTAMP
-            echo '<center>' > $MTIMESTAMP
-            echo "Latest Build Completed:" >> $MTIMESTAMP
-            echo '<br>' >> $MTIMESTAMP
-            date >> $MTIMESTAMP
-            echo '<br>' >> $MTIMESTAMP
-            echo "Please Allow 30-45 Min." >> $MTIMESTAMP
-            echo '<br>' >> $MTIMESTAMP
-            echo '<br>' >> $MTIMESTAMP
-            echo "Notes About The Compile" >> $MTIMESTAMP
-            echo '<br>' >> $MTIMESTAMP
-            echo $changes >> $MTIMESTAMP
-            echo '<p></p>' >> $MTIMESTAMP
-            echo '<a href="http://db.tt/RICx4uEI">Download Experimental</a>' >> $MTIMESTAMP
-            echo '<br>' >> $MTIMESTAMP
-            echo '<a href="http://db.tt/7svQgn6F">Download Milestone</a>' >> $MTIMESTAMP
-            echo '</center>' >> $MTIMESTAMP
-            echo '<p></p>' >> $MTIMESTAMP
-            if [ "$kernel" == "Y" ]; then
-                if [ -e arch/arm/boot/zImage ]; then
-                    echo '<p></p>' >> $MTIMESTAMP
-                    echo '<center>' >> $MTIMESTAMP
-                    echo "Kernel Compile Success." >> $MTIMESTAMP
-                    echo '</center>' >> $MTIMESTAMP
-                    echo '<p></p>' >> $MTIMESTAMP
-                fi
-            fi
-            cp -R $MTIMESTAMP $MBACKSTAMP
-        elif [ "$1" == "ace" ]; then
-            rm -R $ATIMESTAMP
-            echo '<center>' > $ATIMESTAMP
-            echo "Latest Build Completed:" >> $ATIMESTAMP
-            echo '<br>' >> $ATIMESTAMP
-            date >> $ATIMESTAMP
-            echo '<br>' >> $ATIMESTAMP
-            echo "Please Allow 30-45 Min." >> $ATIMESTAMP
-            echo '<br>' >> $ATIMESTAMP
-            echo '<br>' >> $ATIMESTAMP
-            echo "Notes About The Compile" >> $ATIMESTAMP
-            echo '<br>' >> $ATIMESTAMP
-            echo $changes >> $ATIMESTAMP
-            echo '<p></p>' >> $ATIMESTAMP
-            echo '<a href="http://db.tt/m2DXP3EZ">Download Experimental</a>' >> $ATIMESTAMP
-            echo '</center>' >> $ATIMESTAMP
-            echo '<p></p>' >> $ATIMESTAMP
-            if [ "$kernel" == "Y" ]; then
-                if [ -e arch/arm/boot/zImage ]; then
-                    echo '<p></p>' >> $ATIMESTAMP
-                    echo '<center>' >> $ATIMESTAMP
-                    echo "Kernel Compile Success." >> $ATIMESTAMP
-                    echo '</center>' >> $ATIMESTAMP
-                    echo '<p></p>' >> $ATIMESTAMP
-                fi
-            fi
-            cp -R $ATIMESTAMP $ABACKSTAMP
-        fi
-    cd $ANDROIDREPO
-    git commit -a -m "Automated TimeStamp Update"
-    git push git@github.com:$DROIDGITHUB HEAD:gh-pages
-    cd $BUILDDIR
-    fi
-
+    DEVICE=$1
+    specDevice    
 else
-
-    source build/envsetup.sh
-    lunch 6
-    export USE_CCACHE=1
-    export CCACHE_DIR=$USERLOCAL/.ccache
-    $CCACHEBIN -M 40G
-    make otapackage -j4
-    rm -R $CCACHE_DIR/*
-    if [ -e $BUILDDIR/out/target/product/mecha/htc_mecha-ota-eng.$HANDLE.zip ]; then
-        cp -R $BUILDDIR/out/target/product/mecha/htc_mecha-ota-eng.$HANDLE.zip $DROPBOX/htc_mecha-ota-eng.$HANDLE.zip
-        rm -R $MTIMESTAMP
-        echo '<center>' > $MTIMESTAMP
-        echo "Latest Build Completed:" >> $MTIMESTAMP
-        echo '<br>' >> $MTIMESTAMP
-        date >> $MTIMESTAMP
-        echo '<br>' >> $MTIMESTAMP
-        echo "Please Allow 30-45 Min." >> $MTIMESTAMP
-        echo '<br>' >> $MTIMESTAMP
-        echo '<br>' >> $MTIMESTAMP
-        echo "Notes About The Compile" >> $MTIMESTAMP
-        echo '<br>' >> $MTIMESTAMP
-        echo $changes >> $MTIMESTAMP
-        echo '<p></p>' >> $MTIMESTAMP
-        echo '<a href="http://db.tt/RICx4uEI">Download Experimental</a>' >> $MTIMESTAMP
-        echo '<br>' >> $MTIMESTAMP
-        echo '<a href="http://db.tt/7svQgn6F">Download Milestone</a>' >> $MTIMESTAMP
-        echo '</center>' >> $MTIMESTAMP
-        echo '<p></p>' >> $MTIMESTAMP
-        cp -R $MTIMESTAMP $MBACKSTAMP
-        if [ "$kernel" == "Y" ]; then
-            if [ -e arch/arm/boot/zImage ]; then
-                echo '<p></p>' >> $MTIMESTAMP
-                echo '<center>' >> $MTIMESTAMP
-                echo "Kernel Compile Success." >> $MTIMESTAMP
-                echo '</center>' >> $MTIMESTAMP
-                echo '<p></p>' >> $MTIMESTAMP
-            fi
-        fi
-        cd $ANDROIDREPO
-        git commit -a -m "Automated TimeStamp Update"
-        git push git@github.com:$DROIDGITHUB HEAD:gh-pages
-        cd $BUILDDIR
-    fi
-
-    rm -R $CCACHE_DIR/*
-
-    source build/envsetup.sh
-    lunch 4
-    export USE_CCACHE=1
-    export CCACHE_DIR=$USERLOCAL/.ccache
-    $CCACHEBIN -M 40G
-    make otapackage -j4
-    rm -R $CCACHE_DIR/*
-    if [ -e $BUILDDIR/out/target/product/ace/htc_ace-ota-eng.$HANDLE.zip ]; then
-        cp -R $BUILDDIR/out/target/product/ace/htc_ace-ota-eng.$HANDLE.zip $DROPBOX/htc_ace-ota-eng.$HANDLE.zip
-        rm -R $ATIMESTAMP
-        echo '<center>' > $ATIMESTAMP
-        echo "Latest Build Completed:" >> $ATIMESTAMP
-        echo '<br>' >> $ATIMESTAMP
-        date >> $ATIMESTAMP
-        echo '<br>' >> $ATIMESTAMP
-        echo "Please Allow 30-45 Min." >> $ATIMESTAMP
-        echo '<br>' >> $ATIMESTAMP
-        echo '<br>' >> $ATIMESTAMP
-        echo "Notes About The Compile" >> $ATIMESTAMP
-        echo '<br>' >> $ATIMESTAMP
-        echo $changes >> $ATIMESTAMP
-        echo '<p></p>' >> $ATIMESTAMP
-        echo '<a href="http://db.tt/m2DXP3EZ">Download Experimental</a>' >> $ATIMESTAMP
-        echo '</center>' >> $ATIMESTAMP
-        echo '<p></p>' >> $ATIMESTAMP
-        cp -R $ATIMESTAMP $ABACKSTAMP
-        if [ "$kernel" == "Y" ]; then
-            if [ -e arch/arm/boot/zImage ]; then
-                echo '<p></p>' >> $ATIMESTAMP
-                echo '<center>' >> $ATIMESTAMP
-                echo "Kernel Compile Success." >> $ATIMESTAMP
-                echo '</center>' >> $ATIMESTAMP
-                echo '<p></p>' >> $ATIMESTAMP
-            fi
-        fi
-        cd $ANDROIDREPO
-        git commit -a -m "Automated TimeStamp Update"
-        git push git@github.com:$DROIDGITHUB HEAD:gh-pages
-        cd $BUILDDIR
-    fi
+    DEVICE="mecha"
+    specDevice
+    DEVICE="ace"
+    specDevice
 fi
