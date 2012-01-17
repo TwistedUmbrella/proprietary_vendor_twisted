@@ -36,10 +36,11 @@ specKernel() {
 
 specDevice() {
 
+    HANDLE=TwistedZero
     PROPER=`echo $DEVICE | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
-    TIMESTAMP=$ANDROIDREPO/$PROPERTimeStamp.html
-    TEMPSTAMP=$ANDROIDREPO/$PROPERTempStamp
-    BACKSTAMP=$ANDROIDREPO/$PROPERBackStamp
+    TIMESTAMP=$ANDROIDREPO/$PROPER/TimeStamp.html
+    TEMPSTAMP=$ANDROIDREPO/$PROPER/TempStamp
+    BACKSTAMP=$ANDROIDREPO/$PROPER/BackStamp
 
     source build/envsetup.sh
     export USE_CCACHE=1
@@ -49,7 +50,7 @@ specDevice() {
     rm -R $CCACHE_DIR/*
 
     if [ -e $BUILDDIR/out/target/product/$DEVICE/htc_$DEVICE-ota-eng.$HANDLE.zip ]; then
-        MD5STRING = `md5 /Volumes/android/android-tzb_ics4.0.1/out/target/product/$DEVICE/htc_$DEVICE-ota-eng.TwistedZero.zip | awk {'print $4'}`
+        MD5STRING=`md5 /Volumes/android/android-tzb_ics4.0.1/out/target/product/$DEVICE/htc_$DEVICE-ota-eng.$HANDLE.zip | awk {'print $4'}`
         cp -R $BUILDDIR/out/target/product/$DEVICE/htc_$DEVICE-ota-eng.$HANDLE.zip $DROPBOX/htc_$DEVICE-ota-eng.$HANDLE.zip
         rm -R $TIMESTAMP
         echo '<center>' > $TIMESTAMP
@@ -65,17 +66,17 @@ specDevice() {
         echo $changes >> $TIMESTAMP
         echo '<p></p>' >> $TIMESTAMP
         if [ "$DEVICE" == "mecha" ]; then
-            MD5STRINGM = `md5 $DROPBOX/htc_$DEVICE-ota-eng.$HANDLE_Milestone.zip | awk {'print $4'}`
+            MD5STRINGM=`md5 $DROPBOX/htc_$DEVICE-ota-eng.$HANDLE-Milestone.zip | awk {'print $4'}`
             echo '<a href="http://db.tt/7svQgn6F">Download Milestone</a>' >> $TIMESTAMP
             echo '<br>' >> $TIMESTAMP
-            echo 'MD5: ' $MD5STRINGM >> $TIMESTAMP
+            echo 'MD5: '$MD5STRINGM >> $TIMESTAMP
             echo '<br><br>' >> $TIMESTAMP
             echo '<a href="http://db.tt/RICx4uEI">Download Experimental</a>' >> $TIMESTAMP
         elif [ "$DEVICE" == "ace" ]; then
             echo '<a href="http://db.tt/m2DXP3EZ">Download Experimental</a>' >> $TIMESTAMP
         fi
         echo '<br>' >> $TIMESTAMP
-        echo 'MD5: ' $MD5STRING >> $TIMESTAMP
+        echo 'MD5: '$MD5STRING >> $TIMESTAMP
         echo '</center>' >> $TIMESTAMP
         if [ "$kernel" == "Y" ]; then
             if [ -e arch/arm/boot/zImage ]; then
@@ -87,7 +88,7 @@ specDevice() {
             fi
         fi
         cd $ANDROIDREPO
-        git commit -a -m '"Automated TimeStamp Update - '${PROPER}'"'
+        git commit -a -m 'Automated TimeStamp Update - '${PROPER}''
         git push git@github.com:$DROIDGITHUB HEAD:gh-pages
         cd $BUILDDIR
     fi
