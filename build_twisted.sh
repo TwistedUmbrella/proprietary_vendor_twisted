@@ -98,11 +98,12 @@ specDevice() {
 echo "Build Notes: "
 read changes
 
-if [ "$1" == "mecha" ]; then
+SELECTION=`echo $1 | awk '{print tolower($0)}'`
+if [ "$SELECTION" == "mecha" ]; then
     specKernel
-elif [ "$1" == "ace" ]; then
+elif [ "$SELECTION" == "ace" ]; then
     specKernel
-elif [ "$1" == "shared" ]; then
+elif [ "$SELECTION" == "shared" ]; then
     echo "Kernel Compiling Unavailable!"
 else
     echo "Available Device NOT Selected"
@@ -119,7 +120,7 @@ $CCACHEBIN -M 40G
 make clean -j8
 rm -R $CCACHE_DIR/*
 
-if [ "$1" != "shared" ]; then
+if [ "$SELECTION" != "shared" ]; then
     DEVICE=$1
     specDevice    
 else
