@@ -22,7 +22,7 @@ specKernel() {
     read kernel
     if [ "$kernel" == "Y" ]; then
         cd $BUILDDIR/kernel/$KERNELSPEC
-        ./buildlean.sh 1 $1
+        ./buildlean.sh 1 $SELECTION
         if [ -e arch/arm/boot/zImage ]; then
             echo '<p></p>' >> $TIMESTAMP
             echo '<center>' >> $TIMESTAMP
@@ -73,7 +73,7 @@ specDevice() {
             echo '<br><br>' >> $TIMESTAMP
             echo '<a href="http://db.tt/RICx4uEI">Download Experimental</a>' >> $TIMESTAMP
         elif [ "$DEVICE" == "ace" ]; then
-            echo '<a href="http://db.tt/dAJtkNlG">Download Experimental</a>' >> $TIMESTAMP
+            echo '<a href="http://db.tt/m2DXP3EZ">Download Experimental</a>' >> $TIMESTAMP
         fi
         echo '<br>' >> $TIMESTAMP
         echo 'MD5: '$MD5STRING >> $TIMESTAMP
@@ -102,6 +102,7 @@ SELECTION=`echo $1 | awk '{print tolower($0)}'`
 if [ "$SELECTION" == "mecha" ]; then
     specKernel
 elif [ "$SELECTION" == "ace" ]; then
+    
     specKernel
 elif [ "$SELECTION" == "shared" ]; then
     echo "Kernel Compiling Unavailable!"
@@ -121,7 +122,7 @@ make clean -j8
 rm -R $CCACHE_DIR/*
 
 if [ "$SELECTION" != "shared" ]; then
-    DEVICE=$1
+    DEVICE=$SELECTION
     specDevice    
 else
     DEVICE="mecha"
