@@ -73,7 +73,7 @@ specDevice() {
             echo '<br><br>' >> $TIMESTAMP
             echo '<a href="http://db.tt/RICx4uEI">Download Experimental</a>' >> $TIMESTAMP
         elif [ "$DEVICE" == "ace" ]; then
-            echo '<a href="http://db.tt/m2DXP3EZ">Download Experimental</a>' >> $TIMESTAMP
+            echo '<a href="http://db.tt/dAJtkNlG">Download Experimental</a>' >> $TIMESTAMP
         fi
         echo '<br>' >> $TIMESTAMP
         echo 'MD5: '$MD5STRING >> $TIMESTAMP
