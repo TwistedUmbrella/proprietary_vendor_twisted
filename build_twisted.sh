@@ -33,22 +33,18 @@ specKernel() {
         cd $BUILDDIR
     fi
 }
-
 specDevice() {
-
     HANDLE=TwistedZero
     PROPER=`echo $DEVICE | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
     TIMESTAMP=$ANDROIDREPO/$PROPER/TimeStamp.html
     TEMPSTAMP=$ANDROIDREPO/$PROPER/TempStamp
     BACKSTAMP=$ANDROIDREPO/$PROPER/BackStamp
-
     source build/envsetup.sh
     export USE_CCACHE=1
     export CCACHE_DIR=$USERLOCAL/.ccache
     $CCACHEBIN -M 40G
     make otapackage -j4 TARGET_PRODUCT=htc_$DEVICE TARGET_BUILD_VARIANT=userdebug
     rm -R $CCACHE_DIR/*
-
     if [ -e $BUILDDIR/out/target/product/$DEVICE/htc_$DEVICE-ota-eng.$HANDLE.zip ]; then
         MD5STRING=`md5 /Volumes/android/android-tzb_ics4.0.1/out/target/product/$DEVICE/htc_$DEVICE-ota-eng.$HANDLE.zip | awk {'print $4'}`
         cp -R $BUILDDIR/out/target/product/$DEVICE/htc_$DEVICE-ota-eng.$HANDLE.zip $DROPBOX/htc_$DEVICE-ota-eng.$HANDLE.zip
@@ -93,8 +89,6 @@ specDevice() {
         cd $BUILDDIR
     fi
 }
-
-
 echo "Build Notes: "
 read changes
 
@@ -102,7 +96,6 @@ SELECTION=`echo $1 | awk '{print tolower($0)}'`
 if [ "$SELECTION" == "mecha" ]; then
     specKernel
 elif [ "$SELECTION" == "ace" ]; then
-    
     specKernel
 elif [ "$SELECTION" == "shared" ]; then
     echo "Kernel Compiling Unavailable!"
@@ -112,15 +105,12 @@ else
     repo sync
     exit 1
 fi
-
 repo sync
-
 export USE_CCACHE=1
 export CCACHE_DIR=$USERLOCAL/.ccache
 $CCACHEBIN -M 40G
 make clean -j8
 rm -R $CCACHE_DIR/*
-
 if [ "$SELECTION" != "shared" ]; then
     DEVICE=$SELECTION
     specDevice    
