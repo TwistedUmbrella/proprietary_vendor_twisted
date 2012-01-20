@@ -12,6 +12,9 @@ CCACHEBIN=prebuilt/darwin-x86/ccache/ccache
 KERNELSPEC=leanKernel-tbolt-ics
 USERLOCAL=/Users/$HANDLE
 DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
+MILESTONE=http://db.tt/cptLfyy6
+MECHAEXP=http://db.tt/RICx4uEI
+SPADEEXP=http://db.tt/m2DXP3EZ
 
 cd $ANDROIDREPO
 git checkout gh-pages
@@ -63,13 +66,13 @@ specDevice() {
         echo '<p></p>' >> $TIMESTAMP
         if [ "$DEVICE" == "mecha" ]; then
             MD5STRINGM=`md5 $DROPBOX/htc_$DEVICE-ota-eng.$HANDLE-Milestone.zip | awk {'print $4'}`
-            echo '<a href="http://db.tt/7svQgn6F">Download Milestone</a>' >> $TIMESTAMP
+            echo '<a href="'$MILESTONE'">Download Milestone</a>' >> $TIMESTAMP
             echo '<br>' >> $TIMESTAMP
             echo 'MD5: '$MD5STRINGM >> $TIMESTAMP
             echo '<br><br>' >> $TIMESTAMP
-            echo '<a href="http://db.tt/RICx4uEI">Download Experimental</a>' >> $TIMESTAMP
+            echo '<a href="'$MECHAEXP'">Download Experimental</a>' >> $TIMESTAMP
         elif [ "$DEVICE" == "ace" ]; then
-            echo '<a href="http://db.tt/m2DXP3EZ">Download Experimental</a>' >> $TIMESTAMP
+            echo '<a href="'$SPADEEXP'">Download Experimental</a>' >> $TIMESTAMP
         fi
         echo '<br>' >> $TIMESTAMP
         echo 'MD5: '$MD5STRING >> $TIMESTAMP
