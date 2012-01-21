@@ -12,7 +12,7 @@ CCACHEBIN=prebuilt/darwin-x86/ccache/ccache
 KERNELSPEC=leanKernel-tbolt-ics
 USERLOCAL=/Users/$HANDLE
 DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
-MILESTONE=http://db.tt/cptLfyy6
+MILESTONE=http://db.tt/dAJtkNlG
 MECHAEXP=http://db.tt/RICx4uEI
 SPADEEXP=http://db.tt/m2DXP3EZ
 
