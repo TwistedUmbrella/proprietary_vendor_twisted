@@ -88,7 +88,7 @@ specDevice() {
         fi
         cd $ANDROIDREPO
         git commit -a -m 'Automated TimeStamp Update - '${PROPER}''
-        git push git@github.com:$DROIDGITHUB HEAD:gh-pages
+        git push git@github.com:$DROIDGITHUB HEAD:gh-pages -f
         cd $BUILDDIR
     fi
 }
