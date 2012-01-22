@@ -52,7 +52,17 @@ specDevice() {
         MD5STRING=`md5 /Volumes/android/android-tzb_ics4.0.1/out/target/product/$DEVICE/htc_$DEVICE-ota-eng.$HANDLE.zip | awk {'print $4'}`
         cp -R $BUILDDIR/out/target/product/$DEVICE/htc_$DEVICE-ota-eng.$HANDLE.zip $DROPBOX/htc_$DEVICE-ota-eng.$HANDLE.zip
         rm -R $TIMESTAMP
-        echo '<center>' > $TIMESTAMP
+        echo '<html>'  > $TIMESTAMP
+        echo '<head>' >> $TIMESTAMP
+        echo '<!--  Mobile viewport optimized: j.mp/bplateviewport -->' >> $TIMESTAMP
+        echo '<meta name="HandheldFriendly" content="True">' >> $TIMESTAMP
+        echo '<meta name="MobileOptimized" content="320"/>' >> $TIMESTAMP
+        echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">' >> $TIMESTAMP
+        echo '<!-- Mobile IE needs ClearType for smoothing fonts -->' >> $TIMESTAMP
+        echo '<meta http-equiv="cleartype" content="on">' >> $TIMESTAMP
+        echo '</head>'>> $TIMESTAMP
+        echo '<body>' >> $TIMESTAMP
+        echo '<center>' >> $TIMESTAMP
         echo "Latest Build Completed:" >> $TIMESTAMP
         echo '<br>' >> $TIMESTAMP
         date >> $TIMESTAMP
@@ -63,6 +73,12 @@ specDevice() {
         echo "Notes About The Compile" >> $TIMESTAMP
         echo '<br>' >> $TIMESTAMP
         echo $changes >> $TIMESTAMP
+        if [ "$kernel" == "Y" ]; then
+            if [ -e arch/arm/boot/zImage ]; then
+                echo "Updated Prebuilt Device Kernel" >> $TIMESTAMP
+                echo '<p></p>' >> $TIMESTAMP
+            fi
+        fi
         echo '<p></p>' >> $TIMESTAMP
         if [ "$DEVICE" == "mecha" ]; then
             MD5STRINGM=`md5 $DROPBOX/htc_$DEVICE-ota-eng.$HANDLE-Milestone.zip | awk {'print $4'}`
@@ -77,15 +93,8 @@ specDevice() {
         echo '<br>' >> $TIMESTAMP
         echo 'MD5: '$MD5STRING >> $TIMESTAMP
         echo '</center>' >> $TIMESTAMP
-        if [ "$kernel" == "Y" ]; then
-            if [ -e arch/arm/boot/zImage ]; then
-                echo '<p></p>' >> $TIMESTAMP
-                echo '<center>' >> $TIMESTAMP
-                echo "Kernel Compile Success." >> $TIMESTAMP
-                echo '</center>' >> $TIMESTAMP
-                echo '<p></p>' >> $TIMESTAMP
-            fi
-        fi
+        echo '</body>' >> $TIMESTAMP
+        echo '</html>' >> $TIMESTAMP
         cd $ANDROIDREPO
         git commit -a -m 'Automated TimeStamp Update - '${PROPER}''
         git push git@github.com:$DROIDGITHUB HEAD:gh-pages -f
