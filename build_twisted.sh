@@ -122,7 +122,7 @@ repo sync
 export USE_CCACHE=1
 export CCACHE_DIR=$USERLOCAL/.ccache
 $CCACHEBIN -M 40G
-make clean -j8
+make clobber -j8
 rm -R $CCACHE_DIR/*
 if [ "$SELECTION" != "shared" ]; then
     DEVICE=$SELECTION
