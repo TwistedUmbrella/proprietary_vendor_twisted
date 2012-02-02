@@ -47,13 +47,13 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/google/app/MediaUploader.apk:system/app/MediaUploader.apk \
     vendor/twisted/google/app/NetworkLocation.apk:system/app/NetworkLocation.apk \
     vendor/twisted/google/app/OneTimeInitializer.apk:system/app/OneTimeInitializer.apk \
-    vendor/twisted/google/app/Phonesky.apk:system/app/Phonesky.apk \
     vendor/twisted/google/app/PlusOne.apk:system/app/PlusOne.apk \
     vendor/twisted/google/app/SetupWizard.apk:system/app/SetupWizard.apk \
     vendor/twisted/google/app/Street.apk:system/app/Street.apk \
     vendor/twisted/google/app/TagGoogle.apk:system/app/TagGoogle.apk \
     vendor/twisted/google/app/Talk.apk:system/app/Talk.apk \
     vendor/twisted/google/app/Thinkfree.apk:system/app/Thinkfree.apk \
+    vendor/twisted/google/app/Vending.apk:system/app/Vending.apk \
     vendor/twisted/google/app/Videos.apk:system/app/Videos.apk \
     vendor/twisted/google/app/VoiceSearch.apk:system/app/VoiceSearch.apk \
     vendor/twisted/google/app/YouTube.apk:system/app/YouTube.apk

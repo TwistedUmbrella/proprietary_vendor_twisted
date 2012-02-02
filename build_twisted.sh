@@ -5,8 +5,8 @@
 # This script is designed by Twisted Playground for use on MacOSX 10.7 but can be modified for other distributions of Mac and Linux
 
 HANDLE=TwistedZero
-ANDROIDREPO=/Volumes/android/github-aosp_source/android
-DROIDGITHUB=TwistedUmbrella/android.git
+ANDROIDREPO=/Volumes/android/Twisted-Playground
+DROIDGITHUB=TwistedUmbrella/Twisted-Playground.git
 BUILDDIR=/Volumes/android/android-tzb_ics4.0.1
 CCACHEBIN=prebuilt/darwin-x86/ccache/ccache
 KERNELSPEC=leanKernel-tbolt-ics
