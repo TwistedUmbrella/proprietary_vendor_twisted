@@ -97,7 +97,8 @@ PRODUCT_COPY_FILES += \
 
 # Twisted Packages
 PRODUCT_COPY_FILES += \
-    vendor/twisted/twisted/app/ICScriptFusion.apk:system/app/ICScriptFusion.apk
+    vendor/twisted/twisted/app/ICScriptFusion.apk:system/app/ICScriptFusion.apk \
+    vendor/twisted/twisted/app/NovaLauncher.apk:system/app/NovaLauncher.apk
 
 # Build Versioning
 PRODUCT_PROPERTY_OVERRIDES += \
