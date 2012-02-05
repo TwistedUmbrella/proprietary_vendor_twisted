@@ -15,6 +15,8 @@ DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
 MILESTONE=http://db.tt/dAJtkNlG
 MECHAEXP=http://db.tt/RICx4uEI
 SPADEEXP=http://db.tt/m2DXP3EZ
+SHOLESEXP=http://db.tt/i0Rq1sZT
+DROID2EXP=http://db.tt/i0Rq1sZT
 
 cd $ANDROIDREPO
 git checkout gh-pages
@@ -46,11 +48,11 @@ specDevice() {
     export USE_CCACHE=1
     export CCACHE_DIR=$USERLOCAL/.ccache
     $CCACHEBIN -M 40G
-    make otapackage -j4 TARGET_PRODUCT=htc_$DEVICE TARGET_BUILD_VARIANT=userdebug
+    make otapackage -j4 TARGET_PRODUCT=$VENDOR_$DEVICE TARGET_BUILD_VARIANT=userdebug
     rm -R $CCACHE_DIR/*
-    if [ -e $BUILDDIR/out/target/product/$DEVICE/htc_$DEVICE-ota-eng.$HANDLE.zip ]; then
-        MD5STRING=`md5 /Volumes/android/android-tzb_ics4.0.1/out/target/product/$DEVICE/htc_$DEVICE-ota-eng.$HANDLE.zip | awk {'print $4'}`
-        cp -R $BUILDDIR/out/target/product/$DEVICE/htc_$DEVICE-ota-eng.$HANDLE.zip $DROPBOX/htc_$DEVICE-ota-eng.$HANDLE.zip
+    if [ -e $BUILDDIR/out/target/product/$DEVICE/$VENDOR_$DEVICE-ota-eng.$HANDLE.zip ]; then
+        MD5STRING=`md5 /Volumes/android/android-tzb_ics4.0.1/out/target/product/$DEVICE/$VENDOR_$DEVICE-ota-eng.$HANDLE.zip | awk {'print $4'}`
+        cp -R $BUILDDIR/out/target/product/$DEVICE/$VENDOR_$DEVICE-ota-eng.$HANDLE.zip $DROPBOX/$VENDOR_$DEVICE-ota-eng.$HANDLE.zip
         rm -R $TIMESTAMP
         echo '<html>'  > $TIMESTAMP
         echo '<head>' >> $TIMESTAMP
@@ -82,7 +84,7 @@ specDevice() {
         fi
         echo '<p></p>' >> $TIMESTAMP
         if [ "$DEVICE" == "mecha" ]; then
-            MD5STRINGM=`md5 $DROPBOX/htc_$DEVICE-ota-eng.$HANDLE-Milestone.zip | awk {'print $4'}`
+            MD5STRINGM=`md5 $DROPBOX/$VENDOR_$DEVICE-ota-eng.$HANDLE-Milestone.zip | awk {'print $4'}`
             echo '<a href="'$MILESTONE'">Download Milestone</a>' >> $TIMESTAMP
             echo '<br>' >> $TIMESTAMP
             echo 'MD5: '$MD5STRINGM >> $TIMESTAMP
@@ -90,6 +92,10 @@ specDevice() {
             echo '<a href="'$MECHAEXP'">Download Experimental</a>' >> $TIMESTAMP
         elif [ "$DEVICE" == "ace" ]; then
             echo '<a href="'$SPADEEXP'">Download Experimental</a>' >> $TIMESTAMP
+        elif [ "$DEVICE" == "sholes" ]; then
+            echo '<a href="'$SHOLESEXP'">Download Experimental</a>' >> $TIMESTAMP
+        elif [ "$DEVICE" == "droid2" ]; then
+            echo '<a href="'$DROID2EXP'">Download Experimental</a>' >> $TIMESTAMP
         fi
         echo '<br>' >> $TIMESTAMP
         echo 'MD5: '$MD5STRING >> $TIMESTAMP
@@ -110,6 +116,10 @@ if [ "$SELECTION" == "mecha" ]; then
     specKernel
 elif [ "$SELECTION" == "ace" ]; then
     specKernel
+elif [ "$SELECTION" == "sholes" ]; then
+    echo "Kernel Compiling Unavailable!"
+elif [ "$SELECTION" == "droid2" ]; then
+    echo "Kernel Compiling Unavailable!"
 elif [ "$SELECTION" == "shared" ]; then
     echo "Kernel Compiling Unavailable!"
 else
@@ -124,6 +134,17 @@ export CCACHE_DIR=$USERLOCAL/.ccache
 $CCACHEBIN -M 40G
 make clobber -j8
 rm -R $CCACHE_DIR/*
+if [ "$SELECTION" == "mecha" ]; then
+    VENDOR="htc"
+elif [ "$SELECTION" == "ace" ]; then
+    VENDOR="htc"
+elif [ "$SELECTION" == "sholes" ]; then
+    VENDOR="moto"
+elif [ "$SELECTION" == "droid2" ]; then
+    VENDOR="moto"
+elif [ "$SELECTION" == "shared" ]; then
+    VENDOR="htc"
+fi
 if [ "$SELECTION" != "shared" ]; then
     DEVICE=$SELECTION
     specDevice    
