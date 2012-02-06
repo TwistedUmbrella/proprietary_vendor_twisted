@@ -15,7 +15,8 @@ DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
 MILESTONE=http://db.tt/dAJtkNlG
 MECHAEXP=http://db.tt/RICx4uEI
 SPADEEXP=http://db.tt/m2DXP3EZ
-SHOLESEXP=http://db.tt/i0Rq1sZT
+SHOLESEXP=http://db.tt/G4LdTxv2
+SHOLESGAP=http://db.tt/P7Jkw29w
 DROID2EXP=http://db.tt/i0Rq1sZT
 
 cd $ANDROIDREPO
@@ -93,6 +94,8 @@ specDevice() {
         elif [ "$DEVICE" == "ace" ]; then
             echo '<a href="'$SPADEEXP'">Download Experimental</a>' >> $TIMESTAMP
         elif [ "$DEVICE" == "sholes" ]; then
+            echo '<a href="'$SHOLESGAP'">Download GooApps (Mod)</a>' >> $TIMESTAMP
+            echo '<br><br>' >> $TIMESTAMP
             echo '<a href="'$SHOLESEXP'">Download Experimental</a>' >> $TIMESTAMP
         elif [ "$DEVICE" == "droid2" ]; then
             echo '<a href="'$DROID2EXP'">Download Experimental</a>' >> $TIMESTAMP
