@@ -28,18 +28,14 @@ include frameworks/base/data/sounds/AllAudio.mk
 
 # Google Applications
 PRODUCT_COPY_FILES += \
-    vendor/twisted/google/app/CarHomeGoogle.apk:system/app/CarHomeGoogle.apk \
     vendor/twisted/google/app/ChromeBookmarksSyncAdapter.apk:system/app/ChromeBookmarksSyncAdapter.apk \
-    vendor/twisted/google/app/FaceLock.apk:system/app/FaceLock.apk \
     vendor/twisted/google/app/GenieWidget.apk:system/app/GenieWidget.apk \
     vendor/twisted/google/app/Gmail.apk:system/app/Gmail.apk \
     vendor/twisted/google/app/GoogleBackupTransport.apk:system/app/GoogleBackupTransport.apk \
     vendor/twisted/google/app/GoogleContactsSyncAdapter.apk:system/app/GoogleContactsSyncAdapter.apk \
     vendor/twisted/google/app/GoogleFeedback.apk:system/app/GoogleFeedback.apk \
     vendor/twisted/google/app/GoogleLoginService.apk:system/app/GoogleLoginService.apk \
-    vendor/twisted/google/app/GoogleMusic.apk:system/app/GoogleMusic.apk \
     vendor/twisted/google/app/GooglePartnerSetup.apk:system/app/GooglePartnerSetup.apk \
-    vendor/twisted/google/app/GoogleQuickSearchBox.apk:system/app/GoogleQuickSearchBox.apk \
     vendor/twisted/google/app/GoogleServicesFramework.apk:system/app/GoogleServicesFramework.apk \
     vendor/twisted/google/app/GoogleTTS.apk:system/app/GoogleTTS.apk \
     vendor/twisted/google/app/Maps.apk:system/app/Maps.apk \
@@ -47,10 +43,8 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/google/app/MediaUploader.apk:system/app/MediaUploader.apk \
     vendor/twisted/google/app/NetworkLocation.apk:system/app/NetworkLocation.apk \
     vendor/twisted/google/app/OneTimeInitializer.apk:system/app/OneTimeInitializer.apk \
-    vendor/twisted/google/app/PlusOne.apk:system/app/PlusOne.apk \
     vendor/twisted/google/app/SetupWizard.apk:system/app/SetupWizard.apk \
     vendor/twisted/google/app/Street.apk:system/app/Street.apk \
-    vendor/twisted/google/app/TagGoogle.apk:system/app/TagGoogle.apk \
     vendor/twisted/google/app/Talk.apk:system/app/Talk.apk \
     vendor/twisted/google/app/Thinkfree.apk:system/app/Thinkfree.apk \
     vendor/twisted/google/app/Vending.apk:system/app/Vending.apk \
@@ -97,7 +91,6 @@ PRODUCT_COPY_FILES += \
 
 # Twisted Packages
 PRODUCT_COPY_FILES += \
-    vendor/twisted/twisted/app/ICScriptFusion.apk:system/app/ICScriptFusion.apk \
     vendor/twisted/twisted/app/NovaLauncher.apk:system/app/NovaLauncher.apk
 
 # Build Versioning
