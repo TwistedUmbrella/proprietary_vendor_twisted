@@ -29,7 +29,6 @@ include frameworks/base/data/sounds/AllAudio.mk
 # Google Applications
 PRODUCT_COPY_FILES += \
     vendor/twisted/google/app/ChromeBookmarksSyncAdapter.apk:system/app/ChromeBookmarksSyncAdapter.apk \
-    vendor/twisted/google/app/GenieWidget.apk:system/app/GenieWidget.apk \
     vendor/twisted/google/app/Gmail.apk:system/app/Gmail.apk \
     vendor/twisted/google/app/GoogleBackupTransport.apk:system/app/GoogleBackupTransport.apk \
     vendor/twisted/google/app/GoogleContactsSyncAdapter.apk:system/app/GoogleContactsSyncAdapter.apk \
@@ -44,12 +43,8 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/google/app/NetworkLocation.apk:system/app/NetworkLocation.apk \
     vendor/twisted/google/app/OneTimeInitializer.apk:system/app/OneTimeInitializer.apk \
     vendor/twisted/google/app/SetupWizard.apk:system/app/SetupWizard.apk \
-    vendor/twisted/google/app/Street.apk:system/app/Street.apk \
     vendor/twisted/google/app/Talk.apk:system/app/Talk.apk \
-    vendor/twisted/google/app/Thinkfree.apk:system/app/Thinkfree.apk \
     vendor/twisted/google/app/Vending.apk:system/app/Vending.apk \
-    vendor/twisted/google/app/Videos.apk:system/app/Videos.apk \
-    vendor/twisted/google/app/VoiceSearch.apk:system/app/VoiceSearch.apk \
     vendor/twisted/google/app/YouTube.apk:system/app/YouTube.apk
 
 # Google Permissions
@@ -67,8 +62,6 @@ PRODUCT_COPY_FILES += \
 
 # Google Libraries
 PRODUCT_COPY_FILES += \
-    vendor/twisted/google/lib/libfacelock_jni.so:system/lib/libfacelock_jni.so \
-    vendor/twisted/google/lib/libfilterpack_facedetect.so:system/lib/libfilterpack_facedetect.so \
     vendor/twisted/google/lib/libflint_engine_jni_api.so:system/lib/libflint_engine_jni_api.so \
     vendor/twisted/google/lib/libfrsdk.so:system/lib/libfrsdk.so \
     vendor/twisted/google/lib/libgcomm_jni.so:system/lib/libgcomm_jni.so \
@@ -79,15 +72,6 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/google/lib/libvideochat_jni.so:system/lib/libvideochat_jni.so \
     vendor/twisted/google/lib/libvideochat_stabilize.so:system/lib/libvideochat_stabilize.so \
     vendor/twisted/google/lib/libvoicesearch.so:system/lib/libvoicesearch.so
-
-# Google Vendor
-PRODUCT_COPY_FILES += \
-    vendor/twisted/google/vendor/firmware/libpn544_fw.so:system/vendor/firmware/libpn544_fw.so \
-    vendor/twisted/google/vendor/pittpatt:system/vendor/pittpatt
-
-# Google Customization
-PRODUCT_COPY_FILES += \
-    vendor/twisted/twisted/media/bootanimation.zip:system/media/bootanimation.zip
 
 # Twisted Packages
 PRODUCT_COPY_FILES += \
