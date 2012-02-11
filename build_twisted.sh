@@ -41,6 +41,13 @@ specKernel() {
 }
 specDevice() {
     HANDLE=TwistedZero
+    if [ "$DEVICE" == "sholes" ]; then
+        PRODUCT=moto_$DEVICE
+    elif [ "$DEVICE" == "droid2" ]; then
+        PRODUCT=moto_$DEVICE
+    else
+        PRODUCT=htc_$DEVICE
+    fi
     PROPER=`echo $DEVICE | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
     TIMESTAMP=$ANDROIDREPO/$PROPER/TimeStamp.html
     TEMPSTAMP=$ANDROIDREPO/$PROPER/TempStamp
@@ -49,11 +56,11 @@ specDevice() {
     export USE_CCACHE=1
     export CCACHE_DIR=$USERLOCAL/.ccache
     $CCACHEBIN -M 40G
-    make otapackage -j4 TARGET_PRODUCT=$VENDOR_$DEVICE TARGET_BUILD_VARIANT=userdebug
+    make otapackage -j4 TARGET_PRODUCT=$PRODUCT TARGET_BUILD_VARIANT=userdebug
     rm -R $CCACHE_DIR/*
-    if [ -e $BUILDDIR/out/target/product/$DEVICE/$VENDOR_$DEVICE-ota-eng.$HANDLE.zip ]; then
-        MD5STRING=`md5 /Volumes/android/android-tzb_ics4.0.1/out/target/product/$DEVICE/$VENDOR_$DEVICE-ota-eng.$HANDLE.zip | awk {'print $4'}`
-        cp -R $BUILDDIR/out/target/product/$DEVICE/$VENDOR_$DEVICE-ota-eng.$HANDLE.zip $DROPBOX/$VENDOR_$DEVICE-ota-eng.$HANDLE.zip
+    if [ -e $BUILDDIR/out/target/product/$DEVICE/$PRODUCT-ota-eng.$HANDLE.zip ]; then
+        MD5STRING=`md5 /Volumes/android/android-tzb_ics4.0.1/out/target/product/$DEVICE/$PRODUCT-ota-eng.$HANDLE.zip | awk {'print $4'}`
+        cp -R $BUILDDIR/out/target/product/$DEVICE/$PRODUCT-ota-eng.$HANDLE.zip $DROPBOX/$PRODUCT-ota-eng.$HANDLE.zip
         rm -R $TIMESTAMP
         echo '<html>'  > $TIMESTAMP
         echo '<head>' >> $TIMESTAMP
@@ -85,7 +92,7 @@ specDevice() {
         fi
         echo '<p></p>' >> $TIMESTAMP
         if [ "$DEVICE" == "mecha" ]; then
-            MD5STRINGM=`md5 $DROPBOX/$VENDOR_$DEVICE-ota-eng.$HANDLE-Milestone.zip | awk {'print $4'}`
+            MD5STRINGM=`md5 $DROPBOX/$PRODUCT-ota-eng.$HANDLE-Milestone.zip | awk {'print $4'}`
             echo '<a href="'$MILESTONE'">Download Milestone</a>' >> $TIMESTAMP
             echo '<br>' >> $TIMESTAMP
             echo 'MD5: '$MD5STRINGM >> $TIMESTAMP
@@ -138,17 +145,9 @@ $CCACHEBIN -M 40G
 make clobber -j8
 rm -R $CCACHE_DIR/*
 if [ "$SELECTION" != "shared" ]; then
-    if [ "$SELECTION" == "sholes" ]; then
-        VENDOR="moto"
-    elif [ "$SELECTION" == "droid2" ]; then
-        VENDOR="moto"
-    else
-        VENDOR="htc"
-    fi
     DEVICE=$SELECTION
     specDevice    
 else
-    VENDOR="htc"
     DEVICE="mecha"
     specDevice
     DEVICE="ace"
