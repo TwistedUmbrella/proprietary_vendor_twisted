@@ -53,6 +53,7 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/google/app/GenieWidget.apk:system/app/GenieWidget.apk \
     vendor/twisted/google/app/Gmail.apk:system/app/Gmail.apk \
     vendor/twisted/google/app/GoogleBackupTransport.apk:system/app/GoogleBackupTransport.apk \
+    vendor/twisted/google/app/GoogleCalendarSyncAdapter.apk:system/app/GoogleCalendarSyncAdapter.apk \
     vendor/twisted/google/app/GoogleContactsSyncAdapter.apk:system/app/GoogleContactsSyncAdapter.apk \
     vendor/twisted/google/app/GoogleFeedback.apk:system/app/GoogleFeedback.apk \
     vendor/twisted/google/app/GoogleLoginService.apk:system/app/GoogleLoginService.apk \
@@ -64,6 +65,7 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/google/app/MediaUploader.apk:system/app/MediaUploader.apk \
     vendor/twisted/google/app/NetworkLocation.apk:system/app/NetworkLocation.apk \
     vendor/twisted/google/app/OneTimeInitializer.apk:system/app/OneTimeInitializer.apk \
+    vendor/twisted/google/app/PicasaSyncAdapter.apk:system/app/PicasaSyncAdapter.apk \
     vendor/twisted/google/app/SetupWizard.apk:system/app/SetupWizard.apk \
     vendor/twisted/google/app/Street.apk:system/app/Street.apk \
     vendor/twisted/google/app/Talk.apk:system/app/Talk.apk \
