@@ -50,6 +50,7 @@ PRODUCT_PACKAGES += \
 # Google Applications
 PRODUCT_COPY_FILES += \
     vendor/twisted/google/app/ChromeBookmarksSyncAdapter.apk:system/app/ChromeBookmarksSyncAdapter.apk \
+    vendor/twisted/google/app/FaceLock.apk:system/app/FaceLock.apk \
     vendor/twisted/google/app/GenieWidget.apk:system/app/GenieWidget.apk \
     vendor/twisted/google/app/Gmail.apk:system/app/Gmail.apk \
     vendor/twisted/google/app/GoogleBackupTransport.apk:system/app/GoogleBackupTransport.apk \
@@ -106,7 +107,7 @@ PRODUCT_COPY_FILES += \
 # Google Vendor
 PRODUCT_COPY_FILES += \
     vendor/twisted/google/vendor/firmware/libpn544_fw.so:system/vendor/firmware/libpn544_fw.so \
-    vendor/twisted/google/vendor/pittpatt:system/vendor/pittpatt
+    vendor/twisted/google/vendor/pittpatt/*:system/vendor/pittpatt/*
 
 # Google Customization
 PRODUCT_COPY_FILES += \
