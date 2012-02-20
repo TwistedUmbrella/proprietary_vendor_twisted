@@ -37,17 +37,13 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/google/app/GoogleLoginService.apk:system/app/GoogleLoginService.apk \
     vendor/twisted/google/app/GooglePartnerSetup.apk:system/app/GooglePartnerSetup.apk \
     vendor/twisted/google/app/GoogleServicesFramework.apk:system/app/GoogleServicesFramework.apk \
-    vendor/twisted/google/app/GoogleTTS.apk:system/app/GoogleTTS.apk \
     vendor/twisted/google/app/MarketUpdater.apk:system/app/MarketUpdater.apk \
     vendor/twisted/google/app/MediaUploader.apk:system/app/MediaUploader.apk \
     vendor/twisted/google/app/NetworkLocation.apk:system/app/NetworkLocation.apk \
     vendor/twisted/google/app/OneTimeInitializer.apk:system/app/OneTimeInitializer.apk \
-    vendor/twisted/google/app/PicasaSyncAdapter.apk:system/app/PicasaSyncAdapter.apk \
-    vendor/twisted/google/app/PlusOne.apk:system/app/PlusOne.apk \
     vendor/twisted/google/app/SetupWizard.apk:system/app/SetupWizard.apk \
     vendor/twisted/google/app/Talk.apk:system/app/Talk.apk \
-    vendor/twisted/google/app/Vending.apk:system/app/Vending.apk \
-    vendor/twisted/google/app/VoiceSearch.apk:system/app/VoiceSearch.apk
+    vendor/twisted/google/app/Vending.apk:system/app/Vending.apk
 
 # Google Permissions
 PRODUCT_COPY_FILES += \
