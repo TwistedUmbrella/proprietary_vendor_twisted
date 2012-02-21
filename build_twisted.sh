@@ -9,7 +9,8 @@ ANDROIDREPO=/Volumes/android/Twisted-Playground
 DROIDGITHUB=TwistedUmbrella/Twisted-Playground.git
 BUILDDIR=/Volumes/android/android-tzb_ics4.0.1
 CCACHEBIN=prebuilt/darwin-x86/ccache/ccache
-KERNELSPEC=leanKernel-tbolt-ics
+MECHASPEC=leanKernel-tbolt-ics
+SHOLESPEC=android_kernel_omap
 USERLOCAL=/Users/$HANDLE
 DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
 MILESTONE=http://db.tt/dAJtkNlG
@@ -27,16 +28,33 @@ specKernel() {
     echo "Kernel (Y/n)? "
     read kernel
     if [ "$kernel" == "Y" ]; then
-        cd $BUILDDIR/kernel/$KERNELSPEC
-        ./buildlean.sh 1 $SELECTION
-        if [ -e arch/arm/boot/zImage ]; then
-            echo '<p></p>' >> $TIMESTAMP
-            echo '<center>' >> $TIMESTAMP
-            echo "Kernel Compile Success." >> $TIMESTAMP
-            echo '</center>' >> $TIMESTAMP
-            echo '<p></p>' >> $TIMESTAMP
+
+        if [ "$SELECTION" == "mecha" ]; then
+            cd $BUILDDIR/kernel/$MECHASPEC
+            ./buildlean.sh 1 $SELECTION
+            if [ -e arch/arm/boot/zImage ]; then
+                echo '<p></p>' >> $TIMESTAMP
+                echo '<center>' >> $TIMESTAMP
+                echo "Kernel Compile Success." >> $TIMESTAMP
+                echo '</center>' >> $TIMESTAMP
+                echo '<p></p>' >> $TIMESTAMP
+            fi
         fi
+
+        if [ "$SELECTION" == "sholes" ]; then
+            cd $BUILDDIR/kernel/$SHOLESPEC
+            ./buildKernel.sh 1 $SELECTION
+            if [ -e arch/arm/boot/zImage ]; then
+                echo '<p></p>' >> $TIMESTAMP
+                echo '<center>' >> $TIMESTAMP
+                echo "Kernel Compile Success." >> $TIMESTAMP
+                echo '</center>' >> $TIMESTAMP
+                echo '<p></p>' >> $TIMESTAMP
+            fi
+        fi
+
         cd $BUILDDIR
+
     fi
 }
 specDevice() {
@@ -125,9 +143,9 @@ SELECTION=`echo $1 | awk '{print tolower($0)}'`
 if [ "$SELECTION" == "mecha" ]; then
     specKernel
 elif [ "$SELECTION" == "ace" ]; then
-    specKernel
-elif [ "$SELECTION" == "sholes" ]; then
     echo "Kernel Compiling Unavailable!"
+elif [ "$SELECTION" == "sholes" ]; then
+    specKernel
 elif [ "$SELECTION" == "droid2" ]; then
     echo "Kernel Compiling Unavailable!"
 elif [ "$SELECTION" == "shared" ]; then
