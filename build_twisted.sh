@@ -29,6 +29,9 @@ specKernel() {
     read kernel
     if [ "$kernel" == "Y" ]; then
 
+    PROPER=`echo $SELECTION | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
+    TIMESTAMP=$ANDROIDREPO/$PROPER/TimeStamp.html
+
         if [ "$SELECTION" == "mecha" ]; then
             cd $BUILDDIR/kernel/$MECHASPEC
             ./buildlean.sh 1 $SELECTION
