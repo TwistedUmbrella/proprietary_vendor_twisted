@@ -27,6 +27,34 @@ PRODUCT_PACKAGES += \
     make_ext4fs \
     setup_fs
 
+ifeq ($(TARGET_ARCH_VARIANT),armv7-a-neon)
+
+# Google Libraries
+PRODUCT_COPY_FILES += \
+    vendor/twisted/google/lib/neon/libflint_engine_jni_api.so:system/lib/libflint_engine_jni_api.so \
+    vendor/twisted/google/lib/neon/libfrsdk.so:system/lib/libfrsdk.so \
+    vendor/twisted/google/lib/neon/libgcomm_jni.so:system/lib/libgcomm_jni.so \
+    vendor/twisted/google/lib/neon/libpicowrapper.so:system/lib/libpicowrapper.so \
+    vendor/twisted/google/lib/neon/libspeexwrapper.so:system/lib/libspeexwrapper.so \
+    vendor/twisted/google/lib/neon/libvideochat_jni.so:system/lib/libvideochat_jni.so \
+    vendor/twisted/google/lib/neon/libvideochat_stabilize.so:system/lib/libvideochat_stabilize.so \
+    vendor/twisted/google/lib/neon/libvoicesearch.so:system/lib/libvoicesearch.so
+
+else
+
+# Google Libraries
+PRODUCT_COPY_FILES += \
+    vendor/twisted/google/lib/base/libflint_engine_jni_api.so:system/lib/libflint_engine_jni_api.so \
+    vendor/twisted/google/lib/base/libfrsdk.so:system/lib/libfrsdk.so \
+    vendor/twisted/google/lib/base/libgcomm_jni.so:system/lib/libgcomm_jni.so \
+    vendor/twisted/google/lib/base/libpicowrapper.so:system/lib/libpicowrapper.so \
+    vendor/twisted/google/lib/base/libspeexwrapper.so:system/lib/libspeexwrapper.so \
+    vendor/twisted/google/lib/base/libvideochat_jni.so:system/lib/libvideochat_jni.so \
+    vendor/twisted/google/lib/base/libvideochat_stabilize.so:system/lib/libvideochat_stabilize.so \
+    vendor/twisted/google/lib/base/libvoicesearch.so:system/lib/libvoicesearch.so
+
+endif
+
 # Google Applications
 PRODUCT_COPY_FILES += \
     vendor/twisted/google/app/ChromeBookmarksSyncAdapter.apk:system/app/ChromeBookmarksSyncAdapter.apk \

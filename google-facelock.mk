@@ -12,6 +12,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+ifeq ($(TARGET_ARCH_VARIANT),armv7-a-neon)
+
+# Google Libraries
+PRODUCT_COPY_FILES += \
+    vendor/twisted/google/lib/neon/libfacelock_jni.so:system/lib/libfacelock_jni.so \
+    vendor/twisted/google/lib/neon/libfilterpack_facedetect.so:system/lib/libfilterpack_facedetect.so
+
+else
+
+# Google Libraries
+PRODUCT_COPY_FILES += \
+    vendor/twisted/google/lib/base/libfacelock_jni.so:system/lib/libfacelock_jni.so \
+    vendor/twisted/google/lib/base/libfilterpack_facedetect.so:system/lib/libfilterpack_facedetect.so
+
+endif
+
 # Google Applications
 PRODUCT_COPY_FILES += \
     vendor/twisted/google/app/FaceLock.apk:system/app/FaceLock.apk
