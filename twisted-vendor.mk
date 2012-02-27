@@ -23,10 +23,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dateformat=MM-dd-yyyy \
     ro.com.android.dataroaming=false
 
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+
+UTC_DATE := $(shell date +%s)
+DATE := $(shell date +%Y%m%d)
+
 # Twisted Packages
 PRODUCT_COPY_FILES += \
     vendor/twisted/twisted/app/NovaLauncher.apk:system/app/NovaLauncher.apk
 
 # Build Versioning
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.modversion=Multi-Device_Beta_3
+    ro.modversion=Multi-Device_Beta_4
