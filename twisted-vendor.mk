@@ -34,4 +34,5 @@ PRODUCT_COPY_FILES += \
 
 # Build Versioning
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.modversion=Multi-Device_Beta_4
+    ro.modversion=Multi-Device_Beta_4 \
+    ro.rommanager.developerid=Twisted
