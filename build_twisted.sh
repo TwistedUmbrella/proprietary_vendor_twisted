@@ -10,6 +10,7 @@ DROIDGITHUB=TwistedUmbrella/Twisted-Playground.git
 BUILDDIR=/Volumes/android/android-tzb_ics4.0.1
 CCACHEBIN=prebuilt/darwin-x86/ccache/ccache
 MECHASPEC=leanKernel-tbolt-ics
+SPADESPEC=LorDmodUE-ace-ics
 SHOLESPEC=android_kernel_omap
 USERLOCAL=/Users/$HANDLE
 DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
@@ -35,6 +36,18 @@ specKernel() {
         if [ "$SELECTION" == "mecha" ]; then
             cd $BUILDDIR/kernel/$MECHASPEC
             ./buildlean.sh 1 $SELECTION
+            if [ -e arch/arm/boot/zImage ]; then
+                echo '<p></p>' >> $TIMESTAMP
+                echo '<center>' >> $TIMESTAMP
+                echo "Kernel Compile Success." >> $TIMESTAMP
+                echo '</center>' >> $TIMESTAMP
+                echo '<p></p>' >> $TIMESTAMP
+            fi
+        fi
+
+        if [ "$SELECTION" == "ace" ]; then
+            cd $BUILDDIR/kernel/$SPADESPEC
+            ./buildKernel.sh 1 $SELECTION
             if [ -e arch/arm/boot/zImage ]; then
                 echo '<p></p>' >> $TIMESTAMP
                 echo '<center>' >> $TIMESTAMP
@@ -146,7 +159,7 @@ SELECTION=`echo $1 | awk '{print tolower($0)}'`
 if [ "$SELECTION" == "mecha" ]; then
     specKernel
 elif [ "$SELECTION" == "ace" ]; then
-    echo "Kernel Compiling Unavailable!"
+    specKernel
 elif [ "$SELECTION" == "sholes" ]; then
     specKernel
 elif [ "$SELECTION" == "droid2" ]; then
