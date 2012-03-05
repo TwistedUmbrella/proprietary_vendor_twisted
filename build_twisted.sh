@@ -18,7 +18,6 @@ MILESTONE=http://db.tt/dAJtkNlG
 MECHAEXP=http://db.tt/4i4d3nVA
 SPADEEXP=http://db.tt/yaLRYRgv
 SHOLESEXP=http://db.tt/G4LdTxv2
-SHOLESGAP=http://db.tt/P7Jkw29w
 DROID2EXP=http://db.tt/i0Rq1sZT
 
 cd $ANDROIDREPO
@@ -135,9 +134,8 @@ specDevice() {
         elif [ "$DEVICE" == "ace" ]; then
             echo '<a href="'$SPADEEXP'">Download Experimental</a>' >> $TIMESTAMP
         elif [ "$DEVICE" == "sholes" ]; then
-            echo '<a href="'$SHOLESGAP'">Download GooApps (Mod)</a>' >> $TIMESTAMP
-            echo '<br><br>' >> $TIMESTAMP
             echo '<a href="'$SHOLESEXP'">Download Experimental</a>' >> $TIMESTAMP
+            echo '<br>Google Apps Separate' >> $TIMESTAMP
         elif [ "$DEVICE" == "droid2" ]; then
             echo '<a href="'$DROID2EXP'">Download Experimental</a>' >> $TIMESTAMP
         fi
