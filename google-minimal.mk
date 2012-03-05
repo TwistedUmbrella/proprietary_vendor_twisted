@@ -12,12 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Applications
-PRODUCT_PACKAGES += \
-    Mms \
-    Superuser \
-    su
-
 # Live Wallpapers
 PRODUCT_PACKAGES += \
     LiveWallpapersPicker
