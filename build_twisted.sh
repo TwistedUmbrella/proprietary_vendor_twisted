@@ -1,7 +1,7 @@
 # Copyright (C) 2011 Twisted Playground
 
 # This script is designed to compliment .bash_profile code to automate the build process by adding a typical shell command such as:
-# function buildTwist { echo "Ace, Mecha, Sholes, Droid2, Shared?"; read device; cd /Volumes/android/github-aosp_source/proprietary_vendor_twisted; ./build_twisted.sh $device; }
+# function buildTwist { echo "Shooter, Ace, Mecha, Sholes, Droid2, Shared?"; read device; cd /Volumes/android/github-aosp_source/proprietary_vendor_twisted; ./build_twisted.sh $device; }
 # This script is designed by Twisted Playground for use on MacOSX 10.7 but can be modified for other distributions of Mac and Linux
 
 HANDLE=TwistedZero
