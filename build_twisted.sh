@@ -14,11 +14,11 @@ SPADESPEC=LorDmodUE-ace-ics
 SHOLESPEC=android_kernel_omap
 USERLOCAL=/Users/$HANDLE
 DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
-MILESTONE=http://db.tt/dAJtkNlG
 MECHAEXP=http://db.tt/4i4d3nVA
 SPADEEXP=http://db.tt/yaLRYRgv
 SHOLESEXP=http://db.tt/G4LdTxv2
 DROID2EXP=http://db.tt/i0Rq1sZT
+SHOOTREXP=http://builds.twistedplayground.info
 
 cd $ANDROIDREPO
 git checkout gh-pages
@@ -125,10 +125,6 @@ specDevice() {
         fi
         echo '<p></p>' >> $TIMESTAMP
         if [ "$DEVICE" == "mecha" ]; then
-            MD5STRINGM=`md5 $DROPBOX/$PRODUCT-ota-eng.$HANDLE-Milestone.zip | awk {'print $4'}`
-            echo '<a href="'$MILESTONE'">Download Milestone</a>' >> $TIMESTAMP
-            echo '<br>' >> $TIMESTAMP
-            echo 'MD5: '$MD5STRINGM >> $TIMESTAMP
             echo '<br><br>' >> $TIMESTAMP
             echo '<a href="'$MECHAEXP'">Download Experimental</a>' >> $TIMESTAMP
         elif [ "$DEVICE" == "ace" ]; then
@@ -138,6 +134,8 @@ specDevice() {
             echo '<br>Google Apps Separate' >> $TIMESTAMP
         elif [ "$DEVICE" == "droid2" ]; then
             echo '<a href="'$DROID2EXP'">Download Experimental</a>' >> $TIMESTAMP
+        elif [ "$DEVICE" == "shooter" ]; then
+            echo '<a href="'$SHOOTREXP'">Download Experimental</a>' >> $TIMESTAMP
         fi
         echo '<br>' >> $TIMESTAMP
         echo 'MD5: '$MD5STRING >> $TIMESTAMP
@@ -161,6 +159,8 @@ elif [ "$SELECTION" == "ace" ]; then
 elif [ "$SELECTION" == "sholes" ]; then
     specKernel
 elif [ "$SELECTION" == "droid2" ]; then
+    echo "Kernel Compiling Unavailable!"
+elif [ "$SELECTION" == "shooter" ]; then
     echo "Kernel Compiling Unavailable!"
 elif [ "$SELECTION" == "shared" ]; then
     echo "Kernel Compiling Unavailable!"
