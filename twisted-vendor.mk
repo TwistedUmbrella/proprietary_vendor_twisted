@@ -12,6 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Twisted Customization
+PRODUCT_PROPERTY_OVERRIDES += \
+    windowsmgr.max_events_per_sec=275 \
+    ro.config.disable_hw_accel=false \
+    debug.fb.rgb565=0 \
+    debug.sf.hw=1 \
+    ro.sf.lcd_density=240 \
+    qemu.sf.lcd_density=160 \
+    ro.config.statusbar=true
+
 # CyanogenMod Customization
 PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true \
