@@ -18,7 +18,7 @@ MECHAEXP=http://db.tt/4i4d3nVA
 SPADEEXP=http://db.tt/yaLRYRgv
 SHOLESEXP=http://db.tt/G4LdTxv2
 DROID2EXP=http://db.tt/i0Rq1sZT
-SHOOTREXP=http://builds.twistedplayground.info
+SHOOTREXP=http://db.tt/uONAQ30g
 
 cd $ANDROIDREPO
 git checkout gh-pages
