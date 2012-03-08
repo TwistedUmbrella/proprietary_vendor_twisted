@@ -20,7 +20,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.hw=1 \
     ro.sf.lcd_density=240 \
     qemu.sf.lcd_density=160 \
-    ro.config.statusbar=true
+    ro.config.statusbar=true \
+    ro.disable.compat=true
 
 # CyanogenMod Customization
 PRODUCT_PROPERTY_OVERRIDES += \
