@@ -180,8 +180,8 @@ if [ "$SELECTION" != "shared" ]; then
     DEVICE=$SELECTION
     specDevice    
 else
-    DEVICE="mecha"
+    DEVICE="shooter"
     specDevice
-    DEVICE="ace"
+    DEVICE="mecha"
     specDevice
 fi
