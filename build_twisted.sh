@@ -1,7 +1,7 @@
 # Copyright (C) 2011 Twisted Playground
 
 # This script is designed to compliment .bash_profile code to automate the build process by adding a typical shell command such as:
-# function buildTwist { echo "Shooter, Ace, Mecha, Sholes, Droid2, Shared?"; read device; cd /Volumes/android/github-aosp_source/proprietary_vendor_twisted; ./build_twisted.sh $device; }
+# function buildTwist { echo "Shooter, Ace, Mecha, Droid2, Shared?"; read device; cd /Volumes/android/github-aosp_source/proprietary_vendor_twisted; ./build_twisted.sh $device; }
 # This script is designed by Twisted Playground for use on MacOSX 10.7 but can be modified for other distributions of Mac and Linux
 
 HANDLE=TwistedZero
@@ -11,12 +11,10 @@ BUILDDIR=/Volumes/android/android-tzb_ics4.0.1
 CCACHEBIN=prebuilt/darwin-x86/ccache/ccache
 MECHASPEC=leanKernel-tbolt-ics
 SPADESPEC=LorDmodUE-ace-ics
-SHOLESPEC=android_kernel_omap
 USERLOCAL=/Users/$HANDLE
 DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
 MECHAEXP=http://db.tt/4i4d3nVA
 SPADEEXP=http://db.tt/yaLRYRgv
-SHOLESEXP=http://db.tt/G4LdTxv2
 DROID2EXP=http://db.tt/i0Rq1sZT
 SHOOTREXP=http://db.tt/uONAQ30g
 
@@ -56,27 +54,13 @@ specKernel() {
             fi
         fi
 
-        if [ "$SELECTION" == "sholes" ]; then
-            cd $BUILDDIR/kernel/$SHOLESPEC
-            ./buildKernel.sh 1 $SELECTION
-            if [ -e arch/arm/boot/zImage ]; then
-                echo '<p></p>' >> $TIMESTAMP
-                echo '<center>' >> $TIMESTAMP
-                echo "Kernel Compile Success." >> $TIMESTAMP
-                echo '</center>' >> $TIMESTAMP
-                echo '<p></p>' >> $TIMESTAMP
-            fi
-        fi
-
         cd $BUILDDIR
 
     fi
 }
 specDevice() {
     HANDLE=TwistedZero
-    if [ "$DEVICE" == "sholes" ]; then
-        PRODUCT=moto_$DEVICE
-    elif [ "$DEVICE" == "droid2" ]; then
+    if [ "$DEVICE" == "droid2" ]; then
         PRODUCT=moto_$DEVICE
     else
         PRODUCT=htc_$DEVICE
@@ -129,9 +113,6 @@ specDevice() {
             echo '<a href="'$MECHAEXP'">Download Experimental</a>' >> $TIMESTAMP
         elif [ "$DEVICE" == "ace" ]; then
             echo '<a href="'$SPADEEXP'">Download Experimental</a>' >> $TIMESTAMP
-        elif [ "$DEVICE" == "sholes" ]; then
-            echo '<a href="'$SHOLESEXP'">Download Experimental</a>' >> $TIMESTAMP
-            echo '<br>Google Apps Separate' >> $TIMESTAMP
         elif [ "$DEVICE" == "droid2" ]; then
             echo '<a href="'$DROID2EXP'">Download Experimental</a>' >> $TIMESTAMP
         elif [ "$DEVICE" == "shooter" ]; then
@@ -155,8 +136,6 @@ SELECTION=`echo $1 | awk '{print tolower($0)}'`
 if [ "$SELECTION" == "mecha" ]; then
     specKernel
 elif [ "$SELECTION" == "ace" ]; then
-    specKernel
-elif [ "$SELECTION" == "sholes" ]; then
     specKernel
 elif [ "$SELECTION" == "droid2" ]; then
     echo "Kernel Compiling Unavailable!"
