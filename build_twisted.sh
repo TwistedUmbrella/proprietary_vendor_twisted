@@ -14,7 +14,7 @@ SPADESPEC=LorDmodUE-ace-ics
 USERLOCAL=/Users/$HANDLE
 DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
 MECHAEXP=http://db.tt/4i4d3nVA
-SPADEEXP=http://db.tt/yaLRYRgv
+SPADEEXP=http://db.tt/1YzVOTQN
 DROID2EXP=http://db.tt/i0Rq1sZT
 SHOOTREXP=http://db.tt/uONAQ30g
 
