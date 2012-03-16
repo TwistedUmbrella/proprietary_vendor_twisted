@@ -1,0 +1,62 @@
+This is a summary of the most commonly used flags
+They are all fairly self-explanatory and organized
+They should be placed in the device BoardConfig.mk
+All CFLAGS require a _CFLAG += preface to enable
+
+# Standard Board Flags
+
+# Hardware Acceleration
+USE_OPENGL_RENDERER := true
+
+# Webkit
+TARGET_FORCE_CPU_UPLOAD := true
+DYNAMIC_SHARED_LIBV8SO := true
+ARCH_ARM_HAVE_VFP := true
+
+# Audio Hardware
+BOARD_HAVE_FM_RADIO := true
+
+# Camera
+TARGET_USE_CAF_PARAMS := true
+
+# Display
+BOARD_EGL_GRALLOC_USAGE_FILTER := true
+TARGET_USES_OVERLAY := true
+TARGET_USES_GENLOCK := true
+TARGET_USES_SF_BYPASS := true
+TARGET_HAVE_BYPASS := true
+TARGET_GRALLOC_USES_ASHMEM := true
+TARGET_USES_C2D_COMPOSITION := true
+
+# Qualcomm Hardware
+BOARD_USES_QCOM_HARDWARE := true
+BOARD_USES_QCOM_LIBS := true
+BOARD_USE_QCOM_PMEM := true
+TARGET_QCOM_HDMI_OUT := true
+
+# Qualcomm GPS
+BOARD_USES_QCOM_LIBRPC := true
+BOARD_USES_QCOM_GPS := true
+
+# Qualcomm Audio
+BOARD_USES_QCOM_AUDIO_SPEECH := true
+BOARD_USES_QCOM_AUDIO_VOIPMUTE := true
+BOARD_USES_QCOM_AUDIO_RESETALL := true
+
+# COMMON_GLOBAL_CFLAGS / BOARD_GLOBAL_CFLAGS
+
+# Hardware Acceleration
+-DREFRESH_RATE=60
+-DMISSING_EGL_EXTERNAL_IMAGE
+-DMISSING_EGL_PIXEL_FORMAT_YV12
+-DMISSING_GRALLOC_BUFFERS
+-EGL_FORCE_CONFIG=<value>
+
+# Qualcomm Hardware
+-DQCOM_HARDWARE
+
+# Display
+-DBYPASS_OFFSET
+
+# Audio
+-DHAVE_FM_RADIO
