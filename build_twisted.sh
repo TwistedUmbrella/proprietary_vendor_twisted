@@ -1,7 +1,7 @@
 # Copyright (C) 2011 Twisted Playground
 
 # This script is designed to compliment .bash_profile code to automate the build process by adding a typical shell command such as:
-# function buildTwist { echo "Shooter, Ace, Mecha, Droid2, Shared?"; read device; cd /Volumes/android/github-aosp_source/proprietary_vendor_twisted; ./build_twisted.sh $device; }
+# function buildTwist { echo "Shooter, Ace, Mecha, Shared?"; read device; cd /Volumes/android/github-aosp_source/proprietary_vendor_twisted; ./build_twisted.sh $device; }
 # This script is designed by Twisted Playground for use on MacOSX 10.7 but can be modified for other distributions of Mac and Linux
 
 HANDLE=TwistedZero
@@ -15,7 +15,6 @@ USERLOCAL=/Users/$HANDLE
 DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
 MECHAEXP=http://db.tt/4i4d3nVA
 SPADEEXP=http://db.tt/1YzVOTQN
-DROID2EXP=http://db.tt/i0Rq1sZT
 SHOOTREXP=http://db.tt/uONAQ30g
 
 cd $ANDROIDREPO
@@ -113,8 +112,6 @@ specDevice() {
             echo '<a href="'$MECHAEXP'">Download Experimental</a>' >> $TIMESTAMP
         elif [ "$DEVICE" == "ace" ]; then
             echo '<a href="'$SPADEEXP'">Download Experimental</a>' >> $TIMESTAMP
-        elif [ "$DEVICE" == "droid2" ]; then
-            echo '<a href="'$DROID2EXP'">Download Experimental</a>' >> $TIMESTAMP
         elif [ "$DEVICE" == "shooter" ]; then
             echo '<a href="'$SHOOTREXP'">Download Experimental</a>' >> $TIMESTAMP
         fi
@@ -137,8 +134,6 @@ if [ "$SELECTION" == "mecha" ]; then
     specKernel
 elif [ "$SELECTION" == "ace" ]; then
     specKernel
-elif [ "$SELECTION" == "droid2" ]; then
-    echo "Kernel Compiling Unavailable!"
 elif [ "$SELECTION" == "shooter" ]; then
     echo "Kernel Compiling Unavailable!"
 elif [ "$SELECTION" == "shared" ]; then
@@ -162,5 +157,7 @@ else
     DEVICE="shooter"
     specDevice
     DEVICE="mecha"
+    specDevice
+    DEVICE="ace"
     specDevice
 fi
