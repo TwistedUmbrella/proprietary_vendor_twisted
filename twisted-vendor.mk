@@ -39,8 +39,7 @@ PRODUCT_COPY_FILES += \
 
 # Twisted Customization
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.statusbar=true \
-    ro.disable.compat=true
+    ro.config.statusbar=true
 
 # Build Versioning
 PRODUCT_PROPERTY_OVERRIDES += \
