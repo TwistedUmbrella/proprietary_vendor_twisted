@@ -23,8 +23,7 @@ PRODUCT_PACKAGES += \
     Stk \
     VoiceDialer \
     SpareParts \
-    Torch \
-    ZeroXBenchmark
+    Torch
 
 # CyanogenMod Packages
 PRODUCT_PACKAGES += \
