@@ -9,8 +9,9 @@ ANDROIDREPO=/Volumes/android/Twisted-Playground
 DROIDGITHUB=TwistedUmbrella/Twisted-Playground.git
 BUILDDIR=/Volumes/android/android-tzb_ics4.0.1
 CCACHEBIN=prebuilt/darwin-x86/ccache/ccache
-MECHASPEC=leanKernel-tbolt-ics
-SPADESPEC=LorDmodUE-ace-ics
+MECHASPEC=/Volumes/android/leanKernel-tbolt-ics
+SPADESPEC=/Volumes/android/LorDmodUE-ace-ics
+SHOOTRSPEC=/Volumes/android/toastcfh-8660-kernel
 USERLOCAL=/Users/$HANDLE
 DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
 MECHAEXP=http://db.tt/4i4d3nVA
@@ -30,7 +31,7 @@ specKernel() {
     TIMESTAMP=$ANDROIDREPO/$PROPER/TimeStamp.html
 
         if [ "$SELECTION" == "mecha" ]; then
-            cd $BUILDDIR/kernel/$MECHASPEC
+            cd $MECHASPEC
             ./buildlean.sh 1 $SELECTION
             if [ -e arch/arm/boot/zImage ]; then
                 echo '<p></p>' >> $TIMESTAMP
@@ -42,7 +43,19 @@ specKernel() {
         fi
 
         if [ "$SELECTION" == "ace" ]; then
-            cd $BUILDDIR/kernel/$SPADESPEC
+            cd $SPADESPEC
+            ./buildKernel.sh 1 $SELECTION
+            if [ -e arch/arm/boot/zImage ]; then
+                echo '<p></p>' >> $TIMESTAMP
+                echo '<center>' >> $TIMESTAMP
+                echo "Kernel Compile Success." >> $TIMESTAMP
+                echo '</center>' >> $TIMESTAMP
+                echo '<p></p>' >> $TIMESTAMP
+            fi
+        fi
+
+        if [ "$SELECTION" == "shooter" ]; then
+            cd $SHOOTRSPEC
             ./buildKernel.sh 1 $SELECTION
             if [ -e arch/arm/boot/zImage ]; then
                 echo '<p></p>' >> $TIMESTAMP
@@ -135,7 +148,7 @@ if [ "$SELECTION" == "mecha" ]; then
 elif [ "$SELECTION" == "ace" ]; then
     specKernel
 elif [ "$SELECTION" == "shooter" ]; then
-    echo "Kernel Compiling Unavailable!"
+    specKernel
 elif [ "$SELECTION" == "shared" ]; then
     echo "Kernel Compiling Unavailable!"
 else
