@@ -14,7 +14,7 @@ SPADESPEC=/Volumes/android/LorDmodUE-ace-ics
 SHOOTRSPEC=/Volumes/android/toastcfh-8660-kernel
 USERLOCAL=/Users/$HANDLE
 DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
-MECHAEXP=http://db.tt/4i4d3nVA
+MECHAEXP=http://db.tt/fRDkCd7Q
 SPADEEXP=http://db.tt/1YzVOTQN
 SHOOTREXP=http://db.tt/uONAQ30g
 
