@@ -23,11 +23,11 @@ git checkout gh-pages
 cd $BUILDDIR
 
 specKernel() {
-    echo "Kernel (Y/n)? "
+    PROPER=`echo $SELECTION | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
+    echo $PROPER "Kernel (Y/n)? "
     read kernel
     if [ "$kernel" == "Y" ]; then
 
-    PROPER=`echo $SELECTION | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
     TIMESTAMP=$ANDROIDREPO/$PROPER/TimeStamp.html
 
         if [ "$SELECTION" == "mecha" ]; then
@@ -143,14 +143,20 @@ echo "Build Notes: "
 read changes
 
 SELECTION=`echo $1 | awk '{print tolower($0)}'`
-if [ "$SELECTION" == "mecha" ]; then
+if [ "$SELECTION" == "shooter" ]; then
+    specKernel
+elif [ "$SELECTION" == "mecha" ]; then
     specKernel
 elif [ "$SELECTION" == "ace" ]; then
     specKernel
-elif [ "$SELECTION" == "shooter" ]; then
-    specKernel
 elif [ "$SELECTION" == "shared" ]; then
-    echo "Kernel Compiling Unavailable!"
+    if [ "$SELECTION" == "shooter" ]; then
+        specKernel
+    elif [ "$SELECTION" == "mecha" ]; then
+        specKernel
+    elif [ "$SELECTION" == "ace" ]; then
+        specKernel
+    fi
 else
     echo "Available Device NOT Selected"
     echo "Sync Only Procedure Initiated"
