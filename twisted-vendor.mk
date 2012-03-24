@@ -43,5 +43,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Build Versioning
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.modversion=Flashy_Update_5 \
+    ro.modversion=Flashy_Update_6 \
     ro.rommanager.developerid=Twisted
