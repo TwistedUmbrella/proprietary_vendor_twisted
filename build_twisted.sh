@@ -1,7 +1,7 @@
 # Copyright (C) 2011 Twisted Playground
 
 # This script is designed to compliment .bash_profile code to automate the build process by adding a typical shell command such as:
-# function buildTwist { echo "Shooter, Ace, Mecha, Shared?"; read device; cd /Volumes/android/github-aosp_source/proprietary_vendor_twisted; ./build_twisted.sh $device; }
+# function buildTwist { echo "Shooter, Ace, Mecha, Shared, Kernel?"; read device; cd /Volumes/android/github-aosp_source/proprietary_vendor_twisted; ./build_twisted.sh $device; }
 # This script is designed by Twisted Playground for use on MacOSX 10.7 but can be modified for other distributions of Mac and Linux
 
 HANDLE=TwistedZero
@@ -72,11 +72,8 @@ specKernel() {
 }
 specDevice() {
     HANDLE=TwistedZero
-    if [ "$DEVICE" == "droid2" ]; then
-        PRODUCT=moto_$DEVICE
-    else
-        PRODUCT=htc_$DEVICE
-    fi
+    PRODUCT=htc_$DEVICE
+
     PROPER=`echo $DEVICE | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
     TIMESTAMP=$ANDROIDREPO/$PROPER/TimeStamp.html
     TEMPSTAMP=$ANDROIDREPO/$PROPER/TempStamp
@@ -155,8 +152,22 @@ elif [ "$SELECTION" == "shared" ]; then
     elif [ "$SELECTION" == "mecha" ]; then
         specKernel
     elif [ "$SELECTION" == "ace" ]; then
-        specKernel
+        ./buildKernel.sh 1 $SELECTION
     fi
+elif [ "$SELECTION" == "kernel" ]; then
+    echo "Board Type: "
+    read kernel
+    if [ "$kernel" == "shooter" ]; then
+        cd $SHOOTRSPEC
+        ./buildKernel.sh
+    elif [ "$kernel" == "mecha" ]; then
+        cd $MECHASPEC
+        ./buildlean.sh
+    elif [ "$kernel" == "ace" ]; then
+        cd $SPADESPEC
+        ./buildKernel.sh
+    fi
+    cd $BUILDDIR
 else
     echo "Available Device NOT Selected"
     echo "Sync Only Procedure Initiated"
