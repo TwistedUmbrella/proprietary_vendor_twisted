@@ -5,15 +5,15 @@
 # This script is designed by Twisted Playground for use on MacOSX 10.7 but can be modified for other distributions of Mac and Linux
 
 if cat /etc/issue | grep Ubuntu; then
-    HANDLE=TwistedZero
+    HANDLE=twistedumbrella
     ANDROIDREPO=~/Twisted-Playground
     DROIDGITHUB=~/Twisted-Playground.git
     BUILDDIR=~/android-tzb_ics4.0.1
-    CCACHEBIN=prebuilt/darwin-x86/ccache/ccache
+    CCACHEBIN=prebuilt/linux-x86/ccache/ccache
     MECHASPEC=~/leanKernel-tbolt-ics
     SPADESPEC=~/LorDmodUE-ace-ics
     SHOOTRSPEC=~/toastcfh-8660-kernel
-    USERLOCAL=/Users/$HANDLE
+    USERLOCAL=/home/$HANDLE
 
     SELECTION=`echo $1 | awk '{print tolower($0)}'`
     DEVICE=$SELECTION
