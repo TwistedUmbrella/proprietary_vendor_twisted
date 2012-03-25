@@ -5,7 +5,7 @@
 # This script is designed by Twisted Playground for use on MacOSX 10.7 but can be modified for other distributions of Mac and Linux
 
 if cat /etc/issue | grep Ubuntu; then
-    HANDLE=TwistedUmbrella
+    HANDLE=TwistedZero
     ANDROIDREPO=~/Twisted-Playground
     DROIDGITHUB=~/Twisted-Playground.git
     BUILDDIR=~/android-tzb_ics4.0.1
@@ -13,7 +13,16 @@ if cat /etc/issue | grep Ubuntu; then
     MECHASPEC=~/leanKernel-tbolt-ics
     SPADESPEC=~/LorDmodUE-ace-ics
     SHOOTRSPEC=~/toastcfh-8660-kernel
-    USERLOCAL=~/
+    USERLOCAL=/Users/$HANDLE
+
+    SELECTION=`echo $1 | awk '{print tolower($0)}'`
+    DEVICE=$SELECTION
+
+    source build/envsetup.sh
+    export USE_CCACHE=1
+    export CCACHE_DIR=$USERLOCAL/.ccache
+    $CCACHEBIN -M 40G
+    make otapackage -j4 TARGET_PRODUCT=$PRODUCT TARGET_BUILD_VARIANT=userdebug
 else
     HANDLE=TwistedZero
     ANDROIDREPO=/Volumes/android/Twisted-Playground
