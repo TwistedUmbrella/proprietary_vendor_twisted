@@ -15,15 +15,99 @@ if cat /etc/issue | grep Ubuntu; then
     SHOOTRSPEC=~/toastcfh-8660-kernel
     USERLOCAL=/home/$HANDLE
 
-    SELECTION=`echo $1 | awk '{print tolower($0)}'`
-    DEVICE=$SELECTION
+    specKernel() {
+        PROPER=`echo $SELECTION | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
+        echo $PROPER "Kernel (Y/n)? "
+        read kernel
+        if [ "$kernel" = "Y" ]; then
 
-    source build/envsetup.sh
+            if [ "$SELECTION" = "mecha" ]; then
+                cd $MECHASPEC
+                ./buildlean.sh 1 $SELECTION
+            fi
+
+            if [ "$SELECTION" = "ace" ]; then
+                cd $SPADESPEC
+                ./buildKernel.sh 1 $SELECTION
+            fi
+
+            if [ "$SELECTION" = "shooter" ]; then
+                cd $SHOOTRSPEC
+                ./buildKernel.sh 1 $SELECTION
+            fi
+
+            cd $BUILDDIR
+
+        fi
+    }
+
+    specDevice() {
+        HANDLE=TwistedZero
+        PRODUCT=htc_$DEVICE
+        source build/envsetup.sh
+        export USE_CCACHE=1
+        export CCACHE_DIR=$USERLOCAL/.ccache
+        $CCACHEBIN -M 40G
+        make otapackage -j8 TARGET_PRODUCT=$PRODUCT TARGET_BUILD_VARIANT=userdebug
+        rm -R $CCACHE_DIR/*
+        cd $BUILDDIR
+    }
+
+    SELECTION=`echo $1 | awk '{print tolower($0)}'`
+    if [ "$SELECTION" = "shooter" ]; then
+        specKernel
+    elif [ "$SELECTION" = "mecha" ]; then
+        specKernel
+    elif [ "$SELECTION" = "ace" ]; then
+        specKernel
+    elif [ "$SELECTION" = "shared" ]; then
+        if [ "$SELECTION" = "shooter" ]; then
+            specKernel
+        elif [ "$SELECTION" = "mecha" ]; then
+            specKernel
+        elif [ "$SELECTION" = "ace" ]; then
+            specKernel
+        fi
+    elif [ "$SELECTION" = "kernel" ]; then
+        echo "Kernel Selection: "
+        read kernel
+        if [ "$kernel" = "shooter" ]; then
+            cd $SHOOTRSPEC
+            ./buildKernel.sh
+        elif [ "$kernel" = "mecha" ]; then
+            cd $MECHASPEC
+            ./buildlean.sh
+        elif [ "$kernel" = "ace" ]; then
+            cd $SPADESPEC
+            ./buildKernel.sh
+        fi
+    cd $BUILDDIR
+    else
+        echo "Available Device NOT Selected"
+        echo "Sync Only Procedure Initiated"
+        repo sync
+        exit 1
+    fi
+    repo sync
     export USE_CCACHE=1
     export CCACHE_DIR=$USERLOCAL/.ccache
     $CCACHEBIN -M 40G
-    make otapackage -j4 TARGET_PRODUCT=$PRODUCT TARGET_BUILD_VARIANT=userdebug
+    make clobber -j16
+    rm -R $CCACHE_DIR/*
+    if [ "$SELECTION" = "shared" ]; then
+        DEVICE="shooter"
+        specDevice
+        DEVICE="mecha"
+        specDevice
+        DEVICE="ace"
+        specDevice
+    else
+        DEVICE=$SELECTION
+        specDevice
+    fi
+
 else
+
     HANDLE=TwistedZero
     ANDROIDREPO=/Volumes/android/Twisted-Playground
     DROIDGITHUB=TwistedUmbrella/Twisted-Playground.git
@@ -90,6 +174,7 @@ else
 
         fi
     }
+
     specDevice() {
         HANDLE=TwistedZero
         PRODUCT=htc_$DEVICE
@@ -156,6 +241,7 @@ else
             cd $BUILDDIR
         fi
     }
+
     echo "Build Notes: "
     read changes
 
@@ -172,7 +258,7 @@ else
         elif [ "$SELECTION" == "mecha" ]; then
             specKernel
         elif [ "$SELECTION" == "ace" ]; then
-            ./buildKernel.sh 1 $SELECTION
+            specKernel
         fi
     elif [ "$SELECTION" == "kernel" ]; then
         echo "Board Type: "
@@ -211,4 +297,5 @@ else
         DEVICE="ace"
         specDevice
     fi
+
 fi
