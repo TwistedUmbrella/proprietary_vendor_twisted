@@ -69,19 +69,49 @@ if cat /etc/issue | grep Ubuntu; then
             specKernel
         fi
     elif [ "$SELECTION" = "kernel" ]; then
-        echo "Kernel Selection: "
+        echo "Release (Y/n): "
+        read release
+        echo "Choose Device: "
         read kernel
         if [ "$kernel" = "shooter" ]; then
             cd $SHOOTRSPEC
-            ./buildKernel.sh
+            if [ "$release" = "Y" ]; then
+                ./buildKernel.sh 1 shooter
+            else
+                ./buildKernel.sh
+            fi
         elif [ "$kernel" = "mecha" ]; then
             cd $MECHASPEC
-            ./buildlean.sh
+            if [ "$release" = "Y" ]; then
+                ./buildlean.sh 1 mecha
+            else
+                ./buildlean.sh
+            fi
         elif [ "$kernel" = "ace" ]; then
             cd $SPADESPEC
-            ./buildKernel.sh
+            if [ "$release" = "Y" ]; then
+                ./buildKernel.sh 1 ace
+            else
+                ./buildKernel.sh
+            fi
+        elif [ "$kernel" = "shared" ]; then
+            if [ "$release" = "Y" ]; then
+                cd $SHOOTRSPEC
+                ./buildKernel.sh
+                cd $MECHASPEC
+                ./buildlean.sh
+                cd $SPADESPEC
+                ./buildKernel.sh
+            else
+                cd $SHOOTRSPEC
+                ./buildKernel.sh 1 shooter
+                cd $MECHASPEC
+                ./buildlean.sh 1 mecha
+                cd $SPADESPEC
+                ./buildKernel.sh 1 ace
+            fi
         fi
-    cd $BUILDDIR
+        cd $BUILDDIR
     else
         echo "Available Device NOT Selected"
         echo "Sync Only Procedure Initiated"
@@ -242,8 +272,10 @@ else
         fi
     }
 
+if [ "$SELECTION" != "kernel" ]; then
     echo "Build Notes: "
     read changes
+fi
 
     SELECTION=`echo $1 | awk '{print tolower($0)}'`
     if [ "$SELECTION" == "shooter" ]; then
@@ -261,17 +293,47 @@ else
             specKernel
         fi
     elif [ "$SELECTION" == "kernel" ]; then
-        echo "Board Type: "
+        echo "Release (Y/n): "
+        read release
+        echo "Choose Device: "
         read kernel
         if [ "$kernel" == "shooter" ]; then
             cd $SHOOTRSPEC
-            ./buildKernel.sh
+            if [ "$release" == "Y" ]; then
+                ./buildKernel.sh 1 shooter
+            else
+                ./buildKernel.sh
+            fi
         elif [ "$kernel" == "mecha" ]; then
             cd $MECHASPEC
-            ./buildlean.sh
+            if [ "$release" == "Y" ]; then
+                ./buildlean.sh 1 mecha
+            else
+                ./buildlean.sh
+            fi
         elif [ "$kernel" == "ace" ]; then
             cd $SPADESPEC
-            ./buildKernel.sh
+            if [ "$release" == "Y" ]; then
+                ./buildKernel.sh 1 ace
+            else
+                ./buildKernel.sh
+            fi
+        elif [ "$kernel" == "shared" ]; then
+            if [ "$release" == "Y" ]; then
+                cd $SHOOTRSPEC
+                ./buildKernel.sh
+                cd $MECHASPEC
+                ./buildlean.sh
+                cd $SPADESPEC
+                ./buildKernel.sh
+            else
+                cd $SHOOTRSPEC
+                ./buildKernel.sh 1 shooter
+                cd $MECHASPEC
+                ./buildlean.sh 1 mecha
+                cd $SPADESPEC
+                ./buildKernel.sh 1 ace
+            fi
         fi
         cd $BUILDDIR
     else
