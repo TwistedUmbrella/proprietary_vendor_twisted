@@ -52,6 +52,7 @@ endif
 # Google Applications
 PRODUCT_COPY_FILES += \
     vendor/twisted/google/app/ChromeBookmarksSyncAdapter.apk:system/app/ChromeBookmarksSyncAdapter.apk \
+    vendor/twisted/google/app/GalleryGoogle.apk:system/app/GalleryGoogle.apk \
     vendor/twisted/google/app/GoogleBackupTransport.apk:system/app/GoogleBackupTransport.apk \
     vendor/twisted/google/app/GoogleCalendarSyncAdapter.apk:system/app/GoogleCalendarSyncAdapter.apk \
     vendor/twisted/google/app/GoogleContactsSyncAdapter.apk:system/app/GoogleContactsSyncAdapter.apk \
@@ -79,3 +80,9 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/google/framework/com.google.android.maps.jar:system/framework/com.google.android.maps.jar \
     vendor/twisted/google/framework/com.google.android.media.effects.jar:system/framework/com.google.android.media.effects.jar \
     vendor/twisted/google/framework/com.google.widevine.software.drm.jar:system/framework/com.google.widevine.software.drm.jar
+
+# Gapps Versioning
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.addon.type=gapps \
+ro.addon.platform=ICS \
+ro.addon.version=gapps-ics-20120317
