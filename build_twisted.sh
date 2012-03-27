@@ -118,22 +118,24 @@ if cat /etc/issue | grep Ubuntu; then
         repo sync
         exit 1
     fi
-    repo sync
-    export USE_CCACHE=1
-    export CCACHE_DIR=$USERLOCAL/.ccache
-    $CCACHEBIN -M 40G
-    make clobber -j16
-    rm -R $CCACHE_DIR/*
-    if [ "$SELECTION" = "shared" ]; then
-        DEVICE="shooter"
-        specDevice
-        DEVICE="mecha"
-        specDevice
-        DEVICE="ace"
-        specDevice
-    else
-        DEVICE=$SELECTION
-        specDevice
+    if [ "$SELECTION" != "kernel" ]; then
+        repo sync
+        export USE_CCACHE=1
+        export CCACHE_DIR=$USERLOCAL/.ccache
+        $CCACHEBIN -M 40G
+        make clobber -j16
+        rm -R $CCACHE_DIR/*
+        if [ "$SELECTION" = "shared" ]; then
+            DEVICE="shooter"
+            specDevice
+            DEVICE="mecha"
+            specDevice
+            DEVICE="ace"
+            specDevice
+        else
+            DEVICE=$SELECTION
+            specDevice
+        fi
     fi
 
 else
@@ -343,22 +345,23 @@ else
         repo sync
         exit 1
     fi
-    repo sync
-    export USE_CCACHE=1
-    export CCACHE_DIR=$USERLOCAL/.ccache
-    $CCACHEBIN -M 40G
-    make clobber -j8
-    rm -R $CCACHE_DIR/*
-    if [ "$SELECTION" != "shared" ]; then
-        DEVICE=$SELECTION
-        specDevice    
-    else
-        DEVICE="shooter"
-        specDevice
-        DEVICE="mecha"
-        specDevice
-        DEVICE="ace"
-        specDevice
+    if [ "$SELECTION" != "kernel" ]; then
+        repo sync
+        export USE_CCACHE=1
+        export CCACHE_DIR=$USERLOCAL/.ccache
+        $CCACHEBIN -M 40G
+        make clobber -j8
+        rm -R $CCACHE_DIR/*
+        if [ "$SELECTION" != "shared" ]; then
+            DEVICE=$SELECTION
+            specDevice    
+        else
+            DEVICE="shooter"
+            specDevice
+            DEVICE="mecha"
+            specDevice
+            DEVICE="ace"
+            specDevice
+        fi
     fi
-
 fi
