@@ -69,7 +69,7 @@ if cat /etc/issue | grep Ubuntu; then
             specKernel
         fi
     elif [ "$SELECTION" = "kernel" ]; then
-        echo "Release (Y/n): "
+        echo "Prebuilt (Y/n): "
         read release
         echo "Choose Device: "
         read kernel
@@ -296,7 +296,7 @@ else
             specKernel
         fi
     elif [ "$SELECTION" == "kernel" ]; then
-        echo "Release (Y/n): "
+        echo "Prebuilt (Y/n): "
         read release
         echo "Choose Device: "
         read kernel
