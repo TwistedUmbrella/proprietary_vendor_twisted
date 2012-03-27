@@ -272,12 +272,13 @@ else
         fi
     }
 
-if [ "$SELECTION" != "kernel" ]; then
-    echo "Build Notes: "
-    read changes
-fi
-
     SELECTION=`echo $1 | awk '{print tolower($0)}'`
+
+    if [ "$SELECTION" != "kernel" ]; then
+        echo "Build Notes: "
+        read changes
+    fi
+
     if [ "$SELECTION" == "shooter" ]; then
         specKernel
     elif [ "$SELECTION" == "mecha" ]; then
