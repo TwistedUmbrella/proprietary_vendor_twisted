@@ -1,7 +1,7 @@
 # Copyright (C) 2011 Twisted Playground
 
 # This script is designed to compliment .bash_profile code to automate the build process by adding a typical shell command such as:
-# function buildTwist { echo "Shooter, Ace, Mecha, Shared, Kernel?"; read device; cd /Volumes/android/github-aosp_source/proprietary_vendor_twisted; ./build_twisted.sh $device; }
+# function buildTwist { cd /Volumes/android/github-aosp_source/proprietary_vendor_twisted; ./build_twisted.sh; }
 # This script is designed by Twisted Playground for use on MacOSX 10.7 but can be modified for other distributions of Mac and Linux
 
 if cat /etc/issue | grep Ubuntu; then
@@ -53,7 +53,12 @@ if cat /etc/issue | grep Ubuntu; then
         cd $BUILDDIR
     }
 
-    SELECTION=`echo $1 | awk '{print tolower($0)}'`
+    echo "Shooter, Ace, Mecha, Shared, Kernel?"
+    read profile
+    echo "Clobberin Time (Y/n): "
+    read thing
+
+    SELECTION=`echo $profile | awk '{print tolower($0)}'`
     if [ "$SELECTION" = "shooter" ]; then
         specKernel
     elif [ "$SELECTION" = "mecha" ]; then
@@ -120,11 +125,13 @@ if cat /etc/issue | grep Ubuntu; then
     fi
     if [ "$SELECTION" != "kernel" ]; then
         repo sync
-        export USE_CCACHE=1
-        export CCACHE_DIR=$USERLOCAL/.ccache
-        $CCACHEBIN -M 40G
-        make clobber -j16
-        rm -R $CCACHE_DIR/*
+        if [ "$thing" == "Y" ]; then
+            export USE_CCACHE=1
+            export CCACHE_DIR=$USERLOCAL/.ccache
+            $CCACHEBIN -M 40G
+            make clobber -j16
+            rm -R $CCACHE_DIR/*
+        fi
         if [ "$SELECTION" = "shared" ]; then
             DEVICE="shooter"
             specDevice
@@ -274,7 +281,12 @@ else
         fi
     }
 
-    SELECTION=`echo $1 | awk '{print tolower($0)}'`
+    echo "Shooter, Ace, Mecha, Shared, Kernel?"
+    read profile
+    echo "Clobberin Time (Y/n): "
+    read thing
+
+    SELECTION=`echo $profile | awk '{print tolower($0)}'`
 
     if [ "$SELECTION" != "kernel" ]; then
         echo "Build Notes: "
@@ -347,11 +359,13 @@ else
     fi
     if [ "$SELECTION" != "kernel" ]; then
         repo sync
-        export USE_CCACHE=1
-        export CCACHE_DIR=$USERLOCAL/.ccache
-        $CCACHEBIN -M 40G
-        make clobber -j8
-        rm -R $CCACHE_DIR/*
+        if [ "$thing" == "Y" ]; then
+            export USE_CCACHE=1
+            export CCACHE_DIR=$USERLOCAL/.ccache
+            $CCACHEBIN -M 40G
+            make clobber -j8
+            rm -R $CCACHE_DIR/*
+        fi
         if [ "$SELECTION" != "shared" ]; then
             DEVICE=$SELECTION
             specDevice    
