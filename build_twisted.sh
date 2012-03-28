@@ -55,8 +55,10 @@ if cat /etc/issue | grep Ubuntu; then
 
     echo "Shooter, Ace, Mecha, Shared, Kernel?"
     read profile
-    echo "Clobberin Time (Y/n): "
-    read thing
+    if [ "$SELECTION" != "kernel" ]; then
+        echo "Clobberin Time (Y/n): "
+        read thing
+    fi
 
     SELECTION=`echo $profile | awk '{print tolower($0)}'`
     if [ "$SELECTION" = "shooter" ]; then
@@ -283,8 +285,10 @@ else
 
     echo "Shooter, Ace, Mecha, Shared, Kernel?"
     read profile
-    echo "Clobberin Time (Y/n): "
-    read thing
+    if [ "$SELECTION" != "kernel" ]; then
+        echo "Clobberin Time (Y/n): "
+        read thing
+    fi
 
     SELECTION=`echo $profile | awk '{print tolower($0)}'`
 
