@@ -21,6 +21,8 @@ PRODUCT_PACKAGES += \
     make_ext4fs \
     setup_fs
 
+PRODUCT_PACKAGE_OVERLAYS += vendor/cm/overlay/dictionaries
+
 ifeq ($(TARGET_ARCH_VARIANT),armv7-a-neon)
 
 # Google Libraries
