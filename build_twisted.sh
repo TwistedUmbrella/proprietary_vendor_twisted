@@ -46,7 +46,7 @@ if cat /etc/issue | grep Ubuntu; then
         PRODUCT=htc_$DEVICE
         source build/envsetup.sh
         export USE_CCACHE=1
-        export CCACHE_DIR=$USERLOCAL/.ccache
+        export CCACHE_DIR=$USERLOCAL/.ccache-$DEVICE
         $CCACHEBIN -M 40G
         make otapackage -j8 TARGET_PRODUCT=$PRODUCT TARGET_BUILD_VARIANT=userdebug
         rm -R $CCACHE_DIR/*
@@ -131,7 +131,7 @@ if cat /etc/issue | grep Ubuntu; then
         if [ "$thing" == "Y" ]; then
             repo sync
             export USE_CCACHE=1
-            export CCACHE_DIR=$USERLOCAL/.ccache
+            export CCACHE_DIR=$USERLOCAL/.ccache-$SELECTION
             $CCACHEBIN -M 40G
             make clobber -j16
             rm -R $CCACHE_DIR/*
@@ -228,7 +228,7 @@ else
         BACKSTAMP=$ANDROIDREPO/$PROPER/BackStamp
         source build/envsetup.sh
         export USE_CCACHE=1
-        export CCACHE_DIR=$USERLOCAL/.ccache
+        export CCACHE_DIR=$USERLOCAL/.ccache-$DEVICE
         $CCACHEBIN -M 40G
         make otapackage -j4 TARGET_PRODUCT=$PRODUCT TARGET_BUILD_VARIANT=userdebug
         rm -R $CCACHE_DIR/*
@@ -368,7 +368,7 @@ else
         if [ "$thing" == "Y" ]; then
             repo sync
             export USE_CCACHE=1
-            export CCACHE_DIR=$USERLOCAL/.ccache
+            export CCACHE_DIR=$USERLOCAL/.ccache-$SELECTION
             $CCACHEBIN -M 40G
             make clobber -j8
             rm -R $CCACHE_DIR/*
