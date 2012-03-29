@@ -63,6 +63,13 @@ if cat /etc/issue | grep Ubuntu; then
         read thing
     fi
 
+    if [ "$thing" = "S" ]; then
+        echo "Available Device NOT Selected"
+        echo "Sync Only Procedure Initiated"
+        repo sync
+        exit 1
+    fi
+
     if [ "$SELECTION" = "shooter" ]; then
         specKernel
     elif [ "$SELECTION" = "mecha" ]; then
@@ -128,7 +135,7 @@ if cat /etc/issue | grep Ubuntu; then
         exit 1
     fi
     if [ "$SELECTION" != "kernel" ]; then
-        if [ "$thing" == "Y" ]; then
+        if [ "$thing" = "Y" ]; then
             repo sync
             export USE_CCACHE=1
             export CCACHE_DIR=$USERLOCAL/.ccache-$SELECTION
@@ -293,6 +300,13 @@ else
     if [ "$SELECTION" != "kernel" ]; then
         echo "Clobberin Time (Y/n): "
         read thing
+    fi
+
+    if [ "$thing" == "S" ]; then
+        echo "Available Device NOT Selected"
+        echo "Sync Only Procedure Initiated"
+        repo sync
+        exit 1
     fi
 
     if [ "$SELECTION" != "kernel" ]; then
