@@ -128,8 +128,8 @@ if cat /etc/issue | grep Ubuntu; then
         exit 1
     fi
     if [ "$SELECTION" != "kernel" ]; then
-        repo sync
         if [ "$thing" == "Y" ]; then
+            repo sync
             export USE_CCACHE=1
             export CCACHE_DIR=$USERLOCAL/.ccache
             $CCACHEBIN -M 40G
@@ -365,8 +365,8 @@ else
         exit 1
     fi
     if [ "$SELECTION" != "kernel" ]; then
-        repo sync
         if [ "$thing" == "Y" ]; then
+            repo sync
             export USE_CCACHE=1
             export CCACHE_DIR=$USERLOCAL/.ccache
             $CCACHEBIN -M 40G
