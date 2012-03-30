@@ -58,16 +58,16 @@ if cat /etc/issue | grep Ubuntu; then
 
     SELECTION=`echo $profile | awk '{print tolower($0)}'`
 
-    if [ "$SELECTION" != "kernel" ]; then
-        echo "Clobberin Time (Y/n): "
-        read thing
-    fi
-
-    if [ "$thing" = "S" ]; then
+    if [ "$SELECTION" = "" ]; then
         echo "Available Device NOT Selected"
         echo "Sync Only Procedure Initiated"
         repo sync
         exit 1
+    fi
+
+    if [ "$SELECTION" != "kernel" ]; then
+        echo "Clobberin Time (Y/n): "
+        read thing
     fi
 
     if [ "$SELECTION" = "shooter" ]; then
@@ -297,16 +297,16 @@ else
 
     SELECTION=`echo $profile | awk '{print tolower($0)}'`
 
-    if [ "$SELECTION" != "kernel" ]; then
-        echo "Clobberin Time (Y/n): "
-        read thing
-    fi
-
-    if [ "$thing" == "S" ]; then
+    if [ "$SELECTION" == "" ]; then
         echo "Available Device NOT Selected"
         echo "Sync Only Procedure Initiated"
         repo sync
         exit 1
+    fi
+
+    if [ "$SELECTION" != "kernel" ]; then
+        echo "Clobberin Time (Y/n): "
+        read thing
     fi
 
     if [ "$SELECTION" != "kernel" ]; then
