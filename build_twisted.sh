@@ -13,6 +13,7 @@ if cat /etc/issue | grep Ubuntu; then
     MECHASPEC=~/leanKernel-tbolt-ics
     SPADESPEC=~/htc-kernel-msm7x30
     SHOOTRSPEC=~/toastcfh-8660-kernel
+    TIAMATSPEC=~/cayniarb-8660-kernel
     USERLOCAL=/home/$HANDLE
 
     specKernel() {
@@ -32,7 +33,13 @@ if cat /etc/issue | grep Ubuntu; then
             fi
 
             if [ "$SELECTION" = "shooter" ]; then
-                cd $SHOOTRSPEC
+                echo "Tiamat Version (Y/n)? "
+                read subversion
+                if [ "$subversion" = "Y" ]; then
+                    cd $TIAMATSPEC
+                else
+                    cd $SHOOTRSPEC
+                fi
                 ./buildKernel.sh 1 $SELECTION
             fi
 
@@ -90,7 +97,13 @@ if cat /etc/issue | grep Ubuntu; then
         echo "Choose Device: "
         read kernel
         if [ "$kernel" = "shooter" ]; then
-            cd $SHOOTRSPEC
+            echo "Tiamat Version (Y/n)? "
+            read subversion
+            if [ "$subversion" = "Y" ]; then
+                cd $TIAMATSPEC
+            else
+                cd $SHOOTRSPEC
+            fi
             if [ "$release" = "Y" ]; then
                 ./buildKernel.sh 1 shooter
             else
@@ -166,6 +179,7 @@ else
     MECHASPEC=/Volumes/android/leanKernel-tbolt-ics
     SPADESPEC=/Volumes/android/htc-kernel-msm7x30
     SHOOTRSPEC=/Volumes/android/toastcfh-8660-kernel
+    TIAMATSPEC=/Volumes/android/cayniarb-8660-kernel
     USERLOCAL=/Users/$HANDLE
     DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
     MECHAEXP=http://db.tt/fRDkCd7Q
@@ -209,7 +223,13 @@ else
             fi
 
             if [ "$SELECTION" == "shooter" ]; then
-                cd $SHOOTRSPEC
+                echo "Tiamat Version (Y/n)? "
+                read subversion
+                if [ "$subversion" == "Y" ]; then
+                    cd $TIAMATSPEC
+                else
+                    cd $SHOOTRSPEC
+                fi
                 ./buildKernel.sh 1 $SELECTION
                 if [ -e arch/arm/boot/zImage ]; then
                     echo '<p></p>' >> $TIMESTAMP
@@ -334,7 +354,13 @@ else
         echo "Choose Device: "
         read kernel
         if [ "$kernel" == "shooter" ]; then
-            cd $SHOOTRSPEC
+            echo "Tiamat Version (Y/n)? "
+            read subversion
+            if [ "$subversion" == "Y" ]; then
+                cd $TIAMATSPEC
+            else
+                cd $SHOOTRSPEC
+            fi
             if [ "$release" == "Y" ]; then
                 ./buildKernel.sh 1 shooter
             else
