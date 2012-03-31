@@ -11,7 +11,7 @@ if cat /etc/issue | grep Ubuntu; then
     BUILDDIR=~/android-tzb_ics4.0.1
     CCACHEBIN=prebuilt/linux-x86/ccache/ccache
     MECHASPEC=~/leanKernel-tbolt-ics
-    SPADESPEC=~/LorDmodUE-ace-ics
+    SPADESPEC=~/htc-kernel-msm7x30
     SHOOTRSPEC=~/toastcfh-8660-kernel
     USERLOCAL=/home/$HANDLE
 
@@ -164,7 +164,7 @@ else
     BUILDDIR=/Volumes/android/android-tzb_ics4.0.1
     CCACHEBIN=prebuilt/darwin-x86/ccache/ccache
     MECHASPEC=/Volumes/android/leanKernel-tbolt-ics
-    SPADESPEC=/Volumes/android/LorDmodUE-ace-ics
+    SPADESPEC=/Volumes/android/htc-kernel-msm7x30
     SHOOTRSPEC=/Volumes/android/toastcfh-8660-kernel
     USERLOCAL=/Users/$HANDLE
     DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
