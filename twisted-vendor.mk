@@ -35,8 +35,7 @@ PRODUCT_PACKAGES += \
 
 # Twisted Packages
 PRODUCT_COPY_FILES += \
-    vendor/twisted/twisted/app/NovaLauncher.apk:system/app/NovaLauncher.apk \
-    vendor/twisted/twisted/app/Tapatalk2Beta.apk:system/app/Tapatalk2Beta.apk
+    vendor/twisted/twisted/app/NovaLauncher.apk:system/app/NovaLauncher.apk
 
 # Twisted Customization
 PRODUCT_PROPERTY_OVERRIDES += \
