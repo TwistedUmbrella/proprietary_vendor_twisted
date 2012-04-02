@@ -73,6 +73,8 @@ if cat /etc/issue | grep Ubuntu; then
     fi
 
     if [ "$SELECTION" != "kernel" ]; then
+        echo "Sync Sources (Y/n): "
+        read syncup
         echo "Clobberin Time (Y/n): "
         read thing
     fi
@@ -148,8 +150,10 @@ if cat /etc/issue | grep Ubuntu; then
         exit 1
     fi
     if [ "$SELECTION" != "kernel" ]; then
-        if [ "$thing" = "Y" ]; then
+        if [ "$syncup" != "n" ]; then
             repo sync
+        fi
+        if [ "$thing" = "Y" ]; then
             export USE_CCACHE=1
             export CCACHE_DIR=$USERLOCAL/.ccache-$SELECTION
             $CCACHEBIN -M 40G
@@ -325,6 +329,8 @@ else
     fi
 
     if [ "$SELECTION" != "kernel" ]; then
+        echo "Sync Sources (Y/n): "
+        read syncup
         echo "Clobberin Time (Y/n): "
         read thing
     fi
@@ -405,8 +411,10 @@ else
         exit 1
     fi
     if [ "$SELECTION" != "kernel" ]; then
-        if [ "$thing" == "Y" ]; then
+        if [ "$syncup" != "n" ]; then
             repo sync
+        fi
+        if [ "$thing" == "Y" ]; then
             export USE_CCACHE=1
             export CCACHE_DIR=$USERLOCAL/.ccache-$SELECTION
             $CCACHEBIN -M 40G
