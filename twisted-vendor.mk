@@ -24,7 +24,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dataroaming=false
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-
 UTC_DATE := $(shell date +%s)
 DATE := $(shell date +%Y%m%d)
 
