@@ -1,7 +1,7 @@
 # Copyright (C) 2011 Twisted Playground
 
 # This script is designed to compliment .bash_profile code to automate the build process by adding a typical shell command such as:
-# function buildTwist { cd /Volumes/android/github-aosp_source/proprietary_vendor_twisted; ./build_twisted.sh; }
+# function buildTwist { cd /Volumes/android/github-aosp_source/proprietary_vendor_twisted; ./build_twisted.sh $1 $2 $3; }
 # This script is designed by Twisted Playground for use on MacOSX 10.7 but can be modified for other distributions of Mac and Linux
 
 if cat /etc/issue | grep Ubuntu; then
@@ -15,163 +15,6 @@ if cat /etc/issue | grep Ubuntu; then
     SHOOTRSPEC=~/toastcfh-8660-kernel
     TIAMATSPEC=~/cayniarb-8660-kernel
     USERLOCAL=/home/$HANDLE
-
-    specKernel() {
-        PROPER=`echo $SELECTION | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
-        echo $PROPER "Kernel (Y/n)? "
-        read kernel
-        if [ "$kernel" = "Y" ]; then
-
-            if [ "$SELECTION" = "mecha" ]; then
-                cd $MECHASPEC
-                ./buildlean.sh 1 $SELECTION
-            fi
-
-            if [ "$SELECTION" = "ace" ]; then
-                cd $SPADESPEC
-                ./buildKernel.sh 1 $SELECTION
-            fi
-
-            if [ "$SELECTION" = "shooter" ]; then
-                echo "Tiamat Version (Y/n)? "
-                read subversion
-                if [ "$subversion" = "Y" ]; then
-                    cd $TIAMATSPEC
-                else
-                    cd $SHOOTRSPEC
-                fi
-                ./buildKernel.sh 1 $SELECTION
-            fi
-
-            cd $BUILDDIR
-
-        fi
-    }
-
-    specDevice() {
-        HANDLE=TwistedZero
-        PRODUCT=htc_$DEVICE
-        source build/envsetup.sh
-        export USE_CCACHE=1
-        export CCACHE_DIR=$USERLOCAL/.ccache-$DEVICE
-        $CCACHEBIN -M 40G
-        make otapackage -j8 TARGET_PRODUCT=$PRODUCT TARGET_BUILD_VARIANT=userdebug
-        rm -R $CCACHE_DIR/*
-        cd $BUILDDIR
-    }
-
-    echo "Shooter, Ace, Mecha, Shared, Kernel?"
-    read profile
-
-    SELECTION=`echo $profile | awk '{print tolower($0)}'`
-
-    if [ "$SELECTION" = "" ]; then
-        echo "Available Device NOT Selected"
-        echo "Sync Only Procedure Initiated"
-        repo sync
-        exit 1
-    fi
-
-    if [ "$SELECTION" != "kernel" ]; then
-        echo "Sync Sources (Y/n): "
-        read syncup
-        echo "Clobberin Time (Y/n): "
-        read thing
-    fi
-
-    if [ "$SELECTION" = "shooter" ]; then
-        specKernel
-    elif [ "$SELECTION" = "mecha" ]; then
-        specKernel
-    elif [ "$SELECTION" = "ace" ]; then
-        specKernel
-    elif [ "$SELECTION" = "shared" ]; then
-        if [ "$SELECTION" = "shooter" ]; then
-            specKernel
-        elif [ "$SELECTION" = "mecha" ]; then
-            specKernel
-        elif [ "$SELECTION" = "ace" ]; then
-            specKernel
-        fi
-    elif [ "$SELECTION" = "kernel" ]; then
-        echo "Prebuilt (Y/n): "
-        read release
-        echo "Choose Device: "
-        read kernel
-        if [ "$kernel" = "shooter" ]; then
-            echo "Tiamat Version (Y/n)? "
-            read subversion
-            if [ "$subversion" = "Y" ]; then
-                cd $TIAMATSPEC
-            else
-                cd $SHOOTRSPEC
-            fi
-            if [ "$release" = "Y" ]; then
-                ./buildKernel.sh 1 shooter
-            else
-                ./buildKernel.sh
-            fi
-        elif [ "$kernel" = "mecha" ]; then
-            cd $MECHASPEC
-            if [ "$release" = "Y" ]; then
-                ./buildlean.sh 1 mecha
-            else
-                ./buildlean.sh
-            fi
-        elif [ "$kernel" = "ace" ]; then
-            cd $SPADESPEC
-            if [ "$release" = "Y" ]; then
-                ./buildKernel.sh 1 ace
-            else
-                ./buildKernel.sh
-            fi
-        elif [ "$kernel" = "shared" ]; then
-            if [ "$release" = "Y" ]; then
-                cd $SHOOTRSPEC
-                ./buildKernel.sh
-                cd $MECHASPEC
-                ./buildlean.sh
-                cd $SPADESPEC
-                ./buildKernel.sh
-            else
-                cd $SHOOTRSPEC
-                ./buildKernel.sh 1 shooter
-                cd $MECHASPEC
-                ./buildlean.sh 1 mecha
-                cd $SPADESPEC
-                ./buildKernel.sh 1 ace
-            fi
-        fi
-        cd $BUILDDIR
-    else
-        echo "Available Device NOT Selected"
-        echo "Sync Only Procedure Initiated"
-        repo sync
-        exit 1
-    fi
-    if [ "$SELECTION" != "kernel" ]; then
-        if [ "$syncup" != "n" ]; then
-            repo sync
-        fi
-        if [ "$thing" = "Y" ]; then
-            export USE_CCACHE=1
-            export CCACHE_DIR=$USERLOCAL/.ccache-$SELECTION
-            $CCACHEBIN -M 40G
-            make clobber -j16
-            rm -R $CCACHE_DIR/*
-        fi
-        if [ "$SELECTION" = "shared" ]; then
-            DEVICE="shooter"
-            specDevice
-            DEVICE="mecha"
-            specDevice
-            DEVICE="ace"
-            specDevice
-        else
-            DEVICE=$SELECTION
-            specDevice
-        fi
-    fi
 
 else
 
@@ -190,15 +33,17 @@ else
     SPADEEXP=http://db.tt/1YzVOTQN
     SHOOTREXP=http://db.tt/uONAQ30g
 
+fi
+
     cd $ANDROIDREPO
     git checkout gh-pages
     cd $BUILDDIR
 
     specKernel() {
         PROPER=`echo $SELECTION | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
-        echo $PROPER "Kernel (Y/n)? "
+        echo $PROPER "Kernel (y/N)? "
         read kernel
-        if [ "$kernel" == "Y" ]; then
+        if [ "$kernel" == "y" ]; then
 
         TIMESTAMP=$ANDROIDREPO/$PROPER/TimeStamp.html
 
@@ -289,7 +134,7 @@ else
             echo "Notes About The Compile" >> $TIMESTAMP
             echo '<br>' >> $TIMESTAMP
             echo $changes >> $TIMESTAMP
-            if [ "$kernel" == "Y" ]; then
+            if [ "$kernel" == "y" ]; then
                 if [ -e arch/arm/boot/zImage ]; then
                     echo "Updated Prebuilt Device Kernel" >> $TIMESTAMP
                     echo '<p></p>' >> $TIMESTAMP
@@ -316,78 +161,113 @@ else
         fi
     }
 
-    echo "Shooter, Ace, Mecha, Shared, Kernel?"
+if [ "$1" != "" ]; then
+
+    SELECTION=`echo $1 | awk '{print tolower($0)}'`
+    if [ "$SELECTION" != "kernel" ]; then
+        syncup=$2
+        thing=$3
+    fi
+
+else
+
+    echo "1. Shooter"
+    echo "2. Ace"
+    echo "3. Mecha"
+    echo "4. Shared"
+    echo "5. Kernel"
+    echo "Please Choose: "
     read profile
 
-    SELECTION=`echo $profile | awk '{print tolower($0)}'`
-
-    if [ "$SELECTION" == "" ]; then
-        echo "Available Device NOT Selected"
-        echo "Sync Only Procedure Initiated"
-        repo sync
-        exit 1
-    fi
+    case $profile in
+        1)
+            SELECTION="shooter"
+        ;;
+        2)
+            SELECTION="ace"
+        ;;
+        3)
+            SELECTION="mecha"
+        ;;
+        4)
+            SELECTION="shared"
+        ;;
+        5)
+            SELECTION="kernel"
+        ;;
+        *)
+            SELECTION="invalid"
+        ;;
+    esac
 
     if [ "$SELECTION" != "kernel" ]; then
-        echo "Sync Sources (Y/n): "
+        echo "Sync Sources (y/N): "
         read syncup
-        echo "Clobberin Time (Y/n): "
+        echo "Clobberin Time (y/N): "
         read thing
     fi
+
+fi
 
     if [ "$SELECTION" != "kernel" ]; then
         echo "Build Notes: "
         read changes
     fi
 
-    if [ "$SELECTION" == "shooter" ]; then
-        specKernel
-    elif [ "$SELECTION" == "mecha" ]; then
-        specKernel
-    elif [ "$SELECTION" == "ace" ]; then
-        specKernel
-    elif [ "$SELECTION" == "shared" ]; then
-        if [ "$SELECTION" == "shooter" ]; then
-            specKernel
-        elif [ "$SELECTION" == "mecha" ]; then
-            specKernel
-        elif [ "$SELECTION" == "ace" ]; then
-            specKernel
-        fi
-    elif [ "$SELECTION" == "kernel" ]; then
-        echo "Prebuilt (Y/n): "
-        read release
-        echo "Choose Device: "
-        read kernel
+    if [ "$SELECTION" == "kernel" ]; then
+        echo "Prebuilt (y/N): "
+        read prebuilt
+        echo "1. Shooter"
+        echo "2. Ace"
+        echo "3. Mecha"
+        echo "4. Shared"
+        echo "5. Kernel"
+        echo "Please Choose: "
+        read devicesel
+
+        case $devicesel in
+            1)
+                kernel="shooter"
+            ;;
+            2)
+                kernel="ace"
+            ;;
+            3)
+                kernel="mecha"
+            ;;
+            4)
+                kernel="shared"
+            ;;
+        esac
         if [ "$kernel" == "shooter" ]; then
-            echo "Tiamat Version (Y/n)? "
+            echo "Tiamat Version (y/N)? "
             read subversion
-            if [ "$subversion" == "Y" ]; then
+            if [ "$subversion" == "y" ]; then
                 cd $TIAMATSPEC
             else
                 cd $SHOOTRSPEC
             fi
-            if [ "$release" == "Y" ]; then
+            if [ "$prebuilt" == "y" ]; then
                 ./buildKernel.sh 1 shooter
             else
                 ./buildKernel.sh
             fi
         elif [ "$kernel" == "mecha" ]; then
             cd $MECHASPEC
-            if [ "$release" == "Y" ]; then
+            if [ "$prebuilt" == "y" ]; then
                 ./buildlean.sh 1 mecha
             else
                 ./buildlean.sh
             fi
         elif [ "$kernel" == "ace" ]; then
             cd $SPADESPEC
-            if [ "$release" == "Y" ]; then
+            if [ "$prebuilt" == "y" ]; then
                 ./buildKernel.sh 1 ace
             else
                 ./buildKernel.sh
             fi
         elif [ "$kernel" == "shared" ]; then
-            if [ "$release" == "Y" ]; then
+            if [ "$prebuilt" == "y" ]; then
                 cd $SHOOTRSPEC
                 ./buildKernel.sh
                 cd $MECHASPEC
@@ -404,6 +284,8 @@ else
             fi
         fi
         cd $BUILDDIR
+    elif [ "$SELECTION" != "invalid" ]; then
+        specKernel
     else
         echo "Available Device NOT Selected"
         echo "Sync Only Procedure Initiated"
@@ -411,10 +293,10 @@ else
         exit 1
     fi
     if [ "$SELECTION" != "kernel" ]; then
-        if [ "$syncup" != "n" ]; then
+        if [ "$syncup" != "N" ]; then
             repo sync
         fi
-        if [ "$thing" == "Y" ]; then
+        if [ "$thing" == "y" ]; then
             export USE_CCACHE=1
             export CCACHE_DIR=$USERLOCAL/.ccache-$SELECTION
             $CCACHEBIN -M 40G
@@ -433,4 +315,3 @@ else
             specDevice
         fi
     fi
-fi
