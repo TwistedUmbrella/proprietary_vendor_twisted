@@ -41,7 +41,7 @@ fi
 
     specKernel() {
         PROPER=`echo $SELECTION | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
-        echo $PROPER "Kernel (y/N)? "
+        echo $PROPER "Kernel (y/n)? "
         read kernel
         if [ "$kernel" == "y" ]; then
 
@@ -72,9 +72,9 @@ fi
             fi
 
             if [ "$SELECTION" == "shooter" ]; then
-                echo "Tiamat Version (Y/n)? "
+                echo "Tiamat Version (y/n)? "
                 read subversion
-                if [ "$subversion" == "Y" ]; then
+                if [ "$subversion" == "y" ]; then
                     cd $TIAMATSPEC
                 else
                     cd $SHOOTRSPEC
@@ -201,9 +201,9 @@ else
     esac
 
     if [ "$SELECTION" != "kernel" ]; then
-        echo "Sync Sources (y/N): "
+        echo "Sync Sources (y/n): "
         read syncup
-        echo "Clobberin Time (y/N): "
+        echo "Clobberin Time (y/n): "
         read thing
     fi
 
@@ -215,13 +215,12 @@ fi
     fi
 
     if [ "$SELECTION" == "kernel" ]; then
-        echo "Prebuilt (y/N): "
+        echo "Prebuilt (y/n): "
         read prebuilt
         echo "1. Shooter"
         echo "2. Ace"
         echo "3. Mecha"
         echo "4. Shared"
-        echo "5. Kernel"
         echo "Please Choose: "
         read devicesel
 
@@ -240,7 +239,7 @@ fi
             ;;
         esac
         if [ "$kernel" == "shooter" ]; then
-            echo "Tiamat Version (y/N)? "
+            echo "Tiamat Version (y/n)? "
             read subversion
             if [ "$subversion" == "y" ]; then
                 cd $TIAMATSPEC
@@ -293,7 +292,7 @@ fi
         exit 1
     fi
     if [ "$SELECTION" != "kernel" ]; then
-        if [ "$syncup" != "N" ]; then
+        if [ "$syncup" != "n" ]; then
             repo sync
         fi
         if [ "$thing" == "y" ]; then
