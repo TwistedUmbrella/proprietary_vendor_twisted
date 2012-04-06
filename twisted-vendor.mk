@@ -42,6 +42,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     drm.service.enabled=1 \
     hls.enable.smooth.streaming=1
 
+# Playground Customization
+PRODUCT_PROPERTY_OVERRIDES += \
+    debug.enabletr=false \
+    gsm.proximity.enable=true \
+    ro.config.play.bootsound=1
+
 # Build Versioning
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.modversion=Smooth_Overdrive_7 \
