@@ -38,9 +38,10 @@ PRODUCT_COPY_FILES += \
 
 # Twisted Customization
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.statusbar=true
+    ro.config.statusbar=true \
+    drm.service.enabled=1
 
 # Build Versioning
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.modversion=Smooth\ Overdrive\ 7 \
+    ro.modversion=Smooth_Overdrive_7 \
     ro.rommanager.developerid=Twisted
