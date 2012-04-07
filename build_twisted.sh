@@ -254,9 +254,9 @@ fi
         elif [ "$kernel" == "mecha" ]; then
             cd $MECHASPEC
             if [ "$prebuilt" == "y" ]; then
-                ./buildlean.sh 1 mecha
+                ./buildKernel.sh 1 mecha
             else
-                ./buildlean.sh
+                ./buildKernel.sh
             fi
         elif [ "$kernel" == "ace" ]; then
             cd $SPADESPEC
