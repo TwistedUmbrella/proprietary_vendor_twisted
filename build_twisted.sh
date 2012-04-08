@@ -276,7 +276,7 @@ fi
                 fi
                 ./buildKernel.sh 1 shooter
                 cd $MECHASPEC
-                ./buildlean.sh 1 mecha
+                ./buildKernel.sh 1 mecha
                 cd $SPADESPEC
                 ./buildKernel.sh 1 ace
             else
@@ -289,7 +289,7 @@ fi
                 fi
                 ./buildKernel.sh
                 cd $MECHASPEC
-                ./buildlean.sh
+                ./buildKernel.sh
                 cd $SPADESPEC
                 ./buildKernel.sh
             fi
