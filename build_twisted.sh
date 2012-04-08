@@ -267,19 +267,31 @@ fi
             fi
         elif [ "$kernel" == "shared" ]; then
             if [ "$prebuilt" == "y" ]; then
-                cd $SHOOTRSPEC
-                ./buildKernel.sh
-                cd $MECHASPEC
-                ./buildlean.sh
-                cd $SPADESPEC
-                ./buildKernel.sh
-            else
-                cd $SHOOTRSPEC
+                echo "Tiamat Version (y/n)? "
+                read subversion
+                if [ "$subversion" == "y" ]; then
+                    cd $TIAMATSPEC
+                else
+                    cd $SHOOTRSPEC
+                fi
                 ./buildKernel.sh 1 shooter
                 cd $MECHASPEC
                 ./buildlean.sh 1 mecha
                 cd $SPADESPEC
                 ./buildKernel.sh 1 ace
+            else
+                echo "Tiamat Version (y/n)? "
+                read subversion
+                if [ "$subversion" == "y" ]; then
+                    cd $TIAMATSPEC
+                else
+                    cd $SHOOTRSPEC
+                fi
+                ./buildKernel.sh
+                cd $MECHASPEC
+                ./buildlean.sh
+                cd $SPADESPEC
+                ./buildKernel.sh
             fi
         fi
         cd $BUILDDIR
