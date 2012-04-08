@@ -49,7 +49,7 @@ fi
 
             if [ "$SELECTION" == "mecha" ]; then
                 cd $MECHASPEC
-                ./buildlean.sh 1 $SELECTION
+                ./buildKernel.sh 1 $SELECTION
                 if [ -e arch/arm/boot/zImage ]; then
                     echo '<p></p>' >> $TIMESTAMP
                     echo '<center>' >> $TIMESTAMP
