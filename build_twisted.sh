@@ -117,7 +117,7 @@ fi
             echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">' >> $TIMESTAMP
             echo '<!-- Mobile IE needs ClearType for smoothing fonts -->' >> $TIMESTAMP
             echo '<meta http-equiv="cleartype" content="on">' >> $TIMESTAMP
-            echo '<title>'${PROPER}' TimeStamp - Playground ICS</title>' >> $TIMESTAMP
+            echo '<title>'${PROPER}' TimeStamp - The Playground</title>' >> $TIMESTAMP
             echo '</head>'>> $TIMESTAMP
             echo '<body>' >> $TIMESTAMP
             echo '<center>' >> $TIMESTAMP
