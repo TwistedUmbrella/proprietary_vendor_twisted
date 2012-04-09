@@ -111,23 +111,38 @@ fi
             rm -R $TIMESTAMP
             echo '<html>'  > $TIMESTAMP
             echo '<head>' >> $TIMESTAMP
-            echo '<!--  Mobile viewport optimized: j.mp/bplateviewport -->' >> $TIMESTAMP
+            echo '<META http-equiv="Pragma" content="no-cache">' >> $TIMESTAMP
+            echo '<META http-equiv="Cache-Control" content="no-cache">' >> $TIMESTAMP
+            echo '<META http-equiv="Pragma-directive" content="no-cache">' >> $TIMESTAMP
+            echo '<META http-equiv="Cache-Directive" content="no-cache">' >> $TIMESTAMP
+            echo '<META http-equiv="Expires" content="0">' >> $TIMESTAMP
+            echo '<link rel="apple-touch-icon" href="../Modules/images/iphone.png" />' >> $TIMESTAMP
+            echo '<link rel="shortcut icon" href="../Modules/images/favicon.ico" />' >> $TIMESTAMP
             echo '<meta name="HandheldFriendly" content="True">' >> $TIMESTAMP
-            echo '<meta name="MobileOptimized" content="320"/>' >> $TIMESTAMP
+            echo '<meta name="MobileOptimized" content="320">' >> $TIMESTAMP
             echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">' >> $TIMESTAMP
-            echo '<!-- Mobile IE needs ClearType for smoothing fonts -->' >> $TIMESTAMP
             echo '<meta http-equiv="cleartype" content="on">' >> $TIMESTAMP
+            echo '<script type="text/javascript">' >> $TIMESTAMP
+            echo 'window.scrollTo(0, window.innerHeight)' >> $TIMESTAMP
+            echo '</script>' >> $TIMESTAMP
+            echo '<meta charset="UTF-8">' >> $TIMESTAMP
             echo '<title>'${PROPER}' TimeStamp - The Playground</title>' >> $TIMESTAMP
+            echo '<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" />' >> $TIMESTAMP
+            echo '<link rel="stylesheet" type="text/css" href="../Modules/css/accordion-min.css">' >> $TIMESTAMP
+            echo '<script src="../Modules/js/libs/modernizr.custom.min.js"></script>'>> $TIMESTAMP
             echo '</head>'>> $TIMESTAMP
             echo '<body>' >> $TIMESTAMP
+            echo '<div data-role="page" id="release" data-add-back-btn="true">' >> $TIMESTAMP
+            echo '<div data-role="header" data-position="fixed" data-theme="b">' >> $TIMESTAMP
+            echo '<h1> <a href="../index.html" target="_top"><img src="../Modules/images/banner.png" border="0" width="420"' >> $TIMESTAMP
+            echo 'height="80"></a> </h1>' >> $TIMESTAMP
+            echo '</div>' >> $TIMESTAMP
+            echo '<div data-role="content">' >> $TIMESTAMP
             echo '<center>' >> $TIMESTAMP
             echo "Latest Build Completed:" >> $TIMESTAMP
             echo '<br>' >> $TIMESTAMP
             date >> $TIMESTAMP
-            echo '<br>' >> $TIMESTAMP
-            echo "Please Allow 30-45 Min." >> $TIMESTAMP
-            echo '<br>' >> $TIMESTAMP
-            echo '<br>' >> $TIMESTAMP
+            echo '<p></p>' >> $TIMESTAMP
             echo "Notes About The Compile" >> $TIMESTAMP
             echo '<br>' >> $TIMESTAMP
             echo $changes >> $TIMESTAMP
@@ -140,6 +155,15 @@ fi
             echo '<p></p>' >> $TIMESTAMP
             echo 'MD5: '$MD5STRING >> $TIMESTAMP
             echo '</center>' >> $TIMESTAMP
+            echo '</div>' >> $TIMESTAMP
+            echo '<div data-role="footer" data-position="fixed" data-theme="b">' >> $TIMESTAMP
+            echo '<h1><a href="http://twistedplayground.info" target="_blank"><img src="../Modules/images/webdesign.png" id="webdesign" width="200" height="30"/></a></h1>' >> $TIMESTAMP
+            echo '</div>' >> $TIMESTAMP
+            echo '</div>' >> $TIMESTAMP
+            echo '<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>' >> $TIMESTAMP
+            echo '<script src="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js"></script>' >> $TIMESTAMP
+            echo '<script src="http://cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js"></script>' >> $TIMESTAMP
+            echo '<script src="../Modules/js/libs/data-cache-never-min.js"></script>' >> $TIMESTAMP
             echo '</body>' >> $TIMESTAMP
             echo '</html>' >> $TIMESTAMP
             cd $ANDROIDREPO
