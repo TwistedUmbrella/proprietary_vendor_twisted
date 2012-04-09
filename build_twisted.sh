@@ -29,9 +29,6 @@ else
     TIAMATSPEC=/Volumes/android/cayniarb-8660-kernel
     USERLOCAL=/Users/$HANDLE
     DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
-    MECHAEXP=http://db.tt/fRDkCd7Q
-    SPADEEXP=http://db.tt/1YzVOTQN
-    SHOOTREXP=http://db.tt/uONAQ30g
 
 fi
 
@@ -141,15 +138,6 @@ fi
                 fi
             fi
             echo '<p></p>' >> $TIMESTAMP
-            if [ "$DEVICE" == "mecha" ]; then
-                echo '<br><br>' >> $TIMESTAMP
-                echo '<a href="'$MECHAEXP'">Download Release</a>' >> $TIMESTAMP
-            elif [ "$DEVICE" == "ace" ]; then
-                echo '<a href="'$SPADEEXP'">Download Release</a>' >> $TIMESTAMP
-            elif [ "$DEVICE" == "shooter" ]; then
-                echo '<a href="'$SHOOTREXP'">Download Release</a>' >> $TIMESTAMP
-            fi
-            echo '<br>' >> $TIMESTAMP
             echo 'MD5: '$MD5STRING >> $TIMESTAMP
             echo '</center>' >> $TIMESTAMP
             echo '</body>' >> $TIMESTAMP
