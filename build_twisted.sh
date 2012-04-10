@@ -118,8 +118,8 @@ fi
             echo '<meta charset="UTF-8">' >> $TIMESTAMP
             echo '<title>'${PROPER}' TimeStamp - The Playground</title>' >> $TIMESTAMP
             echo '<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" />' >> $TIMESTAMP
-            echo '<link rel="stylesheet" media="only screen and (max-width: 480px)" href="../Modules/css/accordion-min480.css" />' >> $TIMESTAMP
-            echo '<link rel="stylesheet" media="only screen and (min-width: 480px)" href="../Modules/css/accordion-min.css" />' >> $TIMESTAMP
+            echo '<link rel="stylesheet" media="only screen and (max-width: 480px)" href="../Modules/css/accordion480.css" />' >> $TIMESTAMP
+            echo '<link rel="stylesheet" media="only screen and (min-width: 480px)" href="../Modules/css/accordion.css" />' >> $TIMESTAMP
             echo '<script src="../Modules/js/libs/modernizr.custom.min.js"></script>'>> $TIMESTAMP
             echo '</head>'>> $TIMESTAMP
             echo '<body>' >> $TIMESTAMP
