@@ -12,8 +12,7 @@ if cat /etc/issue | grep Ubuntu; then
     CCACHEBIN=prebuilt/linux-x86/ccache/ccache
     MECHASPEC=~/leanKernel-tbolt-ics
     SPADESPEC=~/htc-kernel-msm7x30
-    SHOOTRSPEC=~/toastcfh-8660-kernel
-    TIAMATSPEC=~/cayniarb-8660-kernel
+    SHOOTRSPEC=~/cayniarb-8660-kernel
     USERLOCAL=/home/$HANDLE
 
 else
@@ -25,8 +24,7 @@ else
     CCACHEBIN=prebuilt/darwin-x86/ccache/ccache
     MECHASPEC=/Volumes/android/leanKernel-tbolt-ics
     SPADESPEC=/Volumes/android/htc-kernel-msm7x30
-    SHOOTRSPEC=/Volumes/android/toastcfh-8660-kernel
-    TIAMATSPEC=/Volumes/android/cayniarb-8660-kernel
+    SHOOTRSPEC=/Volumes/android/cayniarb-8660-kernel
     USERLOCAL=/Users/$HANDLE
     DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
 
@@ -68,13 +66,7 @@ fi
             fi
 
             if [ "$SELECTION" == "shooter" ]; then
-                echo "Tiamat Version (y/n)? "
-                read subversion
-                if [ "$subversion" == "y" ]; then
-                    cd $TIAMATSPEC
-                else
-                    cd $SHOOTRSPEC
-                fi
+                cd $SHOOTRSPEC
                 ./buildKernel.sh 1 $SELECTION
                 if [ -e arch/arm/boot/zImage ]; then
                     echo '<p></p>' >> $TIMESTAMP
@@ -126,7 +118,8 @@ fi
             echo '<meta charset="UTF-8">' >> $TIMESTAMP
             echo '<title>'${PROPER}' TimeStamp - The Playground</title>' >> $TIMESTAMP
             echo '<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" />' >> $TIMESTAMP
-            echo '<link rel="stylesheet" type="text/css" href="../Modules/css/accordion-min.css">' >> $TIMESTAMP
+            echo '<link rel="stylesheet" media="only screen and (max-width: 480px)" href="../Modules/css/accordion-min480.css" />' >> $TIMESTAMP
+            echo '<link rel="stylesheet" media="only screen and (min-width: 480px)" href="../Modules/css/accordion-min.css" />' >> $TIMESTAMP
             echo '<script src="../Modules/js/libs/modernizr.custom.min.js"></script>'>> $TIMESTAMP
             echo '</head>'>> $TIMESTAMP
             echo '<body>' >> $TIMESTAMP
@@ -253,13 +246,7 @@ fi
             ;;
         esac
         if [ "$kernel" == "shooter" ]; then
-            echo "Tiamat Version (y/n)? "
-            read subversion
-            if [ "$subversion" == "y" ]; then
-                cd $TIAMATSPEC
-            else
-                cd $SHOOTRSPEC
-            fi
+            cd $SHOOTRSPEC
             if [ "$prebuilt" == "y" ]; then
                 ./buildKernel.sh 1 shooter
             else
