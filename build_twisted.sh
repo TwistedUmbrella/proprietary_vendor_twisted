@@ -123,9 +123,9 @@ fi
             echo '</head>'>> $TIMESTAMP
             echo '<body>' >> $TIMESTAMP
             echo '<div data-role="page" id="release">' >> $TIMESTAMP
-            echo '<a href="../index.html" class="ui-btn-left" data-icon="arrow-l"></a>' >> $TIMESTAMP
             echo '<div data-role="header" data-position="fixed" data-theme="b">' >> $TIMESTAMP
-            echo '<img src="Modules/images/banner.png" id="banner">' >> $TIMESTAMP
+            echo '<a href="../index.html" class="ui-btn-left" data-icon="arrow-l"></a>' >> $TIMESTAMP
+            echo '<img src="../Modules/images/banner.png" id="banner">' >> $TIMESTAMP
             echo '</div>' >> $TIMESTAMP
             echo '<div data-role="content">' >> $TIMESTAMP
             echo '<center>' >> $TIMESTAMP
