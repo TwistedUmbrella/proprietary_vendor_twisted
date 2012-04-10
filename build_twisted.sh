@@ -118,7 +118,7 @@ fi
             echo '<meta charset="UTF-8">' >> $TIMESTAMP
             echo '<title>'${PROPER}' TimeStamp - The Playground</title>' >> $TIMESTAMP
             echo '<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" />' >> $TIMESTAMP
-            echo '<link rel="stylesheet" type="text/css" href="../Modules/css/accordion-min.css">' >> $TIMESTAMP
+            echo '<link rel="stylesheet" type="text/css" href="../Modules/css/accordion.css">' >> $TIMESTAMP
             echo '<script src="../Modules/js/libs/modernizr.custom.min.js"></script>'>> $TIMESTAMP
             echo '</head>'>> $TIMESTAMP
             echo '<body>' >> $TIMESTAMP
