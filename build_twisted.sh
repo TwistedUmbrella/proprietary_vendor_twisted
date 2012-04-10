@@ -122,9 +122,8 @@ fi
             echo '<script src="../Modules/js/libs/modernizr.custom.min.js"></script>'>> $TIMESTAMP
             echo '</head>'>> $TIMESTAMP
             echo '<body>' >> $TIMESTAMP
-            echo '<div data-role="page" id="release">' >> $TIMESTAMP
+            echo '<div data-role="page" id="release-'$DEVICE'" data-cache="never">' >> $TIMESTAMP
             echo '<div data-role="header" data-position="fixed" data-theme="b">' >> $TIMESTAMP
-            echo '<a href="../index.html" class="ui-btn-left" data-icon="arrow-l"></a>' >> $TIMESTAMP
             echo '<img src="../Modules/images/banner.png" id="banner">' >> $TIMESTAMP
             echo '</div>' >> $TIMESTAMP
             echo '<div data-role="content">' >> $TIMESTAMP
