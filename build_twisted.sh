@@ -37,7 +37,6 @@ fi
     cd $BUILDDIR
 
     specKernel() {
-        PROPER=`echo $SELECTION | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
         echo $PROPER "Kernel (y/n)? "
         read kernel
         if [ "$kernel" == "y" ]; then
@@ -95,7 +94,6 @@ fi
         HANDLE=TwistedZero
         PRODUCT=htc_$DEVICE
 
-        PROPER=`echo $DEVICE | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
         TIMESTAMP=$ANDROIDREPO/$PROPER/TimeStamp.html
         TEMPSTAMP=$ANDROIDREPO/$PROPER/TempStamp
         BACKSTAMP=$ANDROIDREPO/$PROPER/BackStamp
@@ -177,6 +175,7 @@ fi
 if [ "$1" != "" ]; then
 
     SELECTION=`echo $1 | awk '{print tolower($0)}'`
+    export PROPER=`echo $SELECTION | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
     if [ "$SELECTION" != "kernel" ]; then
         syncup=$2
         thing=$3
@@ -212,6 +211,8 @@ else
             SELECTION="invalid"
         ;;
     esac
+
+    export PROPER=`echo $SELECTION | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
 
     if [ "$SELECTION" != "kernel" ]; then
         echo "Sync Sources (y/n): "
