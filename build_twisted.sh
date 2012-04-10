@@ -125,8 +125,7 @@ fi
             echo '<div data-role="page" id="release">' >> $TIMESTAMP
             echo '<a href="../index.html" class="ui-btn-left" data-icon="arrow-l"></a>' >> $TIMESTAMP
             echo '<div data-role="header" data-position="fixed" data-theme="b">' >> $TIMESTAMP
-            echo '<h1> <a href="../index.html" target="_top"><img src="../Modules/images/banner.png" border="0" width="420"' >> $TIMESTAMP
-            echo 'height="80"></a> </h1>' >> $TIMESTAMP
+            echo '<img src="Modules/images/banner.png" id="banner">' >> $TIMESTAMP
             echo '</div>' >> $TIMESTAMP
             echo '<div data-role="content">' >> $TIMESTAMP
             echo '<center>' >> $TIMESTAMP
