@@ -17,7 +17,6 @@ $(call inherit-product-if-exists, vendor/twisted/google-minimal.mk)
 
 # Applications
 PRODUCT_PACKAGES += \
-    AppWidgetPicker \
     Development \
     FileManager \
     Stk \

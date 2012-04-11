@@ -50,5 +50,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Build Versioning
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.modversion=Smooth_Overdrive_7 \
+    ro.modversion=NewEra8 \
     ro.rommanager.developerid=Twisted
