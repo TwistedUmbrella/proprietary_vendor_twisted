@@ -93,6 +93,7 @@ fi
         export USE_CCACHE=1
         export CCACHE_DIR=$USERLOCAL/.ccache-$DEVICE
         $CCACHEBIN -M 40G
+        COMPILED=`date`
         make otapackage -j4 TARGET_PRODUCT=$PRODUCT TARGET_BUILD_VARIANT=userdebug
         rm -R $CCACHE_DIR/*
         if [ -e $BUILDDIR/out/target/product/$DEVICE/$PRODUCT-ota-eng.$HANDLE.zip ]; then
@@ -128,9 +129,9 @@ fi
             echo '</div>' >> $TIMESTAMP
             echo '<div data-role="content">' >> $TIMESTAMP
             echo '<center>' >> $TIMESTAMP
-            echo "Latest Build Completed:" >> $TIMESTAMP
+            echo "Latest Build Compiled:" >> $TIMESTAMP
             echo '<br>' >> $TIMESTAMP
-            date >> $TIMESTAMP
+            echo $COMPILED >> $TIMESTAMP
             echo '<p></p>' >> $TIMESTAMP
             echo "Notes About The Compile" >> $TIMESTAMP
             echo '<br>' >> $TIMESTAMP
@@ -247,49 +248,37 @@ fi
             if [ "$prebuilt" == "y" ]; then
                 ./buildKernel.sh 1 shooter
             else
-                ./buildKernel.sh
+                ./buildKernel.sh 0 shooter
             fi
         elif [ "$kernel" == "mecha" ]; then
             cd $MECHASPEC
             if [ "$prebuilt" == "y" ]; then
                 ./buildKernel.sh 1 mecha
             else
-                ./buildKernel.sh
+                ./buildKernel.sh 0 mecha
             fi
         elif [ "$kernel" == "ace" ]; then
             cd $SPADESPEC
             if [ "$prebuilt" == "y" ]; then
                 ./buildKernel.sh 1 ace
             else
-                ./buildKernel.sh
+                ./buildKernel.sh 0 ace
             fi
         elif [ "$kernel" == "shared" ]; then
             if [ "$prebuilt" == "y" ]; then
-                echo "Tiamat Version (y/n)? "
-                read subversion
-                if [ "$subversion" == "y" ]; then
-                    cd $TIAMATSPEC
-                else
-                    cd $SHOOTRSPEC
-                fi
+                cd $SHOOTRSPEC
                 ./buildKernel.sh 1 shooter
                 cd $MECHASPEC
                 ./buildKernel.sh 1 mecha
                 cd $SPADESPEC
                 ./buildKernel.sh 1 ace
             else
-                echo "Tiamat Version (y/n)? "
-                read subversion
-                if [ "$subversion" == "y" ]; then
-                    cd $TIAMATSPEC
-                else
-                    cd $SHOOTRSPEC
-                fi
-                ./buildKernel.sh
+                cd $SHOOTRSPEC
+                ./buildKernel.sh 0 shooter
                 cd $MECHASPEC
-                ./buildKernel.sh
+                ./buildKernel.sh 0 mecha
                 cd $SPADESPEC
-                ./buildKernel.sh
+                ./buildKernel.sh 0 ace
             fi
         fi
         cd $BUILDDIR
