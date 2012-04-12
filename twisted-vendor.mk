@@ -38,7 +38,7 @@ PRODUCT_COPY_FILES += \
 
 # Twisted Customization
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.statusbar=true \
+    ro.config.statusbar=1 \
     drm.service.enabled=1 \
     hls.enable.smooth.streaming=1
 
