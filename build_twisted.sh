@@ -128,7 +128,7 @@ fi
             echo '<img src="../Modules/images/banner.png" id="banner">' >> $TIMESTAMP
             echo '</div>' >> $TIMESTAMP
             echo '<div data-role="content">' >> $TIMESTAMP
-            echo '<center>' >> $TIMESTAMP
+            echo '<center><h2>' >> $TIMESTAMP
             echo "Latest Build Compiled:" >> $TIMESTAMP
             echo '<br>' >> $TIMESTAMP
             echo $COMPILED >> $TIMESTAMP
@@ -144,7 +144,7 @@ fi
             fi
             echo '<p></p>' >> $TIMESTAMP
             echo 'MD5: '$MD5STRING >> $TIMESTAMP
-            echo '</center>' >> $TIMESTAMP
+            echo '</h2></center>' >> $TIMESTAMP
             echo '</div>' >> $TIMESTAMP
             echo '<div data-role="footer" data-position="fixed" data-theme="b">' >> $TIMESTAMP
             echo '<h1><a href="http://twistedplayground.info" target="_blank"><img src="../Modules/images/webdesign.png" id="webdesign" width="200" height="30"/></a></h1>' >> $TIMESTAMP
