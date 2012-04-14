@@ -45,7 +45,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     vendor/twisted/google/app/GenieWidget.apk:system/app/GenieWidget.apk \
     vendor/twisted/google/app/Gmail.apk:system/app/Gmail.apk \
+    vendor/twisted/google/app/GoogleChrome.apk:system/app/GoogleChrome.apk \
     vendor/twisted/google/app/GoogleTTS.apk:system/app/GoogleTTS.apk \
+    vendor/twisted/google/app/GoogleVoice.apk:system/app/GoogleVoice.apk \
     vendor/twisted/google/app/Maps.apk:system/app/Maps.apk \
     vendor/twisted/google/app/PicasaSyncAdapter.apk:system/app/PicasaSyncAdapter.apk \
     vendor/twisted/google/app/PlusOne.apk:system/app/PlusOne.apk \
