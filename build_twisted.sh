@@ -157,7 +157,6 @@ fi
             echo '</body>' >> $TIMESTAMP
             echo '</html>' >> $TIMESTAMP
             cd $ANDROIDREPO
-            git commit -a -m 'Automated TimeStamp Update - '${PROPER}''
             git push git@github.com:$DROIDGITHUB HEAD:gh-pages -f
             cd $BUILDDIR
         fi
