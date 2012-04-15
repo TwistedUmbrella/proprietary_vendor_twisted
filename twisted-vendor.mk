@@ -43,7 +43,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Playground Customization
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.statusbar=1 \
     debug.enabletr=false \
     gsm.proximity.enable=true \
     ro.config.play.bootsound=1
