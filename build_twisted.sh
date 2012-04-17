@@ -120,7 +120,7 @@ fi
             echo '</script>' >> $TIMESTAMP
             echo '<meta charset="UTF-8">' >> $TIMESTAMP
             echo '<title>'${PROPER}' TimeStamp - The Playground</title>' >> $TIMESTAMP
-            echo '<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css" />' >> $TIMESTAMP
+            echo '<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />' >> $TIMESTAMP
             echo '<link rel="stylesheet" type="text/css" href="../Modules/css/accordion.css">' >> $TIMESTAMP
             echo '<script src="../Modules/js/libs/modernizr.custom.min.js"></script>'>> $TIMESTAMP
             echo '</head>'>> $TIMESTAMP
@@ -152,8 +152,8 @@ fi
             echo '<h1><a href="http://twistedplayground.info" target="_blank"><img src="../Modules/images/webdesign.png" id="webdesign" width="200" height="30"/></a></h1>' >> $TIMESTAMP
             echo '</div>' >> $TIMESTAMP
             echo '</div>' >> $TIMESTAMP
-            echo '<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>' >> $TIMESTAMP
-            echo '<script src="http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js"></script>' >> $TIMESTAMP
+            echo '<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>' >> $TIMESTAMP
+            echo '<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>' >> $TIMESTAMP
             echo '<script src="http://cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js"></script>' >> $TIMESTAMP
             echo '<script src="../Modules/js/libs/data-cache-never-min.js"></script>' >> $TIMESTAMP
             echo '</body>' >> $TIMESTAMP
