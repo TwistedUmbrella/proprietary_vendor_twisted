@@ -12,7 +12,8 @@ if cat /etc/issue | grep Ubuntu; then
     CCACHEBIN=prebuilt/linux-x86/ccache/ccache
     MECHASPEC=~/leanKernel-tbolt-ics
     SPADESPEC=~/htc-kernel-msm7x30
-    SHOOTRSPEC=~/cayniarb-8660-kernel
+    SHOOTRSPEC=~/htc-kernel-msm8660
+    TIAMATSPEC=~/cayniarb-8660-kernel
     USERLOCAL=/home/$HANDLE
 
 else
@@ -24,7 +25,8 @@ else
     CCACHEBIN=prebuilt/darwin-x86/ccache/ccache
     MECHASPEC=/Volumes/android/leanKernel-tbolt-ics
     SPADESPEC=/Volumes/android/htc-kernel-msm7x30
-    SHOOTRSPEC=/Volumes/android/cayniarb-8660-kernel
+    SHOOTRSPEC=/Volumes/android/htc-kernel-msm8660
+    TIAMATSPEC=/Volumes/android/cayniarb-8660-kernel
     USERLOCAL=/Users/$HANDLE
     DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
 
@@ -128,7 +130,7 @@ fi
             echo '<img src="../Modules/images/banner.png" id="banner">' >> $TIMESTAMP
             echo '</div>' >> $TIMESTAMP
             echo '<div data-role="content">' >> $TIMESTAMP
-            echo '<center><h2>' >> $TIMESTAMP
+            echo '<center><h3>' >> $TIMESTAMP
             echo "Latest Build Compiled:" >> $TIMESTAMP
             echo '<br>' >> $TIMESTAMP
             echo $COMPILED >> $TIMESTAMP
@@ -138,13 +140,13 @@ fi
             echo $changes >> $TIMESTAMP
             if [ "$kernel" == "y" ]; then
                 if [ -e arch/arm/boot/zImage ]; then
-                    echo "Updated Prebuilt Device Kernel" >> $TIMESTAMP
+                    echo "Update Prebuilt Device Kernel" >> $TIMESTAMP
                     echo '<p></p>' >> $TIMESTAMP
                 fi
             fi
             echo '<p></p>' >> $TIMESTAMP
             echo 'MD5: '$MD5STRING >> $TIMESTAMP
-            echo '</h2></center>' >> $TIMESTAMP
+            echo '</h3></center>' >> $TIMESTAMP
             echo '</div>' >> $TIMESTAMP
             echo '<div data-role="footer" data-position="fixed" data-theme="b">' >> $TIMESTAMP
             echo '<h1><a href="http://twistedplayground.info" target="_blank"><img src="../Modules/images/webdesign.png" id="webdesign" width="200" height="30"/></a></h1>' >> $TIMESTAMP
@@ -225,6 +227,7 @@ fi
         echo "2. Ace"
         echo "3. Mecha"
         echo "4. Shared"
+        echo "5. Tiamat"
         echo "Please Choose: "
         read devicesel
 
@@ -240,6 +243,9 @@ fi
             ;;
             4)
                 kernel="shared"
+            ;;
+            5)
+                kernel="tiamat"
             ;;
         esac
         if [ "$kernel" == "shooter" ]; then
@@ -262,6 +268,13 @@ fi
                 ./buildKernel.sh 1 ace
             else
                 ./buildKernel.sh 0 ace
+            fi
+        elif [ "$kernel" == "tiamat" ]; then
+            cd $TIAMATSPEC
+            if [ "$prebuilt" == "y" ]; then
+                ./buildKernel.sh 1 shooter
+            else
+                ./buildKernel.sh 0 shooter
             fi
         elif [ "$kernel" == "shared" ]; then
             if [ "$prebuilt" == "y" ]; then
