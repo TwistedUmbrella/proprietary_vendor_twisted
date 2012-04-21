@@ -123,10 +123,11 @@ if [ "$1" != "" ]; then
 else
 
     echo "1. Shooter"
-    echo "2. Ace"
-    echo "3. Mecha"
-    echo "4. Shared"
-    echo "5. Kernel"
+    echo "2. Mecha"
+    echo "3. Ace"
+    echo "4. Vivo"
+    echo "5. Shared"
+    echo "6. Kernel"
     echo "Please Choose: "
     read profile
 
@@ -135,15 +136,18 @@ else
             SELECTION="shooter"
         ;;
         2)
-            SELECTION="ace"
-        ;;
-        3)
             SELECTION="mecha"
         ;;
+        3)
+            SELECTION="ace"
+        ;;
         4)
-            SELECTION="shared"
+            SELECTION="vivo"
         ;;
         5)
+            SELECTION="shared"
+        ;;
+        6)
             SELECTION="kernel"
         ;;
         *)
@@ -169,10 +173,9 @@ if [ "$SELECTION" == "kernel" ]; then
     echo "Prebuilt (y/n): "
     read prebuilt
     echo "1. Shooter"
-    echo "2. Ace"
-    echo "3. Mecha"
+    echo "2. Mecha"
+    echo "3. Ace"
     echo "4. Shared"
-    echo "5. Tiamat"
     echo "Please Choose: "
     read devicesel
 
@@ -181,16 +184,13 @@ if [ "$SELECTION" == "kernel" ]; then
             kernel="shooter"
         ;;
         2)
-            kernel="ace"
+            kernel="mecha"
         ;;
         3)
-            kernel="mecha"
+            kernel="ace"
         ;;
         4)
             kernel="shared"
-        ;;
-        5)
-            kernel="tiamat"
         ;;
     esac
     if [ "$kernel" == "shooter" ]; then
@@ -213,13 +213,6 @@ if [ "$SELECTION" == "kernel" ]; then
             ./buildKernel.sh 1 ace
         else
             ./buildKernel.sh 0 ace
-        fi
-    elif [ "$kernel" == "tiamat" ]; then
-        cd $TIAMATSPEC
-        if [ "$prebuilt" == "y" ]; then
-            ./buildKernel.sh 1 shooter
-        else
-            ./buildKernel.sh 0 shooter
         fi
     elif [ "$kernel" == "shared" ]; then
         if [ "$prebuilt" == "y" ]; then
