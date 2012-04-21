@@ -39,7 +39,7 @@ fi
     specDevice() {
 
         PRODUCT=htc_$DEVICE
-        PROPER=`echo $SELECTION | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
+        PROPER=`echo $DEVICE | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
         TIMESTAMP=$ANDROIDREPO/$PROPER/TimeStamp.html
         TEMPSTAMP=$ANDROIDREPO/$PROPER/TempStamp
         BACKSTAMP=$ANDROIDREPO/$PROPER/BackStamp
