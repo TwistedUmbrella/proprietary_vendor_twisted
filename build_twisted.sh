@@ -36,61 +36,14 @@ fi
     git checkout gh-pages
     cd $BUILDDIR
 
-    specKernel() {
-        echo $PROPER "Kernel (y/n)? "
-        read kernel
-        if [ "$kernel" == "y" ]; then
-
-        TIMESTAMP=$ANDROIDREPO/$PROPER/TimeStamp.html
-
-            if [ "$SELECTION" == "mecha" ]; then
-                cd $MECHASPEC
-                ./buildKernel.sh 1 $SELECTION
-                if [ -e arch/arm/boot/zImage ]; then
-                    echo '<p></p>' >> $TIMESTAMP
-                    echo '<center>' >> $TIMESTAMP
-                    echo "Kernel Compile Success." >> $TIMESTAMP
-                    echo '</center>' >> $TIMESTAMP
-                    echo '<p></p>' >> $TIMESTAMP
-                fi
-            fi
-
-            if [ "$SELECTION" == "ace" ]; then
-                cd $SPADESPEC
-                ./buildKernel.sh 1 $SELECTION
-                if [ -e arch/arm/boot/zImage ]; then
-                    echo '<p></p>' >> $TIMESTAMP
-                    echo '<center>' >> $TIMESTAMP
-                    echo "Kernel Compile Success." >> $TIMESTAMP
-                    echo '</center>' >> $TIMESTAMP
-                    echo '<p></p>' >> $TIMESTAMP
-                fi
-            fi
-
-            if [ "$SELECTION" == "shooter" ]; then
-                cd $SHOOTRSPEC
-                ./buildKernel.sh 1 $SELECTION
-                if [ -e arch/arm/boot/zImage ]; then
-                    echo '<p></p>' >> $TIMESTAMP
-                    echo '<center>' >> $TIMESTAMP
-                    echo "Kernel Compile Success." >> $TIMESTAMP
-                    echo '</center>' >> $TIMESTAMP
-                    echo '<p></p>' >> $TIMESTAMP
-                fi
-            fi
-
-            cd $BUILDDIR
-
-        fi
-    }
-
     specDevice() {
-        HANDLE=TwistedZero
-        PRODUCT=htc_$DEVICE
 
+        PRODUCT=htc_$DEVICE
+        PROPER=`echo $SELECTION | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
         TIMESTAMP=$ANDROIDREPO/$PROPER/TimeStamp.html
         TEMPSTAMP=$ANDROIDREPO/$PROPER/TempStamp
         BACKSTAMP=$ANDROIDREPO/$PROPER/BackStamp
+
         source build/envsetup.sh
         export USE_CCACHE=1
         export CCACHE_DIR=$USERLOCAL/.ccache-$DEVICE
@@ -138,12 +91,6 @@ fi
             echo "Notes About The Compile" >> $TIMESTAMP
             echo '<br>' >> $TIMESTAMP
             echo $changes >> $TIMESTAMP
-            if [ "$kernel" == "y" ]; then
-                if [ -e arch/arm/boot/zImage ]; then
-                    echo "Update Prebuilt Device Kernel" >> $TIMESTAMP
-                    echo '<p></p>' >> $TIMESTAMP
-                fi
-            fi
             echo '<p></p>' >> $TIMESTAMP
             echo 'MD5: '$MD5STRING >> $TIMESTAMP
             echo '</h3></center>' >> $TIMESTAMP
@@ -204,8 +151,6 @@ else
         ;;
     esac
 
-    export PROPER=`echo $SELECTION | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
-
     if [ "$SELECTION" != "kernel" ]; then
         echo "Sync Sources (y/n): "
         read syncup
@@ -215,93 +160,86 @@ else
 
 fi
 
-    if [ "$SELECTION" != "kernel" ]; then
-        echo "Build Notes: "
-        read changes
-    fi
+if [ "$SELECTION" != "kernel" ]; then
+    echo "Build Notes: "
+    read changes
+fi
 
-    if [ "$SELECTION" == "kernel" ]; then
-        echo "Prebuilt (y/n): "
-        read prebuilt
-        echo "1. Shooter"
-        echo "2. Ace"
-        echo "3. Mecha"
-        echo "4. Shared"
-        echo "5. Tiamat"
-        echo "Please Choose: "
-        read devicesel
+if [ "$SELECTION" == "kernel" ]; then
+    echo "Prebuilt (y/n): "
+    read prebuilt
+    echo "1. Shooter"
+    echo "2. Ace"
+    echo "3. Mecha"
+    echo "4. Shared"
+    echo "5. Tiamat"
+    echo "Please Choose: "
+    read devicesel
 
-        case $devicesel in
-            1)
-                kernel="shooter"
-            ;;
-            2)
-                kernel="ace"
-            ;;
-            3)
-                kernel="mecha"
-            ;;
-            4)
-                kernel="shared"
-            ;;
-            5)
-                kernel="tiamat"
-            ;;
-        esac
-        if [ "$kernel" == "shooter" ]; then
-            cd $SHOOTRSPEC
-            if [ "$prebuilt" == "y" ]; then
-                ./buildKernel.sh 1 shooter
-            else
-                ./buildKernel.sh 0 shooter
-            fi
-        elif [ "$kernel" == "mecha" ]; then
-            cd $MECHASPEC
-            if [ "$prebuilt" == "y" ]; then
-                ./buildKernel.sh 1 mecha
-            else
-                ./buildKernel.sh 0 mecha
-            fi
-        elif [ "$kernel" == "ace" ]; then
-            cd $SPADESPEC
-            if [ "$prebuilt" == "y" ]; then
-                ./buildKernel.sh 1 ace
-            else
-                ./buildKernel.sh 0 ace
-            fi
-        elif [ "$kernel" == "tiamat" ]; then
-            cd $TIAMATSPEC
-            if [ "$prebuilt" == "y" ]; then
-                ./buildKernel.sh 1 shooter
-            else
-                ./buildKernel.sh 0 shooter
-            fi
-        elif [ "$kernel" == "shared" ]; then
-            if [ "$prebuilt" == "y" ]; then
-                cd $SHOOTRSPEC
-                ./buildKernel.sh 1 shooter
-                cd $MECHASPEC
-                ./buildKernel.sh 1 mecha
-                cd $SPADESPEC
-                ./buildKernel.sh 1 ace
-            else
-                cd $SHOOTRSPEC
-                ./buildKernel.sh 0 shooter
-                cd $MECHASPEC
-                ./buildKernel.sh 0 mecha
-                cd $SPADESPEC
-                ./buildKernel.sh 0 ace
-            fi
+    case $devicesel in
+        1)
+            kernel="shooter"
+        ;;
+        2)
+            kernel="ace"
+        ;;
+        3)
+            kernel="mecha"
+        ;;
+        4)
+            kernel="shared"
+        ;;
+        5)
+            kernel="tiamat"
+        ;;
+    esac
+    if [ "$kernel" == "shooter" ]; then
+        cd $SHOOTRSPEC
+        if [ "$prebuilt" == "y" ]; then
+            ./buildKernel.sh 1 shooter
+        else
+            ./buildKernel.sh 0 shooter
         fi
-        cd $BUILDDIR
-    elif [ "$SELECTION" != "invalid" ]; then
-        specKernel
-    else
-        echo "Available Device NOT Selected"
-        echo "Sync Only Procedure Initiated"
-        repo sync
-        exit 1
+    elif [ "$kernel" == "mecha" ]; then
+        cd $MECHASPEC
+        if [ "$prebuilt" == "y" ]; then
+            ./buildKernel.sh 1 mecha
+        else
+            ./buildKernel.sh 0 mecha
+        fi
+    elif [ "$kernel" == "ace" ]; then
+        cd $SPADESPEC
+        if [ "$prebuilt" == "y" ]; then
+            ./buildKernel.sh 1 ace
+        else
+            ./buildKernel.sh 0 ace
+        fi
+    elif [ "$kernel" == "tiamat" ]; then
+        cd $TIAMATSPEC
+        if [ "$prebuilt" == "y" ]; then
+            ./buildKernel.sh 1 shooter
+        else
+            ./buildKernel.sh 0 shooter
+        fi
+    elif [ "$kernel" == "shared" ]; then
+        if [ "$prebuilt" == "y" ]; then
+            cd $SHOOTRSPEC
+            ./buildKernel.sh 1 shooter
+            cd $MECHASPEC
+            ./buildKernel.sh 1 mecha
+            cd $SPADESPEC
+            ./buildKernel.sh 1 ace
+        else
+            cd $SHOOTRSPEC
+            ./buildKernel.sh 0 shooter
+            cd $MECHASPEC
+            ./buildKernel.sh 0 mecha
+            cd $SPADESPEC
+            ./buildKernel.sh 0 ace
+        fi
     fi
+    cd $BUILDDIR
+elif [ "$SELECTION" != "invalid" ]; then
     if [ "$SELECTION" != "kernel" ]; then
         if [ "$syncup" != "n" ]; then
             repo sync
@@ -325,3 +263,9 @@ fi
             specDevice
         fi
     fi
+else
+    echo "Available Device NOT Selected"
+    echo "Sync Only Procedure Initiated"
+    repo sync
+    exit 1
+fi
