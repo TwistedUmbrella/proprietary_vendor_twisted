@@ -175,7 +175,8 @@ if [ "$SELECTION" == "kernel" ]; then
     echo "1. Shooter"
     echo "2. Mecha"
     echo "3. Ace"
-    echo "4. Shared"
+    echo "4. Vivo"
+    echo "5. Shared"
     echo "Please Choose: "
     read devicesel
 
@@ -190,6 +191,9 @@ if [ "$SELECTION" == "kernel" ]; then
             kernel="ace"
         ;;
         4)
+            kernel="vivo"
+        ;;
+        5)
             kernel="shared"
         ;;
     esac
@@ -213,6 +217,13 @@ if [ "$SELECTION" == "kernel" ]; then
             ./buildKernel.sh 1 ace
         else
             ./buildKernel.sh 0 ace
+        fi
+    elif [ "$kernel" == "vivo" ]; then
+        cd $SPADESPEC
+        if [ "$prebuilt" == "y" ]; then
+            ./buildKernel.sh 1 vivo
+        else
+            ./buildKernel.sh 0 vivo
         fi
     elif [ "$kernel" == "shared" ]; then
         if [ "$prebuilt" == "y" ]; then
