@@ -233,6 +233,7 @@ if [ "$SELECTION" == "kernel" ]; then
             ./buildKernel.sh 1 mecha
             cd $SPADESPEC
             ./buildKernel.sh 1 ace
+            ./buildKernel.sh 1 vivo
         else
             cd $SHOOTRSPEC
             ./buildKernel.sh 0 shooter
@@ -240,6 +241,7 @@ if [ "$SELECTION" == "kernel" ]; then
             ./buildKernel.sh 0 mecha
             cd $SPADESPEC
             ./buildKernel.sh 0 ace
+            ./buildKernel.sh 0 vivo
         fi
     fi
     cd $BUILDDIR
@@ -264,6 +266,8 @@ elif [ "$SELECTION" != "invalid" ]; then
             DEVICE="mecha"
             specDevice
             DEVICE="ace"
+            specDevice
+            DEVICE="vivo"
             specDevice
         fi
     fi
