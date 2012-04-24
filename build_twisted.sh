@@ -245,7 +245,6 @@ if [ "$SELECTION" == "kernel" ]; then
             ./buildKernel.sh 0 vivo
         fi
     fi
-    cd $BUILDDIR
 elif [ "$SELECTION" != "invalid" ]; then
     if [ "$SELECTION" != "kernel" ]; then
         if [ "$syncup" != "n" ]; then
