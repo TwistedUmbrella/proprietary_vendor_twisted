@@ -49,5 +49,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Build Versioning
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.modversion=NewEra8 \
+    ro.modversion=PROJECT.D \
     ro.rommanager.developerid=Twisted
