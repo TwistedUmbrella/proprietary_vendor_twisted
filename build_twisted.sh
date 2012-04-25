@@ -39,7 +39,6 @@ fi
     specDevice() {
 
         PRODUCT=htc_$DEVICE
-        TOOLCHAIN=prebuilt/darwin-x86/toolchain/arm-linux-androideabi-4.6/bin/arm-linux-androideabi-
         PROPER=`echo $DEVICE | sed 's/\([a-z]\)\([a-zA-Z0-9]*\)/\u\1\2/g'`
         TIMESTAMP=$ANDROIDREPO/$PROPER/TimeStamp.html
         TEMPSTAMP=$ANDROIDREPO/$PROPER/TempStamp
@@ -50,7 +49,7 @@ fi
         export CCACHE_DIR=$USERLOCAL/.ccache-$DEVICE
         $CCACHEBIN -M 40G
         COMPILED=`date`
-        make otapackage -j4 TARGET_PRODUCT=$PRODUCT TARGET_BUILD_VARIANT=userdebug TARGET_TOOLS_PREFIX=$TOOLCHAIN
+        make otapackage -j4 TARGET_PRODUCT=$PRODUCT TARGET_BUILD_VARIANT=userdebug
         rm -R $CCACHE_DIR/*
         if [ -e $BUILDDIR/out/target/product/$DEVICE/$PRODUCT-ota-eng.$HANDLE.zip ]; then
             MD5STRING=`md5 /Volumes/android/android-tzb_ics4.0.1/out/target/product/$DEVICE/$PRODUCT-ota-eng.$HANDLE.zip | awk {'print $4'}`
