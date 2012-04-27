@@ -14,7 +14,7 @@ if cat /etc/issue | grep Ubuntu; then
     SPADESPEC=~/htc-kernel-msm7x30
     SHOOTRSPEC=~/htc-kernel-msm8660
     TIAMATSPEC=~/cayniarb-8660-kernel
-    USERLOCAL=/home/$HANDLE
+    USERLOCAL=/home/Completed-Builds
 
 else
 
@@ -28,7 +28,7 @@ else
     SHOOTRSPEC=/Volumes/android/htc-kernel-msm8660
     TIAMATSPEC=/Volumes/android/cayniarb-8660-kernel
     USERLOCAL=/Users/$HANDLE
-    DROPBOX=/Users/$HANDLE/Dropbox/IceCreamSammy
+    DROPBOX=/Users/$HANDLE/Documents/Completed-Builds
 
 fi
 
