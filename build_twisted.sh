@@ -20,7 +20,7 @@ else
 
     HANDLE=TwistedZero
     ANDROIDREPO=/Volumes/android/Twisted-Playground
-    DROIDGITHUB=TwistedUmbrella/Twisted-Playground.git
+    DROIDGITHUB=ThePlayground/Twisted-Playground.git
     BUILDDIR=/Volumes/android/android-tzb_ics4.0.1
     CCACHEBIN=prebuilt/darwin-x86/ccache/ccache
     MECHASPEC=/Volumes/android/leanKernel-tbolt-ics
@@ -69,13 +69,13 @@ fi
             echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">' >> $TIMESTAMP
             echo '<meta http-equiv="cleartype" content="on">' >> $TIMESTAMP
             echo '<script type="text/javascript">' >> $TIMESTAMP
-            echo 'window.scrollTo(0, window.innerHeight)' >> $TIMESTAMP
+            echo 'window.scrollTo(0, window.innerHeight);' >> $TIMESTAMP
             echo '</script>' >> $TIMESTAMP
             echo '<meta charset="UTF-8">' >> $TIMESTAMP
             echo '<title>'${PROPER}' TimeStamp - The Playground</title>' >> $TIMESTAMP
             echo '<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />' >> $TIMESTAMP
             echo '<link rel="stylesheet" type="text/css" href="../Modules/css/accordion.css">' >> $TIMESTAMP
-            echo '<script src="../Modules/js/libs/modernizr.custom.min.js"></script>'>> $TIMESTAMP
+            echo '<script src="../Modules/js/modernizr.custom.min.js"></script>'>> $TIMESTAMP
             echo '</head>'>> $TIMESTAMP
             echo '<body>' >> $TIMESTAMP
             echo '<div data-role="page" id="release-'$DEVICE'" data-add-back-btn="true" data-cache="never">' >> $TIMESTAMP
@@ -102,7 +102,7 @@ fi
             echo '<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>' >> $TIMESTAMP
             echo '<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>' >> $TIMESTAMP
             echo '<script src="http://cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js"></script>' >> $TIMESTAMP
-            echo '<script src="../Modules/js/libs/data-cache-never-min.js"></script>' >> $TIMESTAMP
+            echo '<script src="http://twistedumbrella.cloudant.com/comicbuddy/_design/comicbuddy/js/data-cache-never-min.js"></script>' >> $TIMESTAMP
             echo '</body>' >> $TIMESTAMP
             echo '</html>' >> $TIMESTAMP
             cd $ANDROIDREPO
