@@ -78,8 +78,8 @@ fi
             echo '<script src="../Modules/js/modernizr.custom.min.js"></script>'>> $TIMESTAMP
             echo '</head>'>> $TIMESTAMP
             echo '<body>' >> $TIMESTAMP
-            echo '<div data-role="page" id="release-'$DEVICE'" data-add-back-btn="true" data-cache="never">' >> $TIMESTAMP
-            echo '<div data-role="header" data-position="fixed" data-theme="b">' >> $TIMESTAMP
+            echo '<div data-role="page" data-theme="a" id="release-'$DEVICE'" data-add-back-btn="true" data-cache="never">' >> $TIMESTAMP
+            echo '<div data-role="header" data-position="fixed">' >> $TIMESTAMP
             echo '<img src="../Modules/images/banner.png" id="banner">' >> $TIMESTAMP
             echo '</div>' >> $TIMESTAMP
             echo '<div data-role="content">' >> $TIMESTAMP
@@ -95,7 +95,7 @@ fi
             echo 'MD5: '$MD5STRING >> $TIMESTAMP
             echo '</h3></center>' >> $TIMESTAMP
             echo '</div>' >> $TIMESTAMP
-            echo '<div data-role="footer" data-position="fixed" data-theme="b">' >> $TIMESTAMP
+            echo '<div data-role="footer" data-position="fixed">' >> $TIMESTAMP
             echo '<h1><a href="http://twistedplayground.info" target="_blank"><img src="../Modules/images/webdesign.png" id="webdesign" width="200" height="30"/></a></h1>' >> $TIMESTAMP
             echo '</div>' >> $TIMESTAMP
             echo '</div>' >> $TIMESTAMP
