@@ -98,10 +98,10 @@ fi
             echo '<div data-role="footer" data-position="fixed">' >> $TIMESTAMP
             echo '<center><script type="text/javascript"><!--' >> $TIMESTAMP
             echo 'google_ad_client = "ca-pub-7507564270697903";' >> $TIMESTAMP
-            echo '/* Twisted Playground Large */' >> $TIMESTAMP
-            echo 'google_ad_slot = "2565508470";' >> $TIMESTAMP
-            echo 'google_ad_width = 728;' >> $TIMESTAMP
-            echo 'google_ad_height = 90;' >> $TIMESTAMP
+            echo '/* Twisted Playground Small */' >> $TIMESTAMP
+            echo 'google_ad_slot = "1630194633";' >> $TIMESTAMP
+            echo 'google_ad_width = 468;' >> $TIMESTAMP
+            echo 'google_ad_height = 60;' >> $TIMESTAMP
             echo '//-->' >> $TIMESTAMP
             echo '</script>' >> $TIMESTAMP
             echo '<script type="text/javascript"' >> $TIMESTAMP
