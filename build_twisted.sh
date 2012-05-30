@@ -96,6 +96,18 @@ fi
             echo '</h3></center>' >> $TIMESTAMP
             echo '</div>' >> $TIMESTAMP
             echo '<div data-role="footer" data-position="fixed">' >> $TIMESTAMP
+            echo '<center><script type="text/javascript"><!--' >> $TIMESTAMP
+            echo 'google_ad_client = "ca-pub-7507564270697903";' >> $TIMESTAMP
+            echo '/* Twisted Playground Large */' >> $TIMESTAMP
+            echo 'google_ad_slot = "2565508470";' >> $TIMESTAMP
+            echo 'google_ad_width = 728;' >> $TIMESTAMP
+            echo 'google_ad_height = 90;' >> $TIMESTAMP
+            echo '//-->' >> $TIMESTAMP
+            echo '</script>' >> $TIMESTAMP
+            echo '<script type="text/javascript"' >> $TIMESTAMP
+            echo 'src="http://pagead2.googlesyndication.com/pagead/show_ads.js">' >> $TIMESTAMP
+            echo '</script></center>' >> $TIMESTAMP
+            echo '</div>' >> $TIMESTAMP
             echo '<h1><a href="http://twistedplayground.info" target="_blank"><img src="../Modules/images/webdesign.png" id="webdesign" width="200" height="30"/></a></h1>' >> $TIMESTAMP
             echo '</div>' >> $TIMESTAMP
             echo '</div>' >> $TIMESTAMP
