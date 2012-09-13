@@ -3,12 +3,11 @@ PRODUCT_BRAND ?= liquid
 
 # build
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_DISPLAY_ID="Liquid ICS v1.5 MR1"
+    BUILD_DISPLAY_ID="Liquid ICS v1.5 MR2"
 
 # overrides
 PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true \
-    ro.rommanager.developerid=liquid \
     ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
     ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
     ro.com.google.clientidbase=android-google \
@@ -18,17 +17,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.dataroaming=false \
     ro.media.enc.jpeg.quality=100 \
     ro.kernel.android.checkjni=0 \
-    persist.sys.camera-sound=1
+    persist.sys.camera-sound=1 \
+    drm.service.enabled=true
 
 # packages
 PRODUCT_PACKAGES += \
-    AppWidgetPicker \
     LiveWallpapers \
     HoloSpiralWallpaper \
     LiveWallpapersPicker \
     Galaxy4 \
     PhaseBeam \
-    NoiseField
+    NoiseField \
+    Torch
 
 # tmobile
 PRODUCT_PACKAGES += \
@@ -45,26 +45,26 @@ PRODUCT_COPY_FILES += \
 
 # etc
 PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/etc/gps.conf:system/etc/gps.conf \
-    vendor/liquid/prebuilt/common/etc/spn-conf.xml:system/etc/spn-conf.xml \
-    vendor/liquid/prebuilt/common/etc/init.d/90tweaks:system/etc/init.d/90tweaks
+    vendor/liquid/prebuilt/common/etc/gps.conf:system/etc/gps.conf
 
 # permissions
 PRODUCT_COPY_FILES += \
     vendor/liquid/prebuilt/common/etc/permissions/features.xml:system/etc/permissions/features.xml \
     vendor/liquid/prebuilt/common/etc/permissions/com.google.android.maps.xml:system/etc/permissions/com.google.android.maps.xml \
-    vendor/liquid/prebuilt/common/etc/permissions/com.google.android.media.effects.xml:system/etc/permissions/com.google.android.media.effects.xml \
-    vendor/liquid/prebuilt/common/etc/permissions/com.tmobile.software.themes.xml:system/etc/permissions/com.tmobile.software.themes.xml
+    vendor/liquid/prebuilt/common/etc/permissions/com.tmobile.software.themes.xml:system/etc/permissions/com.tmobile.software.themes.xml \
+    vendor/liquid/prebuilt/common/etc/permissions/com.google.widevine.software.drm.xml:system/etc/permissions/com.google.widevine.software.drm.xml \
+    vendor/liquid/prebuilt/common/etc/permissions/com.google.android.media.effects.xml:system/etc/permissions/com.google.android.media.effects.xml
 
 # framework
 PRODUCT_COPY_FILES += \
     vendor/liquid/prebuilt/common/framework/com.google.android.maps.jar:system/framework/com.google.android.maps.jar \
-    vendor/liquid/prebuilt/common/framework/com.google.android.media.effects.jar:system/framework/com.google.android.media.effects.jar
+    vendor/liquid/prebuilt/common/framework/com.google.android.media.effects.jar:system/framework/com.google.android.media.effects.jar \
+    vendor/liquid/prebuilt/common/framework/com.google.widevine.software.drm.jar:system/framework/com.google.widevine.software.drm.jar
 
 # google
 PRODUCT_COPY_FILES += \
     vendor/liquid/prebuilt/common/app/ChromeBookmarksSyncAdapter.apk:system/app/ChromeBookmarksSyncAdapter.apk \
-    vendor/liquid/prebuilt/common/app/Gallery2.apk:system/app/Gallery2.apk \
+    vendor/liquid/prebuilt/common/app/GalleryGoogle.apk:system/app/GalleryGoogle.apk \
     vendor/liquid/prebuilt/common/app/GenieWidget.apk:system/app/GenieWidget.apk \
     vendor/liquid/prebuilt/common/app/GoogleBackupTransport.apk:system/app/GoogleBackupTransport.apk \
     vendor/liquid/prebuilt/common/app/GoogleCalendarSyncAdapter.apk:system/app/GoogleCalendarSyncAdapter.apk \
@@ -78,10 +78,10 @@ PRODUCT_COPY_FILES += \
     vendor/liquid/prebuilt/common/app/MediaUploader.apk:system/app/MediaUploader.apk \
     vendor/liquid/prebuilt/common/app/NetworkLocation.apk:system/app/NetworkLocation.apk \
     vendor/liquid/prebuilt/common/app/OneTimeInitializer.apk:system/app/OneTimeInitializer.apk \
+    vendor/liquid/prebuilt/common/app/Phonesky.apk:system/app/Phonesky.apk \
     vendor/liquid/prebuilt/common/app/SetupWizard.apk:system/app/SetupWizard.apk \
-    vendor/liquid/prebuilt/common/app/Superuser.apk:system/app/Superuser.apk \
+    vendor/liquid/prebuilt/common/app/SuperSU.apk:system/app/SuperSU.apk \
     vendor/liquid/prebuilt/common/app/Talk.apk:system/app/Talk.apk \
-    vendor/liquid/prebuilt/common/app/Vending.apk:system/app/Vending.apk \
     vendor/liquid/prebuilt/common/app/VoiceSearch.apk:system/app/VoiceSearch.apk
 
 # library
@@ -90,7 +90,10 @@ PRODUCT_COPY_FILES += \
     vendor/liquid/prebuilt/common/lib/libvoicesearch.so:system/lib/libvoicesearch.so \
     vendor/liquid/prebuilt/common/lib/libspeexwrapper.so:system/lib/libspeexwrapper.so \
     vendor/liquid/prebuilt/common/lib/libvideochat_jni.so:system/lib/libvideochat_jni.so \
-    vendor/liquid/prebuilt/common/lib/libvideochat_stabilize.so:system/lib/libvideochat_stabilize.so
+    vendor/liquid/prebuilt/common/lib/libvideochat_jni.so:system/lib/libvideochat_jni.so \
+    vendor/liquid/prebuilt/common/lib/libvideochat_jni.so:system/lib/libvideochat_jni.so \
+    vendor/liquid/prebuilt/common/lib/libflint_engine_jni_api.so:system/lib/libflint_engine_jni_api.so \
+    vendor/liquid/prebuilt/common/lib/libfilterpack_facedetect.so:system/lib/libfilterpack_facedetect.so
 
 # media
 PRODUCT_COPY_FILES += \
@@ -99,6 +102,7 @@ PRODUCT_COPY_FILES += \
 
 # scripts
 PRODUCT_COPY_FILES += \
+    vendor/liquid/prebuilt/common/xbin/su:system/xbin/su \
     vendor/liquid/prebuilt/common/xbin/sysro:system/xbin/sysro \
     vendor/liquid/prebuilt/common/xbin/sysrw:system/xbin/sysrw
 

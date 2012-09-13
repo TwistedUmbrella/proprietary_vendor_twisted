@@ -14,10 +14,4 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
   Camera \
   Mms \
-  Music \
   MusicFX
-
-# google
-PRODUCT_COPY_FILES += \
-    vendor/liquid/prebuilt/common/app/Gmail.apk:system/app/Gmail.apk
-
