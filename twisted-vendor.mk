@@ -34,6 +34,7 @@ PRODUCT_PACKAGES += \
 
 # Twisted Packages
 PRODUCT_COPY_FILES += \
+    vendor/twisted/twisted/sbin/speedtweak.sh:root/sbin/speedtweak.sh \
     vendor/twisted/twisted/app/NovaLauncher.apk:system/app/NovaLauncher.apk
 
 # Twisted Customization
