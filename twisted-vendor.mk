@@ -21,7 +21,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.com.android.wifi-watchlist=GoogleGuest \
     ro.setupwizard.enterprise_mode=1 \
     ro.com.android.dateformat=MM-dd-yyyy \
-    ro.com.android.dataroaming=false
+    ro.com.android.dataroaming=false \
+    ro.media.enc.jpeg.quality=100 \
+    ro.kernel.android.checkjni=0 \
+    persist.sys.camera-sound=1 \
+    drm.service.enabled=true
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 UTC_DATE := $(shell date +%s)
