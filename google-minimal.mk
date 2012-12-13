@@ -85,6 +85,12 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/google/framework/com.google.android.media.effects.jar:system/framework/com.google.android.media.effects.jar \
     vendor/twisted/google/framework/com.google.widevine.software.drm.jar:system/framework/com.google.widevine.software.drm.jar
 
+# Google TTS
+PRODUCT_COPY_FILES += $(shell \
+    find vendor/twisted/google/tts/lang_pico -name '*.bin' \
+    | sed -r 's/^\/?(.*\/)([^/ ]+)$$/\1\2:system\/tts\/lang_pico\/\2/' \
+    | tr '\n' ' ')
+
 # Gapps Versioning
 PRODUCT_PROPERTY_OVERRIDES += \
 ro.addon.type=gapps \
