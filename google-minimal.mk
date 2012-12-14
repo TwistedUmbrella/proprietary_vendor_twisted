@@ -30,6 +30,7 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/google/lib/neon/libflint_engine_jni_api.so:system/lib/libflint_engine_jni_api.so \
     vendor/twisted/google/lib/neon/libfrsdk.so:system/lib/libfrsdk.so \
     vendor/twisted/google/lib/neon/libgcomm_jni.so:system/lib/libgcomm_jni.so \
+    vendor/twisted/google/lib/neon/libgoogle_recognizer_jni.so:system/lib/libgoogle_recognizer_jni.so \
     vendor/twisted/google/lib/neon/libpatts_engine_jni_api.so:system/lib/libpatts_engine_jni_api.so \
     vendor/twisted/google/lib/neon/libpicowrapper.so:system/lib/libpicowrapper.so \
     vendor/twisted/google/lib/neon/libspeexwrapper.so:system/lib/libspeexwrapper.so \
@@ -44,6 +45,7 @@ PRODUCT_COPY_FILES += \
     vendor/twisted/google/lib/base/libflint_engine_jni_api.so:system/lib/libflint_engine_jni_api.so \
     vendor/twisted/google/lib/base/libfrsdk.so:system/lib/libfrsdk.so \
     vendor/twisted/google/lib/base/libgcomm_jni.so:system/lib/libgcomm_jni.so \
+    vendor/twisted/google/lib/base/libgoogle_recognizer_jni.so:system/lib/libgoogle_recognizer_jni.so \
     vendor/twisted/google/lib/base/libpatts_engine_jni_api.so:system/lib/libpatts_engine_jni_api.so \
     vendor/twisted/google/lib/base/libpicowrapper.so:system/lib/libpicowrapper.so \
     vendor/twisted/google/lib/base/libspeexwrapper.so:system/lib/libspeexwrapper.so \
