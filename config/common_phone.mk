@@ -1,5 +1,5 @@
 # common
-$(call inherit-product, vendor/liquid/config/common.mk)
+$(call inherit-product, vendor/twisted/config/common.mk)
 
 # audio
 include frameworks/base/data/sounds/NewAudio.mk
@@ -17,4 +17,3 @@ PRODUCT_PACKAGES += \
   DSPManager \
   libcyanogen-dsp \
   MusicFX
-twisted
