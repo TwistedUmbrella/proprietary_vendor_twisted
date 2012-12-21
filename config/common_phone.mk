@@ -17,3 +17,4 @@ PRODUCT_PACKAGES += \
   DSPManager \
   libcyanogen-dsp \
   MusicFX
+twisted

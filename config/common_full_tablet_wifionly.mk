@@ -1,5 +1,5 @@
 # Inherit common Liquid stuff
-$(call inherit-product, vendor/liquid/config/common.mk)
+$(call inherit-product, vendor/twisted/config/common.mk)
 
 # Bring in all audio files
 include frameworks/base/data/sounds/NewAudio.mk
