@@ -1,9 +1,6 @@
-# brand
-PRODUCT_BRAND ?= liquid
-
 # build
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_DISPLAY_ID="Liquid ICS v1.5 MR2"
+    BUILD_DISPLAY_ID="ICS v1.5 MR3"
 
 # overrides
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -64,8 +61,11 @@ PRODUCT_COPY_FILES += \
 # google
 PRODUCT_COPY_FILES += \
     vendor/liquid/prebuilt/common/app/ChromeBookmarksSyncAdapter.apk:system/app/ChromeBookmarksSyncAdapter.apk \
+    vendor/liquid/prebuilt/common/app/FaceLock.apk:system/app/FaceLock.apk \
+    vendor/liquid/prebuilt/common/app/flash_plugin.apk:system/app/flash_plugin.apk \
     vendor/liquid/prebuilt/common/app/GalleryGoogle.apk:system/app/GalleryGoogle.apk \
     vendor/liquid/prebuilt/common/app/GenieWidget.apk:system/app/GenieWidget.apk \
+    vendor/liquid/prebuilt/common/app/Gmail.apk:system/app/Gmail.apk \
     vendor/liquid/prebuilt/common/app/GoogleBackupTransport.apk:system/app/GoogleBackupTransport.apk \
     vendor/liquid/prebuilt/common/app/GoogleCalendarSyncAdapter.apk:system/app/GoogleCalendarSyncAdapter.apk \
     vendor/liquid/prebuilt/common/app/GoogleContactsSyncAdapter.apk:system/app/GoogleContactsSyncAdapter.apk \
@@ -74,6 +74,7 @@ PRODUCT_COPY_FILES += \
     vendor/liquid/prebuilt/common/app/GooglePartnerSetup.apk:system/app/GooglePartnerSetup.apk \
     vendor/liquid/prebuilt/common/app/GoogleQuickSearchBox.apk:system/app/GoogleQuickSearchBox.apk \
     vendor/liquid/prebuilt/common/app/GoogleServicesFramework.apk:system/app/GoogleServicesFramework.apk \
+    vendor/liquid/prebuilt/common/app/GoogleTTS.apk:system/app/GoogleTTS.apk \
     vendor/liquid/prebuilt/common/app/MarketUpdater.apk:system/app/MarketUpdater.apk \
     vendor/liquid/prebuilt/common/app/MediaUploader.apk:system/app/MediaUploader.apk \
     vendor/liquid/prebuilt/common/app/NetworkLocation.apk:system/app/NetworkLocation.apk \
@@ -86,14 +87,40 @@ PRODUCT_COPY_FILES += \
 
 # library
 PRODUCT_COPY_FILES += \
+    vendor/liquid/prebuilt/common/lib/libfacelock_jni.so:system/lib/libfacelock_jni.so \
+    vendor/liquid/prebuilt/common/lib/libfilterpack_facedetect.so:system/lib/libfilterpack_facedetect.so \
+    vendor/liquid/prebuilt/common/lib/libflint_engine_jni_api.so:system/lib/libflint_engine_jni_api.so \
+    vendor/liquid/prebuilt/common/lib/libfrsdk.so:system/lib/libfrsdk.so \
+    vendor/liquid/prebuilt/common/lib/libgcomm_jni.so:system/lib/libgcomm_jni.so \
+    vendor/liquid/prebuilt/common/lib/libgoogle_recognizer_jni.so:system/lib/libgoogle_recognizer_jni.so \
+    vendor/liquid/prebuilt/common/lib/libpatts_engine_jni_api.so:system/lib/libpatts_engine_jni_api.so \
     vendor/liquid/prebuilt/common/lib/libpicowrapper.so:system/lib/libpicowrapper.so \
-    vendor/liquid/prebuilt/common/lib/libvoicesearch.so:system/lib/libvoicesearch.so \
     vendor/liquid/prebuilt/common/lib/libspeexwrapper.so:system/lib/libspeexwrapper.so \
     vendor/liquid/prebuilt/common/lib/libvideochat_jni.so:system/lib/libvideochat_jni.so \
-    vendor/liquid/prebuilt/common/lib/libvideochat_jni.so:system/lib/libvideochat_jni.so \
-    vendor/liquid/prebuilt/common/lib/libvideochat_jni.so:system/lib/libvideochat_jni.so \
-    vendor/liquid/prebuilt/common/lib/libflint_engine_jni_api.so:system/lib/libflint_engine_jni_api.so \
-    vendor/liquid/prebuilt/common/lib/libfilterpack_facedetect.so:system/lib/libfilterpack_facedetect.so
+    vendor/liquid/prebuilt/common/lib/libvideochat_stabilize.so:system/lib/libvideochat_stabilize.so \
+    vendor/liquid/prebuilt/common/lib/libvoicesearch.so:system/lib/libvoicesearch.so
+
+# vendor
+PRODUCT_COPY_FILES += \
+    vendor/liquid/prebuilt/common/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.3/left_eye-y0-yi45-p0-pi45-r0-ri20.2d_n2/full_model.bin:system/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.3/left_eye-y0-yi45-p0-pi45-r0-ri20.2d_n2/full_model.bin \
+    vendor/liquid/prebuilt/common/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.3/left_eye-y0-yi45-p0-pi45-rn7-ri20.2d_n2/full_model.bin:system/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.3/left_eye-y0-yi45-p0-pi45-rn7-ri20.2d_n2/full_model.bin \
+    vendor/liquid/prebuilt/common/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.3/left_eye-y0-yi45-p0-pi45-rp7-ri20.2d_n2/full_model.bin:system/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.3/left_eye-y0-yi45-p0-pi45-rp7-ri20.2d_n2/full_model.bin \
+    vendor/liquid/prebuilt/common/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.3/nose_base-y0-yi45-p0-pi45-r0-ri20.2d_n2/full_model.bin:system/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.3/nose_base-y0-yi45-p0-pi45-r0-ri20.2d_n2/full_model.bin \
+    vendor/liquid/prebuilt/common/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.3/nose_base-y0-yi45-p0-pi45-rn7-ri20.2d_n2/full_model.bin:system/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.3/nose_base-y0-yi45-p0-pi45-rn7-ri20.2d_n2/full_model.bin \
+    vendor/liquid/prebuilt/common/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.3/nose_base-y0-yi45-p0-pi45-rp7-ri20.2d_n2/full_model.bin:system/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.3/nose_base-y0-yi45-p0-pi45-rp7-ri20.2d_n2/full_model.bin \
+    vendor/liquid/prebuilt/common/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.3/right_eye-y0-yi45-p0-pi45-r0-ri20.2d_n2/full_model.bin:system/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.3/right_eye-y0-yi45-p0-pi45-r0-ri20.2d_n2/full_model.bin \
+    vendor/liquid/prebuilt/common/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.3/right_eye-y0-yi45-p0-pi45-rn7-ri20.2d_n2/full_model.bin:system/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.3/right_eye-y0-yi45-p0-pi45-rn7-ri20.2d_n2/full_model.bin \
+    vendor/liquid/prebuilt/common/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.3/right_eye-y0-yi45-p0-pi45-rp7-ri20.2d_n2/full_model.bin:system/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.3/right_eye-y0-yi45-p0-pi45-rp7-ri20.2d_n2/full_model.bin \
+    vendor/liquid/prebuilt/common/vendor/pittpatt/models/detection/yaw_roll_face_detectors.3/head-y0-yi45-p0-pi45-r0-ri30.4a/full_model.bin:system/vendor/pittpatt/models/detection/yaw_roll_face_detectors.3/head-y0-yi45-p0-pi45-r0-ri30.4a/full_model.bin \
+    vendor/liquid/prebuilt/common/vendor/pittpatt/models/detection/yaw_roll_face_detectors.3/head-y0-yi45-p0-pi45-rn30-ri30.5/full_model.bin:system/vendor/pittpatt/models/detection/yaw_roll_face_detectors.3/head-y0-yi45-p0-pi45-rn30-ri30.5/full_model.bin \
+    vendor/liquid/prebuilt/common/vendor/pittpatt/models/detection/yaw_roll_face_detectors.3/head-y0-yi45-p0-pi45-rp30-ri30.5/full_model.bin:system/vendor/pittpatt/models/detection/yaw_roll_face_detectors.3/head-y0-yi45-p0-pi45-rp30-ri30.5/full_model.bin \
+    vendor/liquid/prebuilt/common/vendor/pittpatt/models/recognition/face.face.y0-y0-22-b-N/full_model.bin:system/vendor/pittpatt/models/recognition/face.face.y0-y0-22-b-N/full_model.bin
+
+# tts
+PRODUCT_COPY_FILES += $(shell \
+    find vendor/liquid/prebuilt/common/tts/lang_pico -name '*.bin' \
+    | sed -r 's/^\/?(.*\/)([^/ ]+)$$/\1\2:system\/tts\/lang_pico\/\2/' \
+    | tr '\n' ' ')
 
 # media
 PRODUCT_COPY_FILES += \

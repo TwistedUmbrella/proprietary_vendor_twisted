@@ -1,1 +1,1 @@
-add_lunch_combo liquid_mecha-userdebug
+add_lunch_combo htc_mecha-userdebug
