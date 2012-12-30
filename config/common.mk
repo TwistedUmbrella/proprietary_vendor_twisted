@@ -2,6 +2,16 @@
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BUILD_DISPLAY_ID="ICS v1.5 MR3"
 
+# Twisted Customization
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.service.adb.enable=1 \
+    persist.sys.root_access=3
+
+# Build Versioning
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.modversion=PROJECT.D \
+    ro.rommanager.developerid=Twisted
+
 # overrides
 PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true \
